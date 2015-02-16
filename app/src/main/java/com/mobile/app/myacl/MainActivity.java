@@ -6,10 +6,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.mobile.app.myacl.DatabaseManager.DataAdapter;
+import com.mobile.app.myacl.UserDatabase.UserDB;
+import com.mobile.app.myacl.UserDatabase.UserProfile;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends ActionBarActivity {
-
+    static UserDB adb;
+    // private ArrayList<UserProfile> userprofile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,11 +22,15 @@ public class MainActivity extends ActionBarActivity {
 
         DataAdapter mDataAdapter = new DataAdapter(this);
         mDataAdapter.createDatabase();
+        adb = new UserDB(this);
+        adb.open();
+        //userprofile = adb.getProfileData();
+        adb.close();
         //mDataAdapter.open();
 
-       // Cursor testdata = mDataAdapter.getTestData();
+        // Cursor testdata = mDataAdapter.getTestData();
 
-       // mDataAdapter.close();
+        // mDataAdapter.close();
     }
 
 
