@@ -16,11 +16,11 @@ public class DataAdapter
 
     private final Context mContext;
     private SQLiteDatabase mDB;
-    private DatabaseHandler mDBHandler;
+    private ProtocolDBHandler mDBHandler;
 
     public DataAdapter(Context context){
         this.mContext = context;
-        mDBHandler = new DatabaseHandler(mContext);
+        mDBHandler = new ProtocolDBHandler(mContext);
     }
 
     public DataAdapter createDatabase() throws SQLException{

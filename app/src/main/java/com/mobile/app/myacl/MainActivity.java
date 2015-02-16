@@ -6,10 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.mobile.app.myacl.DatabaseManager.DataAdapter;
-import com.mobile.app.myacl.UserDatabase.UserDB;
-import com.mobile.app.myacl.UserDatabase.UserProfile;
-
-import java.util.ArrayList;
+import com.mobile.app.myacl.DatabaseManager.UserDB;
 
 
 public class MainActivity extends ActionBarActivity {
