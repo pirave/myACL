@@ -21,4 +21,10 @@ public class ProtocolDB {
         mDBHandler = new ProtocolDBHandler(mContext);
         mDB = mDBHandler.getWritableDatabase();
     }
+
+    public void close() {
+        mDBHandler.close();
+    }
+
+
 }
