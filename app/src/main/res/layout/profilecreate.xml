@@ -5,7 +5,103 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/pname_label"
+        android:text="Name:"
+        android:textSize="20dp"
+        android:paddingTop="10dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/pname"
+        android:layout_toRightOf="@+id/pname_label"
+        android:layout_marginLeft="10dp"
+        android:paddingTop="10dp"
+        android:textSize="20dp"
+        android:hint="Enter your name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/page_label"
+        android:text="Age:"
+        android:paddingTop="10dp"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pname"
+        android:layout_alignParentStart="true" />
+    <EditText
+        android:id="@+id/page"
+        android:layout_marginLeft="10dp"
+        android:hint="Enter your age"
+        android:paddingTop="10dp"
+        android:textSize="20dp"
+        android:inputType="number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pname"
+        android:layout_toEndOf="@+id/pname_label" />
+    <TextView
+        android:id="@+id/psurgerytype_label"
+        android:text="Surgery type:"
+        android:paddingTop="10dp"
+        android:layout_below="@id/page"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true" />
+
+    <RadioGroup android:id="@+id/radiola"
+        android:layout_below="@id/psurgerytype_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10.0dip"
+        android:paddingLeft="4.0dip"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioa"
+            android:layout_width="175dp"
+            android:checked="true"
+            android:layout_height="wrap_content"
+            android:text="Type A"
+            android:textColor="#000000"/>
+
+        <RadioButton
+            android:id="@+id/radiob"
+            android:layout_width="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_height="wrap_content"
+            android:text="Type B"
+            android:textColor="#000000"/>
+
+    </RadioGroup>
+    <TextView
+        android:id="@+id/psurgerydate_label"
+        android:text="Surgery date:"
+        android:paddingTop="10dp"
+        android:layout_below="@id/radiola"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true" />
+    <TextView
+        android:id="@+id/psurgerydate"
+        android:layout_marginLeft="10dp"
+        android:paddingTop="10dp"
+        android:textSize="20dp"
+        android:hint="Pick Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/psurgerydate_label" />
+
+    <Button android:id="@+id/date_picker_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:text="Date"
+        android:textSize="10dp"
+        android:layout_below="@+id/psurgerydate_label"
+        android:layout_toEndOf="@+id/psurgerydate_label" />
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.mobile.app.myacl;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,6 +18,8 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         DataAdapter mDataAdapter = new DataAdapter(this);
         mDataAdapter.createDatabase();
         adb = new UserDB(this);
@@ -28,6 +31,9 @@ public class MainActivity extends ActionBarActivity {
         // Cursor testdata = mDataAdapter.getTestData();
 
         // mDataAdapter.close();
+
+        Intent view = new Intent(this, ProfileCreate.class);
+        MainActivity.this.startActivity(view);
     }
 
 
