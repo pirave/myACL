@@ -1,5 +1,6 @@
 package com.mobile.app.myacl;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,6 +11,8 @@ import com.mobile.app.myacl.DatabaseManager.UserDB;
 import com.mobile.app.myacl.PlanManager.PlanManager;
 import com.mobile.app.myacl.UserManager.UserProfile;
 
+import java.text.SimpleDateFormat;
+
 
 public class MainActivity extends ActionBarActivity {
     static UserDB adb;
@@ -18,6 +21,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         DataAdapter mDataAdapter = new DataAdapter(this);
         mDataAdapter.createDatabase();
@@ -34,6 +39,9 @@ public class MainActivity extends ActionBarActivity {
         x.setSurgeryType("ACL");
         PlanManager planManager = new PlanManager(this);
         planManager.getPlan();
+
+        Intent view = new Intent(this, ProfileCreate.class);
+        MainActivity.this.startActivity(view);
     }
 
 
