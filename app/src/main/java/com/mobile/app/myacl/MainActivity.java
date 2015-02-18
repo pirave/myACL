@@ -7,6 +7,8 @@ import android.view.MenuItem;
 
 import com.mobile.app.myacl.DatabaseManager.DataAdapter;
 import com.mobile.app.myacl.DatabaseManager.UserDB;
+import com.mobile.app.myacl.PlanManager.PlanManager;
+import com.mobile.app.myacl.UserManager.UserProfile;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -28,6 +30,10 @@ public class MainActivity extends ActionBarActivity {
         // Cursor testdata = mDataAdapter.getTestData();
 
         // mDataAdapter.close();
+        UserProfile x = UserProfile.getInstance();
+        x.setSurgeryType("ACL");
+        PlanManager planManager = new PlanManager(this);
+        planManager.getPlan();
     }
 
 

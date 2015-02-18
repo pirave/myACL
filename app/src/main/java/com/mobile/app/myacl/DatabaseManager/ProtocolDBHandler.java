@@ -21,6 +21,16 @@ public class ProtocolDBHandler extends SQLiteOpenHelper {
     private static String DATABASE_PATH = "";
     private static String DATABASE_NAME = "application.db";
 
+    public static String TABLE_CATEGORY = "category";
+    public static String TABLE_MEDIA = "media";
+    public static String TABLE_GOALS = "goals";
+
+    public static String KEY_WEEKNUM = "week_num";
+    public static String KEY_GOAL_DESC = "goals_desc";
+    public static String KEY_CAT_DESC = "cat_desc";
+    public static String KEY_CAT_ID = "cat_id";
+    public static String FKEY_EXE_ID = "exe_id_fk";
+
     private SQLiteDatabase mDB;
     private final Context mContext;
 
