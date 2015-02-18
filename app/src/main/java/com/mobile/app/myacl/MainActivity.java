@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import com.mobile.app.myacl.DatabaseManager.DataAdapter;
 import com.mobile.app.myacl.DatabaseManager.UserDB;
 
+import java.text.SimpleDateFormat;
+
 
 public class MainActivity extends ActionBarActivity {
     static UserDB adb;
