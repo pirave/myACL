@@ -4,5 +4,6 @@
     <string name="app_name">MyACL</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="plan_filename">plan.ser</string>
 
 </resources>

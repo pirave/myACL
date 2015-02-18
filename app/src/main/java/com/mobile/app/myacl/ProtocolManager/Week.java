@@ -1,11 +1,12 @@
 package com.mobile.app.myacl.ProtocolManager;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by pirave on 15-02-16.
  */
-public class Week {
+public class Week implements Serializable{
     private int num;
     private List<Goal> goals;
     private List<Category> categories;

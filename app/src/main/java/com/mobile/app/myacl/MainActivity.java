@@ -8,6 +8,8 @@ import android.view.MenuItem;
 
 import com.mobile.app.myacl.DatabaseManager.DataAdapter;
 import com.mobile.app.myacl.DatabaseManager.UserDB;
+import com.mobile.app.myacl.PlanManager.PlanManager;
+import com.mobile.app.myacl.UserManager.UserProfile;
 
 import java.text.SimpleDateFormat;
 
@@ -33,6 +35,10 @@ public class MainActivity extends ActionBarActivity {
         // Cursor testdata = mDataAdapter.getTestData();
 
         // mDataAdapter.close();
+        UserProfile x = UserProfile.getInstance();
+        x.setSurgeryType("ACL");
+        PlanManager planManager = new PlanManager(this);
+        planManager.getPlan();
 
         Intent view = new Intent(this, ProfileCreate.class);
         MainActivity.this.startActivity(view);

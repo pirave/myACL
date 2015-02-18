@@ -87,7 +87,7 @@ public class UserDB {
 
         UserProfile userprofile;
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-            userprofile = new UserProfile();
+            userprofile = UserProfile.getInstance();
             userprofile.setID(c.getInt(iRow));
             userprofile.setUsername(c.getString(iUsername));
             userprofile.setGender(c.getString(iGender));
