@@ -8,7 +8,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TabHost;
 import android.widget.Toast;
+
+import android.app.TabActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.TabHost;
+import android.widget.TabHost.TabSpec;
+
 
 import com.mobile.app.myacl.DatabaseManager.DataAdapter;
 import com.mobile.app.myacl.DatabaseManager.UserDB;
@@ -18,7 +26,7 @@ import com.mobile.app.myacl.UserManager.UserProfile;
 import java.text.SimpleDateFormat;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends  TabActivity {
     static UserDB adb;
     Button show,creat;
     // private ArrayList<UserProfile> userprofile;
@@ -26,8 +34,44 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        creat=(Button)findViewById(R.id.buttoncreat);
-        show=(Button)findViewById(R.id.buttonshow);
+
+        TabHost tabHost = getTabHost();
+
+        // Tab for Home
+        TabHost.TabSpec homespec = tabHost.newTabSpec("Home");
+        homespec.setIndicator("", getResources().getDrawable(R.drawable.icon_home_tab));
+        Intent homeIntent = new Intent(MainActivity.this, ProfileCreate.class);
+        homespec.setContent(homeIntent);
+
+        // Tab for timeline
+        TabHost.TabSpec timelinespec = tabHost.newTabSpec("TimeLine");
+        timelinespec.setIndicator("", getResources().getDrawable(R.drawable.icon_home_tab));
+        Intent timelineIntent = new Intent(MainActivity.this, ProfileShow.class);
+        timelinespec.setContent(timelineIntent);
+
+        // Tab for Progress
+        TabHost.TabSpec progressspec = tabHost.newTabSpec("Progress");
+        progressspec.setIndicator("", getResources().getDrawable(R.drawable.icon_home_tab));
+        Intent progressIntent = new Intent(MainActivity.this, ProfileShow.class);
+        progressspec.setContent(progressIntent);
+
+
+        // Tab for Settings
+        TabHost.TabSpec settingspec = tabHost.newTabSpec("Settings");
+        settingspec.setIndicator("", getResources().getDrawable(R.drawable.icon_home_tab));
+        Intent settingIntent = new Intent(MainActivity.this, ProfileShow.class);
+        settingspec.setContent(settingIntent);
+
+        // Adding all TabSpec to TabHost
+        tabHost.addTab(homespec); // Adding home tab
+        tabHost.addTab(timelinespec); // Adding timeline tab
+        tabHost.addTab(progressspec); // Adding progress tab
+        tabHost.addTab(settingspec); // Adding settings tab
+
+
+
+        // creat=(Button)findViewById(R.id.buttoncreat);
+        //show=(Button)findViewById(R.id.buttonshow);
 
 
        // DataAdapter mDataAdapter = new DataAdapter(this);
@@ -49,7 +93,7 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-        creat.setOnClickListener(new View.OnClickListener()
+       /* creat.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
@@ -64,30 +108,10 @@ public class MainActivity extends ActionBarActivity {
                 Intent view = new Intent(MainActivity.this, ProfileShow.class);
                 MainActivity.this.startActivity(view);
             }
-        });
+        });*/
 
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
