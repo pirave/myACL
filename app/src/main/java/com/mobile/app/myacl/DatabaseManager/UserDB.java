@@ -51,7 +51,7 @@ public class UserDB {
     private ContentValues setContentUserprofile(UserProfile userprofile) {
 
         ContentValues cv = new ContentValues();
-        cv.put(UserDBHandler.KEY_USERID, userprofile.getUsername());
+        cv.put(UserDBHandler.KEY_USERID, userprofile.getID());
         cv.put(UserDBHandler.KEY_USERNAME, userprofile.getUsername());
         cv.put(UserDBHandler.KEY_GENDER, userprofile.getGender());
         cv.put(UserDBHandler.KEY_AGE, userprofile.getAge());

@@ -1,8 +1,10 @@
 package com.mobile.app.myacl;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -33,7 +35,7 @@ public class ProfileCreate extends ActionBarActivity {
     RadioButton typea,typeb,female,male;
     Button bdone,bcancel;
     UserProfile x;
-    String android_id;
+    String android_id,uid;
     UserDB uDB;
 
     @Override
@@ -51,18 +53,18 @@ public class ProfileCreate extends ActionBarActivity {
         female=(RadioButton) findViewById(R.id.radiof);
         male=(RadioButton) findViewById(R.id.radiom);
         surgerydate = (TextView) findViewById(R.id.psurgerydate);
-        android_id = Secure.getString(getContentResolver(),Secure.ANDROID_ID);
-
-
+        android_id = Secure.getString(this.getContentResolver(),Secure.ANDROID_ID);
+        TelephonyManager tManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+        uid = tManager.getDeviceId();
+        selectedDate = Calendar.getInstance();
+        yr = selectedDate.get(Calendar.YEAR);
+        mon = selectedDate.get(Calendar.MONTH);
+        dy = selectedDate.get(Calendar.DAY_OF_MONTH);
+        selectedDate.set(yr, mon, dy);
         surgerydate.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
-                selectedDate = Calendar.getInstance();
-                yr = selectedDate.get(Calendar.YEAR);
-                mon = selectedDate.get(Calendar.MONTH);
-                dy = selectedDate.get(Calendar.DAY_OF_MONTH);
-
                 new DatePickerDialog(ProfileCreate.this, dateListener, yr, mon, dy).show();
             }
         });
@@ -71,12 +73,12 @@ public class ProfileCreate extends ActionBarActivity {
         {
             public void onClick(View v)
             {
-                if (name.getText().toString() == "" || age.getText().toString()== "" )
+                if (name.getText().toString().trim().isEmpty() || age.getText().toString().trim().isEmpty() )
                 {
                     Toast.makeText(getApplicationContext(), "Please Fill your name and Age information",Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    x.setID(android_id);
+                    x.setID(uid);
                     x.setUsername(name.getText().toString());
                     x.setAge(Integer.parseInt(age.getText().toString()));
                     x.setSurgeryDate(selectedDate.getTime());
