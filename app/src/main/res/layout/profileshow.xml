@@ -1,0 +1,110 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:paddingTop="50dp"
+        android:paddingLeft="10dp"
+        >
+    <TextView
+        android:id="@+id/spname_label"
+        android:text="Name:"
+        android:textSize="20dp"
+        android:paddingTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/spname"
+        android:layout_toRightOf="@+id/spname_label"
+        android:layout_marginLeft="10dp"
+        android:paddingTop="10dp"
+        android:textSize="20dp"
+        android:text="Your name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/spage_label"
+        android:text="Age:"
+        android:paddingTop="10dp"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spname"
+        android:layout_alignParentStart="true" />
+    <TextView
+        android:id="@+id/spage"
+        android:layout_marginLeft="10dp"
+        android:text="Your age"
+        android:paddingTop="10dp"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spname"
+        android:layout_toEndOf="@+id/spname_label" />
+
+    <TextView
+        android:id="@+id/spsurgerydate_label"
+        android:text="Surgery date:"
+        android:paddingTop="20dp"
+        android:layout_below="@id/spage_label"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true" />
+    <TextView
+        android:id="@+id/spsurgerydate"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/spsurgerydate_label"
+        android:paddingTop="20dp"
+        android:textSize="20dp"
+        android:text="Today"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spage_label" />
+
+
+    <TextView
+        android:id="@+id/spsurgerytype_label"
+        android:text="Surgery type:"
+        android:paddingTop="20dp"
+        android:layout_below="@id/spsurgerydate_label"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true" />
+
+
+        <TextView
+            android:id="@+id/spsurgerytype"
+            android:text="Surgery Type"
+            android:paddingTop="20dp"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spsurgerydate"
+            android:layout_alignStart="@+id/spsurgerydate" />
+
+        <TextView
+            android:id="@+id/sids"
+            android:text="ID"
+            android:paddingTop="20dp"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spsurgerytype" />
+        <TextView
+            android:id="@+id/sgender"
+            android:text="Gender"
+            android:paddingTop="20dp"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sids" />
+
+    </RelativeLayout>
+</RelativeLayout>

@@ -20,7 +20,7 @@ public final class UserProfile implements Serializable {
         return instance;
     }
 
-    private int ID;
+    private String ID;
     private String username;
     private String gender;
     private int age;
@@ -28,10 +28,10 @@ public final class UserProfile implements Serializable {
     private java.util.Date surgerydate;
     private java.util.Date createdate;
 
-    public int getID() {
+    public String getID() {
         return ID;
     }
-    public void setID(int iD) {
+    public void setID(String iD) {
         instance.ID = iD;
     }
     public String getUsername() {

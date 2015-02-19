@@ -9,7 +9,7 @@ import android.util.Log;
  * Created by pirave on 15-02-16.
  */
 public class UserDBHandler extends SQLiteOpenHelper {
-    public static final String KEY_ROWID = "_id";
+    public static final String KEY_USERID = "_id";
     public static final String KEY_USERNAME = "username";
     public static final String KEY_GENDER = "gender";
     public static final String KEY_AGE = "age";
@@ -40,7 +40,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // TODO Auto-generated method stub
         db.execSQL("CREATE TABLE " + TABLE_PROFILE + " ("
-                + KEY_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + KEY_USERID + " TEXT NOT NULL, "
                 + KEY_USERNAME + " TEXT NOT NULL, "
                 + KEY_GENDER + " TEXT NOT NULL, "
                 + KEY_AGE + " INTEGER NOT NULL, "

@@ -106,6 +106,47 @@
             android:textColor="#000000"/>
 
     </RadioGroup>
+        <RadioGroup android:id="@+id/radiog"
+            android:layout_below="@id/radiola"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10.0dip"
+            android:paddingLeft="4.0dip"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radiom"
+                android:layout_width="175dp"
+                android:checked="true"
+                android:layout_height="wrap_content"
+                android:text="Male"
+                android:textColor="#000000"/>
+
+            <RadioButton
+                android:id="@+id/radiof"
+                android:layout_width="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_height="wrap_content"
+                android:text="Female"
+                android:textColor="#000000"/>
+
+        </RadioGroup>
+        <Button
+            android:id="@+id/buttondone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Done"
+            android:layout_below="@+id/radiog"
+            android:layout_alignEnd="@+id/psurgerytype_label"
+            android:layout_marginTop="86dp" />
+
+        <Button
+            android:id="@+id/buttoncancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:layout_alignTop="@+id/buttondone"
+            android:layout_toEndOf="@+id/page" />
 
     </RelativeLayout>
 </RelativeLayout>

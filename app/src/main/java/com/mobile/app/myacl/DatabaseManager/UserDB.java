@@ -21,7 +21,7 @@ import java.util.List;
 public class UserDB {
 
 
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
     private UserDBHandler mDBHandler;
     private final Context mContext;
     private SQLiteDatabase mDB;
@@ -51,6 +51,7 @@ public class UserDB {
     private ContentValues setContentUserprofile(UserProfile userprofile) {
 
         ContentValues cv = new ContentValues();
+        cv.put(UserDBHandler.KEY_USERID, userprofile.getUsername());
         cv.put(UserDBHandler.KEY_USERNAME, userprofile.getUsername());
         cv.put(UserDBHandler.KEY_GENDER, userprofile.getGender());
         cv.put(UserDBHandler.KEY_AGE, userprofile.getAge());
@@ -61,10 +62,55 @@ public class UserDB {
         return cv;
     }
 
+
+    public UserProfile getrow(){
+        String[] columns = new String[] {
+                UserDBHandler.KEY_USERID,
+                UserDBHandler.KEY_USERNAME,
+                UserDBHandler.KEY_GENDER,
+                UserDBHandler.KEY_AGE,
+                UserDBHandler.KEY_SURGERYTYPE,
+                UserDBHandler.KEY_SURGERYDATE,
+                UserDBHandler.KEY_CREATEDATE
+        };
+        Cursor c = mDB.query(UserDBHandler.TABLE_PROFILE, columns, null, null, null,
+                null, null);
+
+        int iUserid = c.getColumnIndex(UserDBHandler.KEY_USERID);
+        int iUsername = c.getColumnIndex(UserDBHandler.KEY_USERNAME);
+        int iGender = c.getColumnIndex(UserDBHandler.KEY_GENDER);
+        int iAge = c.getColumnIndex(UserDBHandler.KEY_AGE);
+        int iSurgerytype = c.getColumnIndex(UserDBHandler.KEY_SURGERYTYPE);
+        int iSurgerydate = c.getColumnIndex(UserDBHandler.KEY_SURGERYDATE);
+        int iCreatedate = c.getColumnIndex(UserDBHandler.KEY_CREATEDATE);
+
+
+        UserProfile userprofile;
+        c.moveToFirst();
+            userprofile = UserProfile.getInstance();
+            userprofile.setID(c.getString(iUserid));
+            userprofile.setUsername(c.getString(iUsername));
+            userprofile.setGender(c.getString(iGender));
+            userprofile.setAge(c.getInt(iAge));
+            userprofile.setSurgeryType(c.getString(iSurgerytype));
+            try {
+                userprofile.setSurgeryDate(dateFormat.parse(c.getString(iSurgerydate)));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            try {
+                userprofile.setCreateDate(dateFormat.parse(c.getString(iCreatedate)));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+
+        return userprofile;
+    }
     public ArrayList<UserProfile> getProfileData() {
         // TODO Date Conversion
         String[] columns = new String[] {
-                UserDBHandler.KEY_ROWID,
+                UserDBHandler.KEY_USERID,
                 UserDBHandler.KEY_USERNAME,
                 UserDBHandler.KEY_GENDER,
                 UserDBHandler.KEY_AGE,
@@ -76,7 +122,7 @@ public class UserDB {
                 null, null);
         ArrayList<UserProfile> list = new ArrayList<UserProfile>();
 
-        int iRow = c.getColumnIndex(UserDBHandler.KEY_ROWID);
+        int iUserid = c.getColumnIndex(UserDBHandler.KEY_USERID);
         int iUsername = c.getColumnIndex(UserDBHandler.KEY_USERNAME);
         int iGender = c.getColumnIndex(UserDBHandler.KEY_GENDER);
         int iAge = c.getColumnIndex(UserDBHandler.KEY_AGE);
@@ -88,7 +134,7 @@ public class UserDB {
         UserProfile userprofile;
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
             userprofile = UserProfile.getInstance();
-            userprofile.setID(c.getInt(iRow));
+            userprofile.setID(c.getString(iUserid));
             userprofile.setUsername(c.getString(iUsername));
             userprofile.setGender(c.getString(iGender));
             userprofile.setAge(c.getInt(iAge));
@@ -113,12 +159,12 @@ public class UserDB {
         // TODO Auto-generated method stub
         ContentValues cvUpdate = setContentUserprofile(userprofile);
         return mDB.update(UserDBHandler.TABLE_PROFILE, cvUpdate,
-                UserDBHandler.KEY_ROWID + "=" + userprofile.getID(), null);
+                UserDBHandler.KEY_USERID + "=" + userprofile.getID(), null);
     }
 
     public void deleteProfileEntry(long lRow1) throws SQLException {
         // TODO Auto-generated method stub
-        mDB.delete(UserDBHandler.TABLE_PROFILE, UserDBHandler.KEY_ROWID + "=" + lRow1, null);
+        mDB.delete(UserDBHandler.TABLE_PROFILE, UserDBHandler.KEY_USERID + "=" + lRow1, null);
     }
 
 
