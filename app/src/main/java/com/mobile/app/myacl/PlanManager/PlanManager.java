@@ -29,7 +29,7 @@ public class PlanManager {
         this.context = context;
 
         if (plan == null && !openPlan()) {
-            plan = new PlanGenerator(context, UserProfile.getInstance()).getPlan();
+            plan = new PlanGenerator(context).getPlan();
             savePlan();
         }
 
@@ -85,7 +85,7 @@ public class PlanManager {
      * When the user adjusts his or her plan.
      */
     public void adjustPlan(){
-        plan = new PlanGenerator(context, UserProfile.getInstance()).getPlan();
+        plan = new PlanGenerator(context).getPlan();
         savePlan();
     };
 }

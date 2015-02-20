@@ -42,13 +42,12 @@ public class UserDB {
     public long createProfileEntry(UserProfile userprofile) {
         // TODO Auto-generated method stub
 
-        ContentValues cv = setContentUserprofile(userprofile);
+        ContentValues cv = setContentUserProfile(userprofile);
 
         return mDB.insert(UserDBHandler.TABLE_PROFILE, null, cv);
     }
 
-
-    private ContentValues setContentUserprofile(UserProfile userprofile) {
+    private ContentValues setContentUserProfile(UserProfile userprofile) {
 
         ContentValues cv = new ContentValues();
         cv.put(UserDBHandler.KEY_USERID, userprofile.getID());
@@ -62,8 +61,7 @@ public class UserDB {
         return cv;
     }
 
-
-    public UserProfile getrow(){
+    public void openUserProfile(){
         String[] columns = new String[] {
                 UserDBHandler.KEY_USERID,
                 UserDBHandler.KEY_USERNAME,
@@ -103,61 +101,11 @@ public class UserDB {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-
-
-        return userprofile;
-    }
-    public ArrayList<UserProfile> getProfileData() {
-        // TODO Date Conversion
-        String[] columns = new String[] {
-                UserDBHandler.KEY_USERID,
-                UserDBHandler.KEY_USERNAME,
-                UserDBHandler.KEY_GENDER,
-                UserDBHandler.KEY_AGE,
-                UserDBHandler.KEY_SURGERYTYPE,
-                UserDBHandler.KEY_SURGERYDATE,
-                UserDBHandler.KEY_CREATEDATE
-        };
-        Cursor c = mDB.query(UserDBHandler.TABLE_PROFILE, columns, null, null, null,
-                null, null);
-        ArrayList<UserProfile> list = new ArrayList<UserProfile>();
-
-        int iUserid = c.getColumnIndex(UserDBHandler.KEY_USERID);
-        int iUsername = c.getColumnIndex(UserDBHandler.KEY_USERNAME);
-        int iGender = c.getColumnIndex(UserDBHandler.KEY_GENDER);
-        int iAge = c.getColumnIndex(UserDBHandler.KEY_AGE);
-        int iSurgerytype = c.getColumnIndex(UserDBHandler.KEY_SURGERYTYPE);
-        int iSurgerydate = c.getColumnIndex(UserDBHandler.KEY_SURGERYDATE);
-        int iCreatedate = c.getColumnIndex(UserDBHandler.KEY_CREATEDATE);
-
-
-        UserProfile userprofile;
-        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-            userprofile = UserProfile.getInstance();
-            userprofile.setID(c.getString(iUserid));
-            userprofile.setUsername(c.getString(iUsername));
-            userprofile.setGender(c.getString(iGender));
-            userprofile.setAge(c.getInt(iAge));
-            userprofile.setSurgeryType(c.getString(iSurgerytype));
-            try {
-                userprofile.setSurgeryDate(dateFormat.parse(c.getString(iSurgerydate)));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            try {
-                userprofile.setCreateDate(dateFormat.parse(c.getString(iCreatedate)));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-            list.add(userprofile);
-        }
-        return list;
     }
 
     public long updateProfileEntry(UserProfile userprofile) throws SQLException {
         // TODO Auto-generated method stub
-        ContentValues cvUpdate = setContentUserprofile(userprofile);
+        ContentValues cvUpdate = setContentUserProfile(userprofile);
         return mDB.update(UserDBHandler.TABLE_PROFILE, cvUpdate,
                 UserDBHandler.KEY_USERID + "=" + userprofile.getID(), null);
     }
@@ -167,25 +115,29 @@ public class UserDB {
         mDB.delete(UserDBHandler.TABLE_PROFILE, UserDBHandler.KEY_USERID + "=" + lRow1, null);
     }
 
+    /** USER PROGRESS DATA METHODS **/
 
-    public long createProgressEntry(UserProgress userprogress) {
+    public long createProgressEntry(UserProgress userProgress) {
         // TODO Auto-generated method stub
 
-        ContentValues cv = setContentUserprogress(userprogress);
+        ContentValues cv = setContentUserProgress(userProgress);
 
         return mDB.insert(UserDBHandler.TABLE_PROGRESS, null, cv);
     }
 
 
-    private ContentValues setContentUserprogress(UserProgress userprogress) {
+    private ContentValues setContentUserProgress(UserProgress userProgress) {
 
         ContentValues cv = new ContentValues();
-        cv.put(UserDBHandler.KEY_CATID, userprogress.getcatID());
-        cv.put(UserDBHandler.KEY_COMPLETE, userprogress.getComplete());
-        cv.put(UserDBHandler.KEY_WEEKNUM, userprogress.getWeeknum());
-        cv.put(UserDBHandler.KEY_DAYNUM, userprogress.getDaynum());
-        cv.put(UserDBHandler.KEY_DAYDATE, dateFormat.format(userprogress.getdDaydate()));
-        cv.put(UserDBHandler.KEY_RANGEDGREE, userprogress.getRange());
+        cv.put(UserDBHandler.KEY_CATID, userProgress.getCatID());
+        cv.put(UserDBHandler.KEY_COMPLETE, userProgress.isComplete() ? 1 : 0);
+        cv.put(UserDBHandler.KEY_WEEKNUM, userProgress.getWeekNum());
+        cv.put(UserDBHandler.KEY_DAYNUM, userProgress.getDayNum());
+        cv.put(UserDBHandler.KEY_DAYDATE, dateFormat.format(userProgress.getDate()));
+        if (userProgress.getRangeDegree() != null)
+            cv.put(UserDBHandler.KEY_RANGEDGREE, userProgress.getRangeDegree());
+        else
+            cv.putNull(UserDBHandler.KEY_RANGEDGREE);
 
         return cv;
     }
@@ -216,16 +168,16 @@ public class UserDB {
         UserProgress userprogress;
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
             userprogress = new UserProgress();
-            userprogress.setID(c.getInt(iCatid));
-            userprogress.setComplete(c.getInt(iComplete));
-            userprogress.setWeeknum(c.getInt(iWeeknum));
-            userprogress.setDaynum(c.getInt(iDaynum));
+            userprogress.setCatID(c.getInt(iCatid));
+            userprogress.setComplete(c.getInt(iComplete) > 0);
+            userprogress.setWeekNum(c.getInt(iWeeknum));
+            userprogress.setDayNum(c.getInt(iDaynum));
             try {
-                userprogress.setDaydate(dateFormat.parse(c.getString(iDaydate)));
+                userprogress.setDate(dateFormat.parse(c.getString(iDaydate)));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            userprogress.setRange(c.getInt(iRangedgree));
+            userprogress.setRangeDegree(c.getInt(iRangedgree));
 
 
             list.add(userprogress);
@@ -235,11 +187,11 @@ public class UserDB {
 
     public long updateProgressEntry(UserProgress userprogress) throws SQLException {
         // TODO Auto-generated method stub
-        ContentValues cvUpdate = setContentUserprogress(userprogress);
+        ContentValues cvUpdate = setContentUserProgress(userprogress);
         return mDB.update(UserDBHandler.TABLE_PROGRESS, cvUpdate,
-                UserDBHandler.KEY_CATID + "=" + userprogress.getcatID()
-                + " AND " + UserDBHandler.KEY_WEEKNUM + "=" + userprogress.getWeeknum()
-                + " AND " + UserDBHandler.KEY_DAYNUM + "=" + userprogress.getDaynum(), null);
+                UserDBHandler.KEY_CATID + "=" + userprogress.getCatID()
+                + " AND " + UserDBHandler.KEY_WEEKNUM + "=" + userprogress.getWeekNum()
+                + " AND " + UserDBHandler.KEY_DAYNUM + "=" + userprogress.getDayNum(), null);
     }
 
 

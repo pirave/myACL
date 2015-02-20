@@ -4,24 +4,26 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.mobile.app.myacl.ProtocolManager.Week;
+import com.mobile.app.myacl.UserManager.UserProfile;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by pirave on 15-02-17.
  */
 public class Plan implements Parcelable, Serializable{
     private String type;
-    private List<Week> weeks;
+    private TreeMap<Date,Week> weeks;
 
-    public Plan(String type) {
-        this.type = type;
-        this.weeks = new ArrayList<Week>();
+    public Plan() {
+        this.type = UserProfile.getInstance().getSurgeryType();
+        this.weeks = new TreeMap<>();
     }
 
-    public Plan(String type, List<Week> weeks) {
+    public Plan(String type, TreeMap<Date, Week> weeks) {
         this.type = type;
         this.weeks = weeks;
     }
@@ -30,12 +32,16 @@ public class Plan implements Parcelable, Serializable{
         return type;
     }
 
-    public List<Week> getWeeks() {
+    public Map<Date, Week> getWeeks() {
         return weeks;
     }
 
-    public void addWeek(Week w){
-        weeks.add(w);
+    public void addWeek(Date d, Week w){
+        weeks.put(d, w);
+    }
+
+    public Week getWeekByDate(Date d){
+        return weeks.floorEntry(d).getValue();
     }
 
     @Override

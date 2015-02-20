@@ -1,66 +1,77 @@
 package com.mobile.app.myacl.UserManager;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Alaa on 2/15/2015.
  */
 
 public class UserProgress implements Serializable {
-    private int catid;
-    private int complete;
-    private int weeknum;
-    private int daynum;
-    private java.util.Date daydate;
-    private int rangedgree;
+    private int catID;
+    private boolean complete;
+    private int weekNum;
+    private int dayNum;
+    private Date date;
+    private Integer rangeDegree;
 
+    public UserProgress() {
 
-    public int getcatID() {
-        return catid;
     }
 
-    public void setID(int iD) {
-        this.catid = catid;
+    public UserProgress(int catID, boolean complete, int weekNum, int dayNum, Date date) {
+        this.catID = catID;
+        this.complete = complete;
+        this.weekNum = weekNum;
+        this.dayNum = dayNum;
+        this.date = date;
     }
 
-    public int getComplete() {
+    public int getCatID() {
+        return catID;
+    }
+
+    public void setCatID(int catID) {
+        this.catID = catID;
+    }
+
+    public boolean isComplete() {
         return complete;
     }
 
-    public void setComplete(int complete) {
+    public void setComplete(boolean complete) {
         this.complete = complete;
     }
 
-    public int getWeeknum() {
-        return weeknum;
+    public int getWeekNum() {
+        return weekNum;
     }
 
-    public void setWeeknum(int weeknum) {
-        this.weeknum = weeknum;
+    public void setWeekNum(int weekNum) {
+        this.weekNum = weekNum;
     }
 
-    public int getDaynum() {
-        return daynum;
+    public int getDayNum() {
+        return dayNum;
     }
 
-    public void setDaynum(int daynum) {
-        this.daynum = daynum;
+    public void setDayNum(int dayNum) {
+        this.dayNum = dayNum;
     }
 
-    public java.util.Date getdDaydate() {
-        return daydate;
+    public Date getDate() {
+        return date;
     }
 
-    public void setDaydate(java.util.Date daydate) {
-        this.daydate = daydate;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public int getRange() {
-        return rangedgree;
+    public Integer getRangeDegree() {
+        return rangeDegree;
     }
 
-    public void setRange(int rangedgree) {
-        this.rangedgree = rangedgree;
+    public void setRangeDegree(Integer rangeDegree) {
+        this.rangeDegree = rangeDegree;
     }
-
 }

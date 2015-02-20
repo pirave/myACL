@@ -53,7 +53,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE " + TABLE_PROGRESS + " ("
                 + KEY_CATID + " INTEGER NOT NULL, "
-                + KEY_COMPLETE + " INTEGER NOT NULL, "
+                + KEY_COMPLETE + " INTEGER DEFAULT 0, "
                 + KEY_WEEKNUM + " INTEGER NOT NULL, "
                 + KEY_DAYNUM + " INTEGER NOT NULL, "
                 + KEY_DAYDATE + " TEXT NOT NULL, "

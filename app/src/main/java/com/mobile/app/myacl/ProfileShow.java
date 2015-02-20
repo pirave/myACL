@@ -1,6 +1,5 @@
 package com.mobile.app.myacl;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
@@ -31,7 +30,6 @@ public class ProfileShow extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profileshow);
-        x = UserProfile.getInstance();
 
         name = (TextView) findViewById(R.id.spname);
         age=(TextView) findViewById(R.id.spage);
@@ -41,9 +39,10 @@ public class ProfileShow extends ActionBarActivity {
         gender=(TextView) findViewById(R.id.sgender);
         uDB = new UserDB(this);
         uDB.open();
-        uprofile = uDB.getrow();
+        uDB.openUserProfile();
         uDB.close();
 
+        uprofile = UserProfile.getInstance();
         name.setText(uprofile.getUsername());
         age.setText(Integer.toString(uprofile.getAge()));
         surgerytype.setText(uprofile.getSurgeryType());

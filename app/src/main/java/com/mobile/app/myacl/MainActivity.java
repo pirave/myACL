@@ -22,8 +22,10 @@ import com.mobile.app.myacl.DatabaseManager.DataAdapter;
 import com.mobile.app.myacl.DatabaseManager.UserDB;
 import com.mobile.app.myacl.PlanManager.PlanManager;
 import com.mobile.app.myacl.UserManager.UserProfile;
+import com.mobile.app.myacl.UserManager.UserProgress;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 
 public class MainActivity extends  TabActivity {
@@ -74,21 +76,15 @@ public class MainActivity extends  TabActivity {
         //show=(Button)findViewById(R.id.buttonshow);
 
 
-       // DataAdapter mDataAdapter = new DataAdapter(this);
-       // mDataAdapter.createDatabase();
+        DataAdapter mDataAdapter = new DataAdapter(this);
+        mDataAdapter.createDatabase();
        // adb = new UserDB(this);
       //  adb.open();
         //userprofile = adb.getProfileData();
       //  adb.close();
-        //mDataAdapter.open();
-
-        // Cursor testdata = mDataAdapter.getTestData();
-
-        // mDataAdapter.close();
-        //UserProfile x = UserProfile.getInstance();
-     //   x.setSurgeryType("ACL");
-     //   PlanManager planManager = new PlanManager(this);
-     //   planManager.getPlan();
+//        UserProfile.getInstance().setSurgeryDate(Calendar.getInstance().getTime());
+//        PlanManager planManager = new PlanManager(this);
+//        planManager.getPlan();
 
 
 

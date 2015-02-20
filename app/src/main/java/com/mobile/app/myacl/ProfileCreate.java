@@ -16,6 +16,7 @@ import android.widget.Toast;
 import android.provider.Settings.Secure;
 
 import com.mobile.app.myacl.DatabaseManager.UserDB;
+import com.mobile.app.myacl.PlanManager.PlanManager;
 import com.mobile.app.myacl.UserManager.UserProfile;
 
 import java.text.SimpleDateFormat;
@@ -105,7 +106,7 @@ public class ProfileCreate extends ActionBarActivity {
                     Log.d("Add UserDB Entery", " " + returnData);
                     uDB.close();
                     Toast.makeText(getApplicationContext(), "Profile Created!", Toast.LENGTH_SHORT).show();
-
+                    PlanManager planManager = new PlanManager(getApplicationContext());
                 }
             }
         });
