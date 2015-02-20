@@ -76,8 +76,8 @@ public class MainActivity extends  TabActivity {
         //show=(Button)findViewById(R.id.buttonshow);
 
 
-        DataAdapter mDataAdapter = new DataAdapter(this);
-        mDataAdapter.createDatabase();
+//        DataAdapter mDataAdapter = new DataAdapter(this);
+//        mDataAdapter.createDatabase();
        // adb = new UserDB(this);
       //  adb.open();
         //userprofile = adb.getProfileData();

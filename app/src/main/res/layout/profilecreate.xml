@@ -94,7 +94,7 @@
             android:layout_width="175dp"
             android:checked="true"
             android:layout_height="wrap_content"
-            android:text="Type A"
+            android:text="@string/surgery_type_a_label"
             android:textColor="#000000"/>
 
         <RadioButton
@@ -102,7 +102,7 @@
             android:layout_width="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_height="wrap_content"
-            android:text="Type B"
+            android:text="@string/surgery_type_b_label"
             android:textColor="#000000"/>
 
     </RadioGroup>

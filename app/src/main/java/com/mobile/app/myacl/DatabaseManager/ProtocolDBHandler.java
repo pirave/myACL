@@ -5,6 +5,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.mobile.app.myacl.R;
+import com.mobile.app.myacl.UserManager.UserProfile;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,8 +21,8 @@ import java.sql.SQLException;
 public class ProtocolDBHandler extends SQLiteOpenHelper {
 
     //The Android's default system path of your application database.
+    public static String DATABASE_NAME;
     private static String DATABASE_PATH = "";
-    private static String DATABASE_NAME = "application.db";
 
     public static String TABLE_CATEGORY = "category";
     public static String TABLE_MEDIA = "media";

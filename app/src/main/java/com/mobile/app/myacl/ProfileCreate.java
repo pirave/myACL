@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.provider.Settings.Secure;
 
+import com.mobile.app.myacl.DatabaseManager.DataAdapter;
 import com.mobile.app.myacl.DatabaseManager.UserDB;
 import com.mobile.app.myacl.PlanManager.PlanManager;
 import com.mobile.app.myacl.UserManager.UserProfile;
@@ -86,11 +87,11 @@ public class ProfileCreate extends ActionBarActivity {
                     x.setCreateDate(new Date());
                     if (typea.isChecked())
                     {
-                        x.setSurgeryType("A");
+                        x.setSurgeryType(getString(R.string.surgery_type_a_label));
                     }
                     else
                     {
-                        x.setSurgeryType("B");
+                        x.setSurgeryType(getString(R.string.surgery_type_b_label));
                     }
                     if (male.isChecked())
                     {
@@ -106,6 +107,8 @@ public class ProfileCreate extends ActionBarActivity {
                     Log.d("Add UserDB Entery", " " + returnData);
                     uDB.close();
                     Toast.makeText(getApplicationContext(), "Profile Created!", Toast.LENGTH_SHORT).show();
+                    DataAdapter mDataAdapter = new DataAdapter(getApplicationContext());
+                    mDataAdapter.createDatabase();
                     PlanManager planManager = new PlanManager(getApplicationContext());
                 }
             }

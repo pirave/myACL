@@ -5,5 +5,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="plan_filename">plan.ser</string>
+    <string name="surgery_type_a_label">A</string>
+    <string name="surgery_type_b_label">B</string>
+    <string name="surgery_type_a_table">protocolA.db</string>
+    <string name="surgery_type_b_table">protocolB.db</string>
 
 </resources>

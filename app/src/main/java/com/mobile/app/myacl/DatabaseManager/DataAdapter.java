@@ -10,6 +10,9 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.mobile.app.myacl.R;
+import com.mobile.app.myacl.UserManager.UserProfile;
+
 public class DataAdapter
 {
     protected static final String TAG = "DataAdapter";
@@ -19,6 +22,11 @@ public class DataAdapter
     private ProtocolDBHandler mDBHandler;
 
     public DataAdapter(Context context){
+        String type = UserProfile.getInstance().getSurgeryType();
+        if (type == context.getString(R.string.surgery_type_a_label))
+            ProtocolDBHandler.DATABASE_NAME = context.getString(R.string.surgery_type_a_table);
+        else
+            ProtocolDBHandler.DATABASE_NAME = context.getString(R.string.surgery_type_b_table);
         this.mContext = context;
         mDBHandler = new ProtocolDBHandler(mContext);
     }
