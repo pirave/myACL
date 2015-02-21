@@ -2,6 +2,7 @@ package com.mobile.app.myacl;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.telephony.TelephonyManager;
@@ -110,6 +111,8 @@ public class ProfileCreate extends ActionBarActivity {
                     DataAdapter mDataAdapter = new DataAdapter(getApplicationContext());
                     mDataAdapter.createDatabase();
                     PlanManager planManager = new PlanManager(getApplicationContext());
+                    startActivity(new Intent(ProfileCreate.this, MainActivity.class));
+
                 }
             }
         });
