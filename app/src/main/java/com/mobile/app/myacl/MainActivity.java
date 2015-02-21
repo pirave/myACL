@@ -42,7 +42,7 @@ public class MainActivity extends  TabActivity {
         // Tab for Home
         TabHost.TabSpec homespec = tabHost.newTabSpec("Home");
         homespec.setIndicator("", getResources().getDrawable(R.drawable.icon_home_tab));
-        Intent homeIntent = new Intent(MainActivity.this, ProfileShow.class);
+        Intent homeIntent = new Intent(MainActivity.this, TodayPlan.class);
         homespec.setContent(homeIntent);
 
         // Tab for timeline
