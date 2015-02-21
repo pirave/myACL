@@ -47,20 +47,20 @@ public class MainActivity extends  TabActivity {
 
         // Tab for timeline
         TabHost.TabSpec timelinespec = tabHost.newTabSpec("TimeLine");
-        timelinespec.setIndicator("", getResources().getDrawable(R.drawable.icon_home_tab));
+        timelinespec.setIndicator("", getResources().getDrawable(R.drawable.icon_plan_tab));
         Intent timelineIntent = new Intent(MainActivity.this, ProfileShow.class);
         timelinespec.setContent(timelineIntent);
 
         // Tab for Progress
         TabHost.TabSpec progressspec = tabHost.newTabSpec("Progress");
-        progressspec.setIndicator("", getResources().getDrawable(R.drawable.icon_home_tab));
+        progressspec.setIndicator("", getResources().getDrawable(R.drawable.icon_progress_tab));
         Intent progressIntent = new Intent(MainActivity.this, ProfileShow.class);
         progressspec.setContent(progressIntent);
 
 
         // Tab for Settings
         TabHost.TabSpec settingspec = tabHost.newTabSpec("Settings");
-        settingspec.setIndicator("", getResources().getDrawable(R.drawable.icon_home_tab));
+        settingspec.setIndicator("", getResources().getDrawable(R.drawable.icon_settings_tab));
         Intent settingIntent = new Intent(MainActivity.this, ProfileShow.class);
         settingspec.setContent(settingIntent);
 
