@@ -1,6 +1,7 @@
 
 package com.mobile.app.myacl.exerciseShow;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mobile.app.myacl.DatabaseManager.ProtocolDB;
@@ -117,18 +119,37 @@ public class SlidingTabsBasicFragment extends Fragment {
             container.addView(view);
 
             // Retrieve a TextView from the inflated View, and update it's text
-            TextView title = (TextView) view.findViewById(R.id.item_title);
-            title.setText(tabs[position]);
-            ImageView image1= (ImageView)  view.findViewById(R.id.imagee);
+            //TextView title = (TextView) view.findViewById(R.id.item_title);
+           // title.setText(tabs[position]);
+           // ImageView image1= (ImageView)  view.findViewById(R.id.imagee);
+            String [] prgmImages={"images/e1.png","images/e2.png"};
+            String [] prgmNameList={"Step 1","Step 2"};
+            Context context=getActivity();
+            ListView lv;
+            Bitmap [] im = new Bitmap[2];
 
-            try {
+for (int i=0; i< prgmImages.length;i++) {
+    try {
+        InputStream path = getActivity().getAssets().open(prgmImages[i]);
+        Bitmap bit = BitmapFactory.decodeStream(path);
+        im[i] = bit;
+    } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
+}
+
+            lv=(ListView) view.findViewById(R.id.listView);
+            lv.setAdapter(new CustomAdapter(context, prgmNameList,im));
+
+           /* try {
                 InputStream path = getActivity().getAssets().open("images/e1.png");
                 Bitmap bit = BitmapFactory.decodeStream(path);
                 image1.setImageBitmap(bit);
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
-            }
+            }*/
 
 
             // Return the View

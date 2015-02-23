@@ -10,34 +10,13 @@
         android:paddingTop="50dp"
         android:paddingRight="15dp"
         android:paddingLeft="15dp">
-    <ImageView
-        android:id="@+id/imagee"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:id="@+id/item_title"
-        android:text="heading"
-        android:layout_below="@id/imagee"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25sp" />
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+        </ListView>
 
-    <TextView
-        android:id="@+id/item_step"
-        android:text="step"
-        android:layout_below="@id/item_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp" />
-        <TextView
-            android:id="@+id/item_time"
-            android:text="time"
-            android:layout_below="@id/item_step"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp" />
+
     </RelativeLayout>
 </LinearLayout>
