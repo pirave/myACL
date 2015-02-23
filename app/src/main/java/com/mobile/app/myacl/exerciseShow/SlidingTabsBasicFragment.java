@@ -11,22 +11,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.mobile.app.myacl.DatabaseManager.ProtocolDB;
-import com.mobile.app.myacl.PlanManager.Plan;
-import com.mobile.app.myacl.PlanManager.PlanManager;
-import com.mobile.app.myacl.ProtocolManager.ExerciseManager.Exercise;
-import com.mobile.app.myacl.ProtocolManager.ExerciseManager.Step;
 import com.mobile.app.myacl.R;
 import com.mobile.app.myacl.slidetabss.SlidingTabLayout;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 
 public class SlidingTabsBasicFragment extends Fragment {
     private ProtocolDB pdb;
     static final String LOG_TAG = "SlidingTabsBasicFragment";
-    List<Exercise> exercises = new ArrayList<Exercise>();
-    List<Step> steps = new ArrayList<Step>();
+
     /**
      * A custom {@link android.support.v4.view.ViewPager} title strip which looks much like Tabs present in Android v4.0 and
      * above, but is designed to give continuous feedback to the user when scrolling.
@@ -45,14 +39,6 @@ public class SlidingTabsBasicFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        pdb = new ProtocolDB(getActivity());
-        pdb.open();
-        exercises=pdb.getExercisesByWeekAndCategory(0, 1);
-        pdb.close();
-
-        Plan plan = new PlanManager(getActivity()).getPlan();
-        plan.getWeeks().get(0).getCategories().get(1).getExercises().size();
-
 
         return inflater.inflate(R.layout.exercise_tabs, container, false);
     }
@@ -82,14 +68,13 @@ public class SlidingTabsBasicFragment extends Fragment {
      * {@link SlidingTabLayout}.
      */
     class SamplePagerAdapter extends PagerAdapter {
-
-        String tabs[]= new String[exercises.size()] ;
+        String tabs[]={"1","2","3","4","5","6","7","8"};
         /**
          * @return the number of pages to display
          */
         @Override
         public int getCount() {
-            return exercises.size();
+            return tabs.length;
         }
 
         /**
@@ -111,9 +96,6 @@ public class SlidingTabsBasicFragment extends Fragment {
          */
         @Override
         public CharSequence getPageTitle(int position) {
-            for (int i = 0; i< exercises.size(); i++) {
-                tabs[i]= String.valueOf(i);
-            }
             return tabs[position];
         }
         // END_INCLUDE (pageradapter_getpagetitle)
@@ -129,8 +111,6 @@ public class SlidingTabsBasicFragment extends Fragment {
                     container, false);
             // Add the newly created View to the ViewPager
             container.addView(view);
-            pdb.open();
-            steps = pdb.getStepsByExercise(exercises.get(position).);
 
             // Retrieve a TextView from the inflated View, and update it's text
             TextView title = (TextView) view.findViewById(R.id.item_title);
