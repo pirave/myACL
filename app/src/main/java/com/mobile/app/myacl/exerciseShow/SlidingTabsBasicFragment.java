@@ -21,6 +21,7 @@ import com.mobile.app.myacl.slidetabss.SlidingTabLayout;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 
 public class SlidingTabsBasicFragment extends Fragment {
@@ -126,13 +127,14 @@ public class SlidingTabsBasicFragment extends Fragment {
             String [] prgmNameList={"Step 1","Step 2"};
             Context context=getActivity();
             ListView lv;
-            Bitmap [] im = new Bitmap[2];
+            ArrayList<Bitmap> im = new ArrayList<Bitmap>();
+            //Bitmap [] im = new Bitmap[2];
 
 for (int i=0; i< prgmImages.length;i++) {
     try {
         InputStream path = getActivity().getAssets().open(prgmImages[i]);
         Bitmap bit = BitmapFactory.decodeStream(path);
-        im[i] = bit;
+        im.add(bit);
     } catch (IOException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();

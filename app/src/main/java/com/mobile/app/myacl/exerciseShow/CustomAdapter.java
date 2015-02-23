@@ -19,13 +19,14 @@ import com.mobile.app.myacl.R;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class CustomAdapter extends BaseAdapter{
     String [] result;
     Context context;
-    Bitmap [] imageId;
+    ArrayList<Bitmap> imageId;
     private static LayoutInflater inflater=null;
-    public CustomAdapter(Context context, String[] prgmNameList, Bitmap[] prgmImages) {
+    public CustomAdapter(Context context, String[] prgmNameList, ArrayList<Bitmap> prgmImages) {
         // TODO Auto-generated constructor stub
         result=prgmNameList;
         imageId=prgmImages;
@@ -64,7 +65,7 @@ public class CustomAdapter extends BaseAdapter{
         holder.tv=(TextView) rowView.findViewById(R.id.textView1);
         holder.img=(ImageView) rowView.findViewById(R.id.imageView1);
         holder.tv.setText(result[position]);
-        holder.img.setImageBitmap(imageId[position]);
+        holder.img.setImageBitmap(imageId.get(position));
         rowView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
