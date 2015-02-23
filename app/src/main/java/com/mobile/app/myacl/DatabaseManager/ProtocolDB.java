@@ -110,10 +110,9 @@ public class ProtocolDB {
         }
         return exercises;
     }
-
-    public List<Step> getStepsByExercise(int exercise_id){
-        List<Step> steps = new ArrayList<Step>();
-        Cursor cursor = mDB.query(
+   public List<Step> getStepsByExercise(int exercise_id){
+      List<Step> steps = new ArrayList<Step>();
+        /*  Cursor cursor = mDB.query(
                 ProtocolDBHandler.TABLE_MEDIA,
                 new String[]{
                         ProtocolDBHandler.KEY_STEP_NUM,ProtocolDBHandler.KEY_PIC_DESC,ProtocolDBHandler.KEY_PIC_PATH
@@ -128,7 +127,7 @@ public class ProtocolDB {
             do {
                 steps.add(new Step(cursor.getInt(0),cursor.getString(1),cursor.getString(2)));
             } while (cursor.moveToNext());
-        }
+        }*/
         return steps;
     }
 

@@ -1,6 +1,8 @@
 
 package com.mobile.app.myacl.exerciseShow;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
@@ -8,13 +10,15 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mobile.app.myacl.DatabaseManager.ProtocolDB;
 import com.mobile.app.myacl.R;
 import com.mobile.app.myacl.slidetabss.SlidingTabLayout;
 
-
+import java.io.IOException;
+import java.io.InputStream;
 
 
 public class SlidingTabsBasicFragment extends Fragment {
@@ -115,6 +119,16 @@ public class SlidingTabsBasicFragment extends Fragment {
             // Retrieve a TextView from the inflated View, and update it's text
             TextView title = (TextView) view.findViewById(R.id.item_title);
             title.setText(tabs[position]);
+            ImageView image1= (ImageView)  view.findViewById(R.id.imagee);
+
+            try {
+                InputStream path = getActivity().getAssets().open("images/e1.png");
+                Bitmap bit = BitmapFactory.decodeStream(path);
+                image1.setImageBitmap(bit);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
 
 
             // Return the View
