@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.mobile.app.myacl.DatabaseManager.ProtocolDB;
+import com.mobile.app.myacl.PlanManager.Plan;
+import com.mobile.app.myacl.PlanManager.PlanManager;
 import com.mobile.app.myacl.ProtocolManager.ExerciseManager.Exercise;
 import com.mobile.app.myacl.ProtocolManager.ExerciseManager.Step;
 import com.mobile.app.myacl.R;
@@ -47,6 +49,9 @@ public class SlidingTabsBasicFragment extends Fragment {
         pdb.open();
         exercises=pdb.getExercisesByWeekAndCategory(0, 1);
         pdb.close();
+
+        Plan plan = new PlanManager(getActivity()).getPlan();
+        plan.getWeeks().get(0).getCategories().get(1).getExercises().size();
 
 
         return inflater.inflate(R.layout.exercise_tabs, container, false);
