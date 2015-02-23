@@ -10,15 +10,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.mobile.app.myacl.DatabaseManager.ProtocolDB;
+import com.mobile.app.myacl.ProtocolManager.ExerciseManager.Exercise;
+import com.mobile.app.myacl.ProtocolManager.ExerciseManager.Step;
 import com.mobile.app.myacl.R;
 import com.mobile.app.myacl.slidetabss.SlidingTabLayout;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class SlidingTabsBasicFragment extends Fragment {
-
+    private ProtocolDB pdb;
     static final String LOG_TAG = "SlidingTabsBasicFragment";
-
+    List<Exercise> exercises = new ArrayList<Exercise>();
+    List<Step> steps = new ArrayList<Step>();
     /**
      * A custom {@link android.support.v4.view.ViewPager} title strip which looks much like Tabs present in Android v4.0 and
      * above, but is designed to give continuous feedback to the user when scrolling.
@@ -37,19 +43,16 @@ public class SlidingTabsBasicFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
+        pdb = new ProtocolDB(getActivity());
+        pdb.open();
+        exercises=pdb.getExercisesByWeekAndCategory(0, 1);
+        pdb.close();
+
+
         return inflater.inflate(R.layout.exercise_tabs, container, false);
     }
 
-    // BEGIN_INCLUDE (fragment_onviewcreated)
-    /**
-     * This is called after the {@link #onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)} has finished.
-     * Here we can pick out the {@link android.view.View}s we need to configure from the content view.
-     *
-     * We set the {@link android.support.v4.view.ViewPager}'s adapter to be an instance of {@link SamplePagerAdapter}. The
-     * {@link SlidingTabLayout} is then given the {@link android.support.v4.view.ViewPager} so that it can populate itself.
-     *
-     * @param view View created in {@link #onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)}
-     */
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         // BEGIN_INCLUDE (setup_viewpager)
@@ -75,12 +78,13 @@ public class SlidingTabsBasicFragment extends Fragment {
      */
     class SamplePagerAdapter extends PagerAdapter {
 
+        String tabs[]= new String[exercises.size()] ;
         /**
          * @return the number of pages to display
          */
         @Override
         public int getCount() {
-            return 10;
+            return exercises.size();
         }
 
         /**
@@ -102,7 +106,10 @@ public class SlidingTabsBasicFragment extends Fragment {
          */
         @Override
         public CharSequence getPageTitle(int position) {
-            return "Item " + (position + 1);
+            for (int i = 0; i< exercises.size(); i++) {
+                tabs[i]= String.valueOf(i);
+            }
+            return tabs[position];
         }
         // END_INCLUDE (pageradapter_getpagetitle)
 
@@ -117,10 +124,12 @@ public class SlidingTabsBasicFragment extends Fragment {
                     container, false);
             // Add the newly created View to the ViewPager
             container.addView(view);
+            pdb.open();
+            steps = pdb.getStepsByExercise(exercises.get(position).);
 
             // Retrieve a TextView from the inflated View, and update it's text
             TextView title = (TextView) view.findViewById(R.id.item_title);
-            title.setText(String.valueOf(position + 1));
+            title.setText(tabs[position]);
 
 
             // Return the View

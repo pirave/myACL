@@ -35,7 +35,7 @@
             android:name="com.mobile.app.myacl.TodayPlan"
             android:label="@string/app_name" ></activity>
         <activity
-            android:name="com.mobile.app.myacl.ExerciseShow"
+            android:name=".exerciseShow.ExerciseShow"
             android:label="@string/app_name" ></activity>
     </application>
 

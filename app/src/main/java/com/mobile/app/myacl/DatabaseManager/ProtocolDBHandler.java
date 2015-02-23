@@ -33,6 +33,11 @@ public class ProtocolDBHandler extends SQLiteOpenHelper {
     public static String KEY_CAT_DESC = "cat_desc";
     public static String KEY_CAT_ID = "cat_id";
     public static String FKEY_EXE_ID = "exe_id_fk";
+    public static String KEY_EXE_ID = "exe_id";
+    public static String KEY_STEP_NUM = "step_num";
+    public static String KEY_PIC_DESC = "pic_desc";
+    public static String KEY_PIC_PATH = "pic_path";
+
 
     private SQLiteDatabase mDB;
     private final Context mContext;
