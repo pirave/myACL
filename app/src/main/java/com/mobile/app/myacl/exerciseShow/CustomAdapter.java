@@ -70,7 +70,7 @@ public class CustomAdapter extends BaseAdapter{
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Toast.makeText(context, "You Clicked "+result[position], Toast.LENGTH_LONG).show();
+              //  Toast.makeText(context, "You Clicked "+result[position], Toast.LENGTH_LONG).show();
             }
         });
         return rowView;
