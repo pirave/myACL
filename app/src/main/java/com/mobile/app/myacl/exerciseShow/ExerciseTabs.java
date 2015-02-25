@@ -46,11 +46,10 @@ public class ExerciseTabs extends ActionBarActivity {
 
         // Get Exercise from Activity
         Intent intent = getIntent();
-        exercises = ((Category) intent.getSerializableExtra(DailyPlan.EXTRA_EXERCISE))
-                .getExercises();
+        Category category = ((Category) intent.getSerializableExtra(DailyPlan.EXTRA_EXERCISE));
+        exercises = category.getExercises();
 
         setContentView(R.layout.exercise_tabs);
-
 
         // Get the ViewPager and set it's PagerAdapter so that it can display items
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
@@ -59,6 +58,8 @@ public class ExerciseTabs extends ActionBarActivity {
         // Set tabs for view pager
         mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
         mSlidingTabLayout.setViewPager(mViewPager);
+
+        getSupportActionBar().setTitle(category.getDescription());
     }
     // END_INCLUDE (fragment_onviewcreated)
 
