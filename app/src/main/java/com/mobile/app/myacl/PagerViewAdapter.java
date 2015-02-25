@@ -17,19 +17,22 @@ public class PagerViewAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int index) {
         switch (index) {
             case 0:
-                return new FirstTabFragment();
+                return new HomeList();
             case 1:
-                return new SecondTabFragment();
+                return new ProfileShow();
             case 2:
-                return new ThirdTabFragment();
+                return new ProfileShow();
+            case 3:
+                return new TodayPlan();
+
             default:
-                return new FirstTabFragment();
+                return new ProfileShow();
         }
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 
 }
