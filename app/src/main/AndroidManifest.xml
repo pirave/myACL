@@ -32,7 +32,7 @@
             android:name="com.mobile.app.myacl.ProfileShow"
             android:label="@string/app_name" ></activity>
         <activity
-            android:name="com.mobile.app.myacl.TodayPlan"
+            android:name="com.mobile.app.myacl.Home"
             android:label="@string/app_name" ></activity>
         <activity
             android:name=".exerciseShow.ExerciseShow"
