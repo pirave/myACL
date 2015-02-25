@@ -9,6 +9,7 @@ import java.util.List;
 public class Step implements Serializable{
     private int step_num;
     private String  pic_desc,pic_path;
+    private String exeTitle;
 
     public Step(int step_num,String  pic_desc,String pic_path) {
         this.step_num = step_num;
@@ -26,4 +27,11 @@ public class Step implements Serializable{
         return pic_path;
     }
 
+    public String getExeTitle() {
+        return exeTitle;
+    }
+
+    public boolean hasPic(){
+        return this.pic_path != null;
+    }
 }

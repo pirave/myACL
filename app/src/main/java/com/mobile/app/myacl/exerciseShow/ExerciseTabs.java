@@ -2,6 +2,7 @@
 package com.mobile.app.myacl.exerciseShow;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -15,17 +16,23 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.mobile.app.myacl.DatabaseManager.ProtocolDB;
+import com.mobile.app.myacl.ProtocolManager.Category;
+import com.mobile.app.myacl.ProtocolManager.ExerciseManager.Exercise;
+import com.mobile.app.myacl.ProtocolManager.ExerciseManager.Step;
 import com.mobile.app.myacl.R;
+import com.mobile.app.myacl.TodayPlan;
 import com.mobile.app.myacl.slidetabss.SlidingTabLayout;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ExerciseTabs extends ActionBarActivity {
     private ProtocolDB pdb;
     static final String LOG_TAG = "SlidingTabsBasicFragment";
+    private List<Exercise> exercises;
 
     /**
      * A custom {@link android.support.v4.view.ViewPager} title strip which looks much like Tabs present in Android v4.0 and
@@ -45,21 +52,22 @@ public class ExerciseTabs extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Get Exercise from Activity
+        Intent intent = getIntent();
+        exercises = ((Category) intent.getSerializableExtra(TodayPlan.EXTRA_EXERCISE))
+                .getExercises();
+
         setContentView(R.layout.exercise_tabs);
 
 
-        // BEGIN_INCLUDE (setup_viewpager)
         // Get the ViewPager and set it's PagerAdapter so that it can display items
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mViewPager.setAdapter(new SamplePagerAdapter());
-        // END_INCLUDE (setup_viewpager)
 
-        // BEGIN_INCLUDE (setup_slidingtablayout)
-        // Give the SlidingTabLayout the ViewPager, this must be done AFTER the ViewPager has had
-        // it's PagerAdapter set.
+        // Set tabs for view pager
         mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
         mSlidingTabLayout.setViewPager(mViewPager);
-        // END_INCLUDE (setup_slidingtablayout)
     }
     // END_INCLUDE (fragment_onviewcreated)
 
@@ -70,13 +78,12 @@ public class ExerciseTabs extends ActionBarActivity {
      * {@link com.mobile.app.myacl.slidetabss.SlidingTabLayout}.
      */
     class SamplePagerAdapter extends PagerAdapter {
-        String tabs[]={"1","2","3","4","5","6","7","8"};
         /**
          * @return the number of pages to display
          */
         @Override
         public int getCount() {
-            return tabs.length;
+            return exercises.size();
         }
 
         /**
@@ -98,7 +105,7 @@ public class ExerciseTabs extends ActionBarActivity {
          */
         @Override
         public CharSequence getPageTitle(int position) {
-            return tabs[position];
+            return Integer.toString(position + 1);
         }
         // END_INCLUDE (pageradapter_getpagetitle)
 
@@ -109,44 +116,17 @@ public class ExerciseTabs extends ActionBarActivity {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             // Inflate a new layout from our resources
-            View view = getActivity().getLayoutInflater().inflate(R.layout.exercise_page,
+            View view = getLayoutInflater().inflate(R.layout.exercise_page,
                     container, false);
             // Add the newly created View to the ViewPager
             container.addView(view);
 
-            // Retrieve a TextView from the inflated View, and update it's text
-            //TextView title = (TextView) view.findViewById(R.id.item_title);
-           // title.setText(tabs[position]);
-           // ImageView image1= (ImageView)  view.findViewById(R.id.imagee);
-            String [] prgmImages={"images/e1.png","images/e2.png"};
-            String [] prgmNameList={"Step 1","Step 2"};
-            Context context=getActivity();
-            ListView lv;
-            ArrayList<Bitmap> im = new ArrayList<Bitmap>();
-            //Bitmap [] im = new Bitmap[2];
+            Exercise exercise = exercises.get(position);
 
-            for (int i=0; i< prgmImages.length;i++) {
-             try {
-                   InputStream path = getActivity().getAssets().open(prgmImages[i]);
-                   Bitmap bit = BitmapFactory.decodeStream(path);
-                   im.add(bit);
-                 } catch (IOException e) {
-            // TODO Auto-generated catch block
-             e.printStackTrace();
-    }
-}
 
-            lv=(ListView) view.findViewById(R.id.listView);
-            lv.setAdapter(new StepsListAdapter(context, prgmNameList,im));
+            ListView lv = (ListView) view.findViewById(R.id.listView);
+            lv.setAdapter(new StepsListAdapter(getApplicationContext(), exercise.getSteps()));
 
-           /* try {
-                InputStream path = getActivity().getAssets().open("images/e1.png");
-                Bitmap bit = BitmapFactory.decodeStream(path);
-                image1.setImageBitmap(bit);
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }*/
 
 
             // Return the View

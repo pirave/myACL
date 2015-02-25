@@ -35,7 +35,7 @@
             android:name="com.mobile.app.myacl.Home"
             android:label="@string/app_name" ></activity>
         <activity
-            android:name=".exerciseShow.ExerciseShow"
+            android:name=".exerciseShow.ExerciseTabs"
             android:label="@string/app_name" ></activity>
     </application>
 

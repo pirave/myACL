@@ -14,9 +14,11 @@ import com.mobile.app.myacl.PlanManager.PlanManager;
 import com.mobile.app.myacl.ProtocolManager.Category;
 import com.mobile.app.myacl.ProtocolManager.Week;
 import com.mobile.app.myacl.ShowGoals.CategoryListAdapter;
-import com.mobile.app.myacl.exerciseShow.ExerciseShow;
+import com.mobile.app.myacl.exerciseShow.ExerciseTabs;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 
@@ -38,13 +40,14 @@ public class TodayPlan extends Fragment {
         View view =  inflater.inflate(R.layout.todayplan,container, false);
 
         Plan plan = new PlanManager(getActivity()).getPlan();
-        Date date = new Date();
+
         // ***************** TEST DATE!! *******************//
-        date.setDate(10);
-        date.setMonth(02);
-        date.setYear(2015);
+        Calendar cal = Calendar.getInstance();
+        cal.set(2015,2,10);
+        cal.add(Calendar.MONTH, -1);
+        Date d = cal.getTime();
         // *************************************************//
-        week = plan.getWeekByDate(date);
+        week = plan.getWeekByDate(d);
         categories = week.getCategories();
         lv = (ListView) view.findViewById(R.id.listViewgoals);
         adapter = new CategoryListAdapter(view.getContext() , week.getCategories());
@@ -52,7 +55,7 @@ public class TodayPlan extends Fragment {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View view, int position, long arg) {
-                Intent intent = new Intent(view.getContext(), ExerciseShow.class);
+                Intent intent = new Intent(view.getContext(), ExerciseTabs.class);
                 intent.putExtra(EXTRA_EXERCISE, categories.get(position));
                 startActivity(intent);
             }

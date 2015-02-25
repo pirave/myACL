@@ -5,34 +5,41 @@ package com.mobile.app.myacl.exerciseShow;
  */
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mobile.app.myacl.ProtocolManager.ExerciseManager.Step;
 import com.mobile.app.myacl.R;
 
-import java.util.ArrayList;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
 
 public class StepsListAdapter extends BaseAdapter{
-    String [] result;
+
+    List<Step> steps;
     Context context;
-    ArrayList<Bitmap> imageId;
     private static LayoutInflater inflater=null;
-    public StepsListAdapter(Context context, String[] stepNameList, ArrayList<Bitmap> stepImages) {
+
+    public StepsListAdapter(Context context, List<Step> steps) {
         // TODO Auto-generated constructor stub
-        result=stepNameList;
-        imageId=stepImages;
+        this.context = context;
+        this.steps=steps;
         inflater = ( LayoutInflater )context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
+
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return result.length;
+        return steps.size();
     }
 
     @Override
@@ -52,18 +59,48 @@ public class StepsListAdapter extends BaseAdapter{
         TextView stepdesc;
         ImageView img;
     }
+
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
+        Step step = steps.get(position);
         Holder holder=new Holder();
         View rowView;
         rowView = inflater.inflate(R.layout.exercise_list, null);
         holder.stepdesc=(TextView) rowView.findViewById(R.id.textView1);
         holder.img=(ImageView) rowView.findViewById(R.id.imageView1);
-        holder.stepdesc.setText(result[position]);
-        holder.img.setImageBitmap(imageId.get(position));
+        //holder.stepdesc.setText(steps.get(position).getstepnum());
+        if (step.hasPic())
+            new RetrieveImageTask(holder.img)
+                    .execute(step.getpicpath());
 
         return rowView;
     }
 
+    private class RetrieveImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public RetrieveImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... paths) {
+            Bitmap bitmap = null;
+            try {
+                InputStream in = context.getAssets().open(paths[0]);
+                bitmap = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return bitmap;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            if (result != null) {
+                bmImage.setVisibility(View.VISIBLE);
+                bmImage.setImageBitmap(result);
+            }
+        }
+    }
 }

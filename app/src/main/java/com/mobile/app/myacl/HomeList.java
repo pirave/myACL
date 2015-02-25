@@ -1,6 +1,7 @@
 package com.mobile.app.myacl;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,7 @@ import android.view.ViewGroup;
  * Created by Alaa on 2/16/2015.
  */
 
-public class HomeList extends android.app.Fragment {
+public class HomeList extends Fragment {
 
 
     @Override

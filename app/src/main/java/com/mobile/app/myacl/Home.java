@@ -1,10 +1,10 @@
 package com.mobile.app.myacl;
 
-import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -15,7 +15,7 @@ import com.mobile.app.myacl.ShowGoals.CategoryListAdapter;
 /**
  * Created by Alaa on 2/16/2015.
  */
-public class Home extends Activity {
+public class Home extends FragmentActivity {
 
     Button gotoexe;
     ListView lv;
@@ -35,14 +35,12 @@ public class Home extends Activity {
             }
 
             // Create a new Fragment to be placed in the activity layout
-            FragmentManager fragmentManager = getFragmentManager();
+            FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             HomeList fragment = new HomeList();
             fragmentTransaction.add(R.id.mfragment, fragment);
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
-
-
 
         }
 
@@ -52,11 +50,11 @@ public class Home extends Activity {
     public void clickFunctodayplan(View view){
 
         Fragment nameFragment = new TodayPlan();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.mfragment, nameFragment);
         transaction.addToBackStack(null);
 
-// Commit the transaction
+        // Commit the transaction
         transaction.commit();
     }
 
