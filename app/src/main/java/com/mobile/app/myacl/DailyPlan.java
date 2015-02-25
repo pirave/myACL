@@ -40,7 +40,12 @@ public class DailyPlan extends Fragment {
 
         Plan plan = new PlanManager(getActivity()).getPlan();
 
-
+        // ***************** TEST DATE!! *******************//
+        Calendar cal = Calendar.getInstance();
+        cal.set(2015,2,10);
+        cal.add(Calendar.MONTH, -1);
+        Date d = cal.getTime();
+        // *************************************************//
         week = plan.getWeekByDate(d);
         categories = week.getCategories();
         lv = (ListView) view.findViewById(R.id.listViewgoals);
