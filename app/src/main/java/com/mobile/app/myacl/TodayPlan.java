@@ -3,8 +3,6 @@ package com.mobile.app.myacl;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +19,7 @@ import com.mobile.app.myacl.exerciseShow.ExerciseShow;
  * Created by Alaa on 2/16/2015.
  */
 
-public class TodayPlan extends android.app.Fragment {
+public class TodayPlan extends Fragment {
 
     ListView lv;
     GoalsListAdapter adapter;
