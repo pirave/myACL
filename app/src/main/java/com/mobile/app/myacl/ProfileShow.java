@@ -1,8 +1,11 @@
 package com.mobile.app.myacl;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.mobile.app.myacl.DatabaseManager.UserDB;
@@ -14,7 +17,7 @@ import java.util.Calendar;
 /**
  * Created by Alaa on 2/16/2015.
  */
-public class ProfileShow extends ActionBarActivity {
+public class ProfileShow extends Fragment {
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
     private int yr, mon, dy;
@@ -27,17 +30,18 @@ public class ProfileShow extends ActionBarActivity {
     UserProfile uprofile;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.profileshow);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
+        View view =  inflater.inflate(R.layout.profileshow,container, false);
 
-        name = (TextView) findViewById(R.id.spname);
-        age=(TextView) findViewById(R.id.spage);
-        surgerytype=(TextView) findViewById(R.id.spsurgerytype);
-        sid=(TextView) findViewById(R.id.sids);
-        surgerydate = (TextView) findViewById(R.id.spsurgerydate);
-        gender=(TextView) findViewById(R.id.sgender);
-        uDB = new UserDB(this);
+
+        name = (TextView) view.findViewById(R.id.spname);
+        age=(TextView) view.findViewById(R.id.spage);
+        surgerytype=(TextView) view.findViewById(R.id.spsurgerytype);
+        sid=(TextView) view.findViewById(R.id.sids);
+        surgerydate = (TextView) view.findViewById(R.id.spsurgerydate);
+        gender=(TextView) view.findViewById(R.id.sgender);
+        uDB = new UserDB(getActivity());
         uDB.open();
         uDB.openUserProfile();
         uDB.close();
@@ -49,6 +53,8 @@ public class ProfileShow extends ActionBarActivity {
         sid.setText(uprofile.getID());
         surgerydate.setText(dateFormat.format(uprofile.getSurgeryDate()));
         gender.setText(uprofile.getGender());
+
+        return view;
     }
 
 }
