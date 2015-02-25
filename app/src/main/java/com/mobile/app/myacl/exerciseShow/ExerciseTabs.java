@@ -1,31 +1,22 @@
 
 package com.mobile.app.myacl.exerciseShow;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.mobile.app.myacl.DailyPlan;
 import com.mobile.app.myacl.DatabaseManager.ProtocolDB;
 import com.mobile.app.myacl.ProtocolManager.Category;
 import com.mobile.app.myacl.ProtocolManager.ExerciseManager.Exercise;
-import com.mobile.app.myacl.ProtocolManager.ExerciseManager.Step;
 import com.mobile.app.myacl.R;
-import com.mobile.app.myacl.TodayPlan;
 import com.mobile.app.myacl.slidetabss.SlidingTabLayout;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -55,7 +46,7 @@ public class ExerciseTabs extends ActionBarActivity {
 
         // Get Exercise from Activity
         Intent intent = getIntent();
-        exercises = ((Category) intent.getSerializableExtra(TodayPlan.EXTRA_EXERCISE))
+        exercises = ((Category) intent.getSerializableExtra(DailyPlan.EXTRA_EXERCISE))
                 .getExercises();
 
         setContentView(R.layout.exercise_tabs);

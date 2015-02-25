@@ -49,7 +49,7 @@ public class Home extends FragmentActivity {
 
     public void clickFunctodayplan(View view){
 
-        Fragment nameFragment = new TodayPlan();
+        Fragment nameFragment = new TodayPlan();//new DailyPlan();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.mfragment, nameFragment);
         transaction.addToBackStack(null);
