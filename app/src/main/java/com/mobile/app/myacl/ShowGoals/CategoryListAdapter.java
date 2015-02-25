@@ -4,34 +4,30 @@ package com.mobile.app.myacl.ShowGoals;
  * Created by Alaa on 2/23/2015.
  */
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mobile.app.myacl.ProtocolManager.Category;
 import com.mobile.app.myacl.R;
-import com.mobile.app.myacl.exerciseShow.ExerciseShow;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class GoalsListAdapter extends BaseAdapter{
-    String [] result;
+public class CategoryListAdapter extends BaseAdapter{
+    List<Category> categories;
     private static LayoutInflater inflater=null;
-    public GoalsListAdapter(Context context, String[] goalsNameList) {
+    public CategoryListAdapter(Context context, List<Category> categories) {
         // TODO Auto-generated constructor stub
-        result=goalsNameList;
+        this.categories =categories;
         inflater = ( LayoutInflater )context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return result.length;
+        return categories.size();
     }
 
     @Override
@@ -57,7 +53,7 @@ public class GoalsListAdapter extends BaseAdapter{
         View rowView;
         rowView = inflater.inflate(R.layout.goals_list, null);
         holder.goalitem=(TextView) rowView.findViewById(R.id.goalitem);
-        holder.goalitem.setText(result[position]);
+        holder.goalitem.setText(categories.get(position).getDescription());
 
         return rowView;
     }
