@@ -10,20 +10,17 @@
         android:paddingTop="50dp"
         android:paddingLeft="10dp"
         >
-    <TextView
-        android:id="@+id/spname_label"
-        android:text="goal 1"
-        android:textSize="20dp"
-        android:paddingTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
- <Button
-     android:id="@+id/gotoe"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:text="go to exercise"
-     android:layout_centerVertical="true"
-     android:layout_toEndOf="@+id/spname_label" />
+        <RelativeLayout
+            android:id="@+id/Rlayout"
+            android:layout_below="@+id/spname_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <ListView
+            android:id="@+id/listViewgoals"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+        </ListView>
+        </RelativeLayout>
 
 
     </RelativeLayout>

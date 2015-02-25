@@ -5,7 +5,6 @@ package com.mobile.app.myacl.exerciseShow;
  */
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,23 +12,20 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mobile.app.myacl.R;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
-public class CustomAdapter extends BaseAdapter{
+public class StepsListAdapter extends BaseAdapter{
     String [] result;
     Context context;
     ArrayList<Bitmap> imageId;
     private static LayoutInflater inflater=null;
-    public CustomAdapter(Context context, String[] prgmNameList, ArrayList<Bitmap> prgmImages) {
+    public StepsListAdapter(Context context, String[] stepNameList, ArrayList<Bitmap> stepImages) {
         // TODO Auto-generated constructor stub
-        result=prgmNameList;
-        imageId=prgmImages;
+        result=stepNameList;
+        imageId=stepImages;
         inflater = ( LayoutInflater )context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -53,7 +49,7 @@ public class CustomAdapter extends BaseAdapter{
 
     public class Holder
     {
-        TextView tv;
+        TextView stepdesc;
         ImageView img;
     }
     @Override
@@ -62,17 +58,11 @@ public class CustomAdapter extends BaseAdapter{
         Holder holder=new Holder();
         View rowView;
         rowView = inflater.inflate(R.layout.exercise_list, null);
-        holder.tv=(TextView) rowView.findViewById(R.id.textView1);
+        holder.stepdesc=(TextView) rowView.findViewById(R.id.textView1);
         holder.img=(ImageView) rowView.findViewById(R.id.imageView1);
-        holder.tv.setText(result[position]);
+        holder.stepdesc.setText(result[position]);
         holder.img.setImageBitmap(imageId.get(position));
-        rowView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-              //  Toast.makeText(context, "You Clicked "+result[position], Toast.LENGTH_LONG).show();
-            }
-        });
+
         return rowView;
     }
 

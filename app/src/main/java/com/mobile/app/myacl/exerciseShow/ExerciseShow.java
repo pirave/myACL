@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 
 import com.mobile.app.myacl.R;
-import com.mobile.app.myacl.exerciseShow.SlidingTabsBasicFragment;
+import com.mobile.app.myacl.exerciseShow.ExerciseTabs;
 
 
 /**
@@ -20,7 +20,7 @@ public class ExerciseShow extends FragmentActivity {
         setContentView(R.layout.exercise_show);
         if (savedInstanceState == null) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            SlidingTabsBasicFragment fragment = new SlidingTabsBasicFragment();
+            ExerciseTabs fragment = new ExerciseTabs();
             transaction.replace(R.id.sample_content_fragment, fragment);
             transaction.commit();
         }

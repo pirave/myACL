@@ -11,9 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.mobile.app.myacl.DatabaseManager.ProtocolDB;
 import com.mobile.app.myacl.R;
@@ -24,7 +22,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 
-public class SlidingTabsBasicFragment extends Fragment {
+public class ExerciseTabs extends Fragment {
     private ProtocolDB pdb;
     static final String LOG_TAG = "SlidingTabsBasicFragment";
 
@@ -35,7 +33,7 @@ public class SlidingTabsBasicFragment extends Fragment {
     private SlidingTabLayout mSlidingTabLayout;
 
     /**
-     * A {@link android.support.v4.view.ViewPager} which will be used in conjunction with the {@link SlidingTabLayout} above.
+     * A {@link android.support.v4.view.ViewPager} which will be used in conjunction with the {@link com.mobile.app.myacl.slidetabss.SlidingTabLayout} above.
      */
     private ViewPager mViewPager;
 
@@ -72,7 +70,7 @@ public class SlidingTabsBasicFragment extends Fragment {
      * The {@link android.support.v4.view.PagerAdapter} used to display pages in this sample.
      * The individual pages are simple and just display two lines of text. The important section of
      * this class is the {@link #getPageTitle(int)} method which controls what is displayed in the
-     * {@link SlidingTabLayout}.
+     * {@link com.mobile.app.myacl.slidetabss.SlidingTabLayout}.
      */
     class SamplePagerAdapter extends PagerAdapter {
         String tabs[]={"1","2","3","4","5","6","7","8"};
@@ -96,7 +94,7 @@ public class SlidingTabsBasicFragment extends Fragment {
         // BEGIN_INCLUDE (pageradapter_getpagetitle)
         /**
          * Return the title of the item at {@code position}. This is important as what this method
-         * returns is what is displayed in the {@link SlidingTabLayout}.
+         * returns is what is displayed in the {@link com.mobile.app.myacl.slidetabss.SlidingTabLayout}.
          * <p>
          * Here we construct one using the position value, but for real application the title should
          * refer to the item's contents.
@@ -130,19 +128,19 @@ public class SlidingTabsBasicFragment extends Fragment {
             ArrayList<Bitmap> im = new ArrayList<Bitmap>();
             //Bitmap [] im = new Bitmap[2];
 
-for (int i=0; i< prgmImages.length;i++) {
-    try {
-        InputStream path = getActivity().getAssets().open(prgmImages[i]);
-        Bitmap bit = BitmapFactory.decodeStream(path);
-        im.add(bit);
-    } catch (IOException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
+            for (int i=0; i< prgmImages.length;i++) {
+             try {
+                   InputStream path = getActivity().getAssets().open(prgmImages[i]);
+                   Bitmap bit = BitmapFactory.decodeStream(path);
+                   im.add(bit);
+                 } catch (IOException e) {
+            // TODO Auto-generated catch block
+             e.printStackTrace();
     }
 }
 
             lv=(ListView) view.findViewById(R.id.listView);
-            lv.setAdapter(new CustomAdapter(context, prgmNameList,im));
+            lv.setAdapter(new StepsListAdapter(context, prgmNameList,im));
 
            /* try {
                 InputStream path = getActivity().getAssets().open("images/e1.png");
