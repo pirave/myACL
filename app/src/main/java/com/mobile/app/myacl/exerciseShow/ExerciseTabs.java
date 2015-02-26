@@ -2,10 +2,13 @@
 package com.mobile.app.myacl.exerciseShow;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Html;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -58,8 +61,8 @@ public class ExerciseTabs extends ActionBarActivity {
         // Set tabs for view pager
         mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.sliding_tabs);
         mSlidingTabLayout.setViewPager(mViewPager);
-
-        getSupportActionBar().setTitle(category.getDescription());
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#ffffff")));
+        getSupportActionBar().setTitle(Html.fromHtml("<font color='#000000'>" + category.getDescription() + "</font>"));
     }
     // END_INCLUDE (fragment_onviewcreated)
 
