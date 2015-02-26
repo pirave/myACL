@@ -18,14 +18,13 @@ public class PagerViewAdapter extends FragmentPagerAdapter {
 
         switch (index) {
             case 0:
-                return new HomeList();
+                return new Home();
             case 1:
                 return new ProfileShow();
             case 2:
                 return new ProfileShow();
             case 3:
-                return new TodayPlan();
-
+                return new ProfileShow();
             default:
                 return new ProfileShow();
         }

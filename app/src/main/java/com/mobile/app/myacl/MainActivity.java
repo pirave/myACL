@@ -70,11 +70,16 @@ public class MainActivity extends ActionBarActivity implements  android.support.
         });
     }
 
-    public void clickFunctodayplan(View view){
+    public void onClickShowTodayPlan(View view){
 
-        Fragment nameFragment = new TodayPlan();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.mfragment, new TodayPlan());
+        transaction.addToBackStack(null);
 
+        // Commit the transaction
+        transaction.commit();
     }
+
     @Override
     public void onTabSelected(android.support.v7.app.ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
         viewPager.setCurrentItem(tab.getPosition());

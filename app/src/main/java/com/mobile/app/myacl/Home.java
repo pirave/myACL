@@ -5,7 +5,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -15,47 +17,22 @@ import com.mobile.app.myacl.ShowGoals.CategoryListAdapter;
 /**
  * Created by Alaa on 2/16/2015.
  */
-public class Home extends FragmentActivity {
+public class Home extends Fragment {
 
-    Button gotoexe;
-    ListView lv;
-    CategoryListAdapter adapter;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.home);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                         Bundle savedInstanceState) {
 
-        if (findViewById(R.id.mfragment) != null) {
+        View view = inflater.inflate(R.layout.home, container, false);
 
-            // However, if we're being restored from a previous state,
-            // then we don't need to do anything and should return or else
-            // we could end up with overlapping fragments.
-            if (savedInstanceState != null) {
-                return;
-            }
+        // Create a new Fragment to be placed in the activity layout
+        FragmentTransaction transaction = getFragmentManager()
+                .beginTransaction();
 
-            // Create a new Fragment to be placed in the activity layout
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            HomeList fragment = new HomeList();
-            fragmentTransaction.add(R.id.mfragment, fragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+        transaction.replace(R.id.mfragment, new HomeList());
 
-        }
-
-
-    }
-
-    public void clickFunctodayplan(View view){
-
-        Fragment nameFragment = new TodayPlan();//new DailyPlan();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.mfragment, nameFragment);
-        transaction.addToBackStack(null);
-
-        // Commit the transaction
         transaction.commit();
+        return view;
     }
 
 }

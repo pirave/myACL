@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/button"
         android:text="Go to today plan"
-        android:onClick="clickFunctodayplan"
+        android:onClick="onClickShowTodayPlan"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true" />
 </RelativeLayout>
