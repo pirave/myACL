@@ -7,7 +7,9 @@ import com.mobile.app.myacl.ProtocolManager.Week;
 import com.mobile.app.myacl.UserManager.UserProfile;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -42,6 +44,10 @@ public class Plan implements Parcelable, Serializable{
 
     public Week getWeekByDate(Date d){
         return weeks.floorEntry(d).getValue();
+    }
+
+    public List<Week> getWeeksList(){
+        return new ArrayList<Week>(weeks.values());
     }
 
     @Override

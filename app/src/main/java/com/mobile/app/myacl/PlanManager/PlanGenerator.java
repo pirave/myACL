@@ -57,6 +57,7 @@ class PlanGenerator {
             Week week = populateWeek(i);
             startDate = populateUserProgressTable(startDate, week);
             plan.addWeek(startDate, week);
+            week.setDate(startDate);
         }
     }
 

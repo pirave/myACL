@@ -16,6 +16,7 @@ import com.mobile.app.myacl.ProtocolManager.Week;
 import com.mobile.app.myacl.ShowGoals.CategoryListAdapter;
 import com.mobile.app.myacl.exerciseShow.ExerciseTabs;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -37,26 +38,17 @@ public class TimeLine extends Fragment {
     {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.timeline_page,container, false);
-
         Plan plan = new PlanManager(getActivity()).getPlan();
 
-        // ***************** TEST DATE!! *******************//
-        Calendar cal = Calendar.getInstance();
-        cal.set(2015,2,10);
-        cal.add(Calendar.MONTH, -1);
-        Date d = cal.getTime();
-        // *************************************************//
-        week = plan.getWeekByDate(d);
-        categories = week.getCategories();
         lv = (ListView) view.findViewById(R.id.listtime);
-        adapter = new TimelineListAdapter(view.getContext() , week.getCategories());
+        adapter = new TimelineListAdapter(view.getContext(), plan.getWeeksList());
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View view, int position, long arg) {
-                Intent intent = new Intent(view.getContext(), ExerciseTabs.class);
-                intent.putExtra(EXTRA_EXERCISE, categories.get(position));
-                startActivity(intent);
+//                Intent intent = new Intent(view.getContext(), ExerciseTabs.class);
+//                intent.putExtra(EXTRA_EXERCISE, categories.get(position));
+//                startActivity(intent);
             }
         });
     return view;

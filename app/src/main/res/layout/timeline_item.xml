@@ -82,72 +82,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/layoutotherrowelements">
-    <RelativeLayout
-    android:layout_width="match_parent"
-    android:background="@drawable/round_corner"
-    android:layout_gravity="center_vertical"
-    android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:id="@+id/goalitem1"
-            android:textSize="15dp"
-            android:paddingLeft="10dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:id="@+id/goalitem2"
-            android:layout_below="@+id/goalitem1"
-            android:textSize="15dp"
-            android:paddingLeft="10dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:id="@+id/goalitem3"
-        android:layout_below="@+id/goalitem2"
-        android:textSize="15dp"
-        android:paddingLeft="10dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:id="@+id/goalitem4"
-        android:layout_below="@+id/goalitem3"
-        android:textSize="15dp"
-        android:text="test"
-        android:visibility="gone"
-        android:paddingLeft="10dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:id="@+id/goalitem5"
-        android:layout_below="@+id/goalitem4"
-        android:textSize="15dp"
-        android:paddingLeft="10dp"
-        android:visibility="gone"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:id="@+id/goalitem6"
-        android:layout_below="@+id/goalitem5"
-        android:textSize="15dp"
-        android:visibility="gone"
-        android:paddingLeft="10dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:id="@+id/goalitem7"
-        android:layout_below="@+id/goalitem6"
-        android:textSize="15dp"
-        android:paddingLeft="10dp"
-        android:visibility="gone"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="@drawable/round_corner"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/txtGoals"
+                android:textSize="15dp"
+                android:paddingLeft="10dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical" />
+
         </RelativeLayout>
 
     </LinearLayout>
