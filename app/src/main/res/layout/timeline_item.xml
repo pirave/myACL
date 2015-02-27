@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="#ffffff"
+    android:gravity="center"
+    android:id="@+id/linearlayoutservicerow">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="65dp"
+        android:layout_height="130dp"
+        android:id="@+id/layoutotherrowelements2"
+        android:weightSum="1">
+        <RelativeLayout
+            android:layout_width="65dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_marginLeft="15dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/startweekdate"
+            android:text="Feb 25"
+            android:textSize="12dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/startweekyear"
+                android:text="2015"
+                android:textSize="12dp"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/startweekdate" />
+        </RelativeLayout>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="55dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_marginLeft="15dp">
+
+        <View
+            android:layout_width="4dp"
+            android:id="@+id/verticallineview"
+            android:layout_height="match_parent"
+            android:background="#cbcbcb"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"/>
+
+        <RelativeLayout
+            android:layout_width="55dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
+
+            <ImageView
+                android:id="@+id/circle_image"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:gravity="center"
+                android:src="@drawable/circle_week_all"
+                android:background="@android:color/transparent" >
+            </ImageView>
+            <TextView
+                android:id="@+id/week_num_image"
+                android:paddingTop="25dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:gravity="center"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:text="11" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutotherrowelements">
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:background="@drawable/round_corner"
+    android:layout_gravity="center_vertical"
+    android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/goalitem1"
+            android:textSize="15dp"
+            android:paddingLeft="10dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/goalitem2"
+            android:layout_below="@+id/goalitem1"
+            android:textSize="15dp"
+            android:paddingLeft="10dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/goalitem3"
+        android:layout_below="@+id/goalitem2"
+        android:textSize="15dp"
+        android:paddingLeft="10dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/goalitem4"
+        android:layout_below="@+id/goalitem3"
+        android:textSize="15dp"
+        android:text="test"
+        android:visibility="gone"
+        android:paddingLeft="10dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/goalitem5"
+        android:layout_below="@+id/goalitem4"
+        android:textSize="15dp"
+        android:paddingLeft="10dp"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/goalitem6"
+        android:layout_below="@+id/goalitem5"
+        android:textSize="15dp"
+        android:visibility="gone"
+        android:paddingLeft="10dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/goalitem7"
+        android:layout_below="@+id/goalitem6"
+        android:textSize="15dp"
+        android:paddingLeft="10dp"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

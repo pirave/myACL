@@ -20,7 +20,7 @@ public class PagerViewAdapter extends FragmentPagerAdapter {
             case 0:
                 return new Home();
             case 1:
-                return new ProfileShow();
+                return new TimeLine();
             case 2:
                 return new ProfileShow();
             case 3:
