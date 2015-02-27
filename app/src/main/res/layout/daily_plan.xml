@@ -16,11 +16,10 @@
             android:layout_below="@+id/spname_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        <ListView
-            android:id="@+id/listViewgoals"
+        <com.nhaarman.listviewanimations.itemmanipulation.DynamicListView
+            android:id="@+id/listViewCategories"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
-        </ListView>
+            android:layout_height="fill_parent" />
         </RelativeLayout>
 
 

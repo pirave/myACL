@@ -2,6 +2,7 @@ package com.mobile.app.myacl;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +14,11 @@ import com.mobile.app.myacl.PlanManager.Plan;
 import com.mobile.app.myacl.PlanManager.PlanManager;
 import com.mobile.app.myacl.ProtocolManager.Category;
 import com.mobile.app.myacl.ProtocolManager.Week;
-import com.mobile.app.myacl.ShowGoals.CategoryListAdapter;
+import com.mobile.app.myacl.ShowCategories.CategoryListAdapter;
 import com.mobile.app.myacl.exerciseShow.ExerciseTabs;
+import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter;
+import com.nhaarman.listviewanimations.itemmanipulation.DynamicListView;
+import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCallback;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -28,7 +32,7 @@ import java.util.List;
 public class DailyPlan extends Fragment {
 
     public static final String EXTRA_EXERCISE = "EXERCISE";
-    protected ListView lv;
+    protected DynamicListView lv;
     protected CategoryListAdapter adapter;
     protected Week week;
     protected List<Category> categories;
@@ -48,9 +52,22 @@ public class DailyPlan extends Fragment {
         // *************************************************//
         week = plan.getWeekByDate(d);
         categories = week.getCategories();
-        lv = (ListView) view.findViewById(R.id.listViewgoals);
+        lv = (DynamicListView) view.findViewById(R.id.listViewCategories);
         adapter = new CategoryListAdapter(view.getContext() , week.getCategories());
-        lv.setAdapter(adapter);
+
+        AlphaInAnimationAdapter animationAdapter = new AlphaInAnimationAdapter(adapter);
+        animationAdapter.setAbsListView(lv);
+        lv.setAdapter(animationAdapter);
+        lv.enableSwipeToDismiss(
+                new OnDismissCallback() {
+                    @Override
+                    public void onDismiss(@NonNull final ViewGroup listView, @NonNull final int[] reverseSortedPositions) {
+                        for (int position : reverseSortedPositions) {
+                            adapter.remove(position);
+                        }
+                    }
+                }
+        );
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View view, int position, long arg) {

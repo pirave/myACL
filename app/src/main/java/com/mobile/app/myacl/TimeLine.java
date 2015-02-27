@@ -1,6 +1,5 @@
 package com.mobile.app.myacl;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,12 +12,7 @@ import com.mobile.app.myacl.PlanManager.Plan;
 import com.mobile.app.myacl.PlanManager.PlanManager;
 import com.mobile.app.myacl.ProtocolManager.Category;
 import com.mobile.app.myacl.ProtocolManager.Week;
-import com.mobile.app.myacl.ShowGoals.CategoryListAdapter;
-import com.mobile.app.myacl.exerciseShow.ExerciseTabs;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 

@@ -1,4 +1,4 @@
-package com.mobile.app.myacl.ShowGoals;
+package com.mobile.app.myacl.ShowCategories;
 
 /**
  * Created by Alaa on 2/23/2015.
@@ -15,7 +15,7 @@ import com.mobile.app.myacl.R;
 
 import java.util.List;
 
-public class CategoryListAdapter extends BaseAdapter{
+public class CategoryListAdapter extends BaseAdapter {
     List<Category> categories;
     private static LayoutInflater inflater=null;
     public CategoryListAdapter(Context context, List<Category> categories) {
@@ -51,11 +51,16 @@ public class CategoryListAdapter extends BaseAdapter{
         // TODO Auto-generated method stub
         Holder holder=new Holder();
         View rowView;
-        rowView = inflater.inflate(R.layout.goals_list, null);
+        rowView = inflater.inflate(R.layout.category_list, null);
         holder.goalitem=(TextView) rowView.findViewById(R.id.goalitem);
         holder.goalitem.setText(categories.get(position).getDescription());
 
         return rowView;
+    }
+
+    public void remove(int pos) {
+        categories.remove(pos);
+        notifyDataSetChanged();
     }
 
 }
