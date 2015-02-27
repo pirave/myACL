@@ -67,14 +67,17 @@ class PlanGenerator {
 
     private Date populateUserProgressTable(Date prevStartDate, Week week){
         Date newStartDate;
+        int numDaysInWeek = 7;
         switch (week.getNum()){
             case 0:
                 // keep prev startDate Same
                 newStartDate = prevStartDate;
+                numDaysInWeek = 1;
                 break;
             case 1:
                 // add 1 to prevStartDate
                 newStartDate = addDays(prevStartDate, 1);
+                numDaysInWeek = 6;
                 break;
             case 2:
                 // add 6 to prevStartDate
@@ -85,17 +88,17 @@ class PlanGenerator {
                 newStartDate = addDays(prevStartDate, 7);
                 break;
         }
-        int i = 1;
-        for (Category c : week.getCategories()){
-            udb.createProgressEntry(
-                    new UserProgress(
-                        c.getId(),
-                        false,
-                        week.getNum(),
-                        i++,
-                        newStartDate
-                    )
-            );
+        for (int i = 1; i <= numDaysInWeek; i++){
+            for (Category c : week.getCategories())
+                udb.createProgressEntry(
+                        new UserProgress(
+                            c.getId(),
+                            false,
+                            week.getNum(),
+                            i,
+                            addDays(newStartDate, i-1)
+                        )
+                );
         }
 
         return newStartDate;
