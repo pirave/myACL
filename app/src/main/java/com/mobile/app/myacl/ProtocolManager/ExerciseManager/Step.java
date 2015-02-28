@@ -8,12 +8,12 @@ import java.util.List;
  */
 public class Step implements Serializable{
     private int step_num;
-    private String  pic_desc,pic_path;
+    private String  step_desc,pic_path;
     private String exeTitle;
 
     public Step(int step_num,String  pic_desc,String pic_path) {
         this.step_num = step_num;
-        this.pic_desc = pic_desc;
+        this.step_desc = pic_desc;
         this.pic_path = pic_path;
     }
 
@@ -21,7 +21,7 @@ public class Step implements Serializable{
         return step_num;
     }
     public String getpicdesc() {
-        return pic_desc;
+        return step_desc;
     }
     public String getpicpath() {
         return pic_path;

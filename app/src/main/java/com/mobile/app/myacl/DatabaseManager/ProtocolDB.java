@@ -115,7 +115,7 @@ public class ProtocolDB {
           Cursor cursor = mDB.query(
                 ProtocolDBHandler.TABLE_MEDIA,
                 new String[]{
-                        ProtocolDBHandler.KEY_STEP_NUM,ProtocolDBHandler.KEY_PIC_DESC,ProtocolDBHandler.KEY_PIC_PATH
+                        ProtocolDBHandler.KEY_STEP_NUM,ProtocolDBHandler.KEY_STEP_DESC,ProtocolDBHandler.KEY_PIC_PATH
                 },
                 ProtocolDBHandler.KEY_EXE_ID + "=? ",
                 new String[]{
