@@ -35,7 +35,7 @@ public class ProtocolDBHandler extends SQLiteOpenHelper {
     public static String FKEY_EXE_ID = "exe_id_fk";
     public static String KEY_EXE_ID = "exe_id";
     public static String KEY_STEP_NUM = "step_num";
-    public static String KEY_PIC_DESC = "pic_desc";
+    public static String KEY_STEP_DESC = "step_desc";
     public static String KEY_PIC_PATH = "pic_path";
 
 
