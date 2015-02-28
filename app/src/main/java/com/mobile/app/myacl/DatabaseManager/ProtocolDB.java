@@ -12,7 +12,9 @@ import com.mobile.app.myacl.ProtocolManager.ExerciseManager.Step;
 import com.mobile.app.myacl.ProtocolManager.Goal;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by pirave on 15-02-16.
@@ -64,9 +66,9 @@ public class ProtocolDB {
         return goals;
     }
 
-    public List<Category> getCategoriesByWeek(int i){
+    public Map<Integer, Category> getCategoriesByWeek(int i){
         // SELECT DISTINCT(cat_id)
-        List<Category> categories = new ArrayList<Category>();
+        Map<Integer, Category> categories = new HashMap<>();
         Cursor cursor = mDB.query(
                 ProtocolDBHandler.TABLE_CATEGORY,
                 new String[]{
@@ -79,10 +81,11 @@ public class ProtocolDB {
 
         if (cursor.moveToFirst()) {
             do {
-                categories.add(new Category(
+                categories.put(
                         cursor.getInt(0),
-                        cursor.getString(1),
-                        getExercisesByWeekAndCategory(i, cursor.getInt(0))));
+                        new Category(
+                            cursor.getString(1),
+                            getExercisesByWeekAndCategory(i, cursor.getInt(0))));
             } while (cursor.moveToNext());
         }
         return categories;

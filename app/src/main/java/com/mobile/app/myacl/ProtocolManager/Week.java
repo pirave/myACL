@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by pirave on 15-02-16.
@@ -11,10 +12,10 @@ import java.util.List;
 public class Week implements Serializable{
     private int num;
     private List<Goal> goals;
-    private List<Category> categories;
+    private Map<Integer, Category> categories;//List<Category> categories;
     private Date date;
 
-    public Week(int num, List<Goal> goals, List<Category> categories) {
+    public Week(int num, List<Goal> goals, Map<Integer, Category> categories) {
         this.num = num;
         this.goals = goals;
         this.categories = categories;
@@ -28,7 +29,7 @@ public class Week implements Serializable{
         return goals;
     }
 
-    public List<Category> getCategories() {
+    public Map<Integer, Category> getCategories() {
         return categories;
     }
 
@@ -40,12 +41,7 @@ public class Week implements Serializable{
         this.date = date;
     }
 
-    public List<Category> getCategoriesCopy() {
-        List<Category> newCategories = new ArrayList<>();
-
-        for (Category c: categories)
-            newCategories.add(new Category(c.getId(),c.getDescription(),c.getExercises()));
-
-        return newCategories;
+    public List<Category> getCategoryList() {
+        return new ArrayList<>(categories.values());
     }
 }

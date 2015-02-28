@@ -14,6 +14,7 @@ import com.mobile.app.myacl.UserManager.UserProgress;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -142,7 +143,7 @@ public class UserDB {
         return cv;
     }
 
-    public List<UserProgress> getProgressData() {
+    public List<UserProgress> getProgressData(Date date) {
         // TODO Date Conversion
         String[] columns = new String[] {
                 UserDBHandler.KEY_CATID,
@@ -152,8 +153,12 @@ public class UserDB {
                 UserDBHandler.KEY_DAYDATE,
                 UserDBHandler.KEY_RANGEDGREE
         };
-        Cursor c = mDB.query(UserDBHandler.TABLE_PROFILE, columns, null, null, null,
-                null, null);
+        Cursor c = mDB.query(
+                UserDBHandler.TABLE_PROGRESS,
+                columns,
+                UserDBHandler.KEY_DAYDATE + "=?",
+                new String[]{new SimpleDateFormat("dd-MM-yyyy").format(date)},
+                null, null, null);
         ArrayList<UserProgress> list = new ArrayList<UserProgress>();
 
         int iCatid = c.getColumnIndex(UserDBHandler.KEY_CATID);

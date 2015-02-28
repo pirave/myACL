@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 
 import com.mobile.app.myacl.CategoryAdapters.CategoryListAdapter;
 import com.mobile.app.myacl.CategoryAdapters.TodayCategoryListAdapter;
+import com.mobile.app.myacl.UserManager.ProgressTracker;
 import com.mobile.app.myacl.exerciseShow.ExerciseTabs;
 import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter;
 import com.nhaarman.listviewanimations.itemmanipulation.DynamicListView;
@@ -22,6 +23,9 @@ import java.util.Date;
  * Created by pirave on 15-02-25.
  */
 public class TodayPlan extends DailyPlan {
+    ProgressTracker tracker;
+    protected DynamicListView lvComplete;
+    protected CategoryListAdapter adapterComplete;
 
     public static TodayPlan newInstance(){
 
@@ -40,9 +44,19 @@ public class TodayPlan extends DailyPlan {
     }
 
     @Override
-    public void initializeAdapter(View view){
-        lv = (DynamicListView) view.findViewById(R.id.listViewCategories);
-        adapter = new TodayCategoryListAdapter(view.getContext() , week.getCategories());
+    public View initializeAdapter(LayoutInflater inflater, ViewGroup container){
+        tracker = ProgressTracker.getInstance(getActivity());
+        View view = inflater.inflate(R.layout.today_plan, container, false);
+
+        initializeIncomplete(view);
+        initializeComplete(view);
+
+        return view;
+    }
+
+    private void initializeIncomplete(View view) {
+        lv = (DynamicListView) view.findViewById(R.id.listIncomplete);
+        adapter = new TodayCategoryListAdapter(view.getContext() , tracker.getIncomplete());
         AlphaInAnimationAdapter animationAdapter = new AlphaInAnimationAdapter(adapter);
         animationAdapter.setAbsListView(lv);
         lv.setAdapter(animationAdapter);
@@ -51,10 +65,29 @@ public class TodayPlan extends DailyPlan {
                     @Override
                     public void onDismiss(@NonNull final ViewGroup listView, @NonNull final int[] reverseSortedPositions) {
                         for (int position : reverseSortedPositions) {
-                            adapter.remove(position);
+                            adapterComplete.insert(adapter.remove(position));
                         }
                     }
                 }
         );
     }
+
+    private void initializeComplete(View view) {
+        lvComplete = (DynamicListView) view.findViewById(R.id.listComplete);
+        adapterComplete = new TodayCategoryListAdapter(view.getContext() , tracker.getComplete());
+        AlphaInAnimationAdapter animationAdapter = new AlphaInAnimationAdapter(adapterComplete);
+        animationAdapter.setAbsListView(lvComplete);
+        lvComplete.setAdapter(animationAdapter);
+        lvComplete.enableSwipeToDismiss(
+                new OnDismissCallback() {
+                    @Override
+                    public void onDismiss(@NonNull final ViewGroup listView, @NonNull final int[] reverseSortedPositions) {
+                        for (int position : reverseSortedPositions) {
+                            adapter.insert(adapterComplete.remove(position));
+                        }
+                    }
+                }
+        );
+    }
+
 }

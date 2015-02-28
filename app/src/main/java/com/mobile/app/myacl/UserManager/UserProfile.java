@@ -1,6 +1,8 @@
 package com.mobile.app.myacl.UserManager;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /**
  * Created by Alaa on 2/15/2015.
@@ -62,7 +64,13 @@ public final class UserProfile implements Serializable {
         return surgerydate;
     }
     public void setSurgeryDate(java.util.Date surgerydate) {
-        instance.surgerydate = surgerydate;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            instance.surgerydate = sdf.parse(sdf.format(surgerydate));
+        }
+        catch (ParseException e){
+            instance.surgerydate = surgerydate;
+        }
     }
     public java.util.Date getCreateDate() {
         return createdate;

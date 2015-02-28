@@ -89,10 +89,10 @@ class PlanGenerator {
                 break;
         }
         for (int i = 1; i <= numDaysInWeek; i++){
-            for (Category c : week.getCategories())
+            for (int c : week.getCategories().keySet())
                 udb.createProgressEntry(
                         new UserProgress(
-                            c.getId(),
+                            c,
                             false,
                             week.getNum(),
                             i,
@@ -117,7 +117,7 @@ class PlanGenerator {
             Log.d(TAG, Integer.toString(w.getNum()));
             for (Goal g : w.getGoals())
                 Log.d(TAG + "_GOALS", g.getDescription());
-            for (Category c : w.getCategories()){
+            for (Category c : w.getCategories().values()){
                 Log.d(TAG + "_CATEGORY", c.getDescription());
                 for (Exercise e : c.getExercises())
                     Log.d(TAG + "_EXERCISE", e.toString());

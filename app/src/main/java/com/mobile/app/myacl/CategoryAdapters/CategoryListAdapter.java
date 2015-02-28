@@ -17,7 +17,8 @@ import java.util.List;
 
 public class CategoryListAdapter extends BaseAdapter {
     protected List<Category> categories;
-    protected LayoutInflater inflater=null;
+    protected LayoutInflater inflater = null;
+
     public CategoryListAdapter(Context context, List<Category> categories) {
         // TODO Auto-generated constructor stub
         this.categories =categories;
@@ -59,8 +60,13 @@ public class CategoryListAdapter extends BaseAdapter {
         return rowView;
     }
 
-    public void remove(int pos){
+    public Category remove(int pos){
         // Do nothing
-    };
+        return null;
+    }
+
+    public void insert(Category c){
+        // Do nothing
+    }
 
 }

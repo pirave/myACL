@@ -2,6 +2,8 @@ package com.mobile.app.myacl.CategoryAdapters;
 
 import android.content.Context;
 import com.mobile.app.myacl.ProtocolManager.Category;
+import com.mobile.app.myacl.UserManager.ProgressTracker;
+
 import java.util.List;
 
 /**
@@ -13,8 +15,17 @@ public class TodayCategoryListAdapter extends CategoryListAdapter {
         super(context, categories);
     }
 
-    public void remove(int pos) {
-        categories.remove(pos);
+    @Override
+    public Category remove(int pos) {
+        Category c = categories.get(pos);
+        categories.remove(c);
+        notifyDataSetChanged();
+        return c;
+    }
+
+    @Override
+    public void insert(Category c){
+        categories.add(c);
         notifyDataSetChanged();
     }
 

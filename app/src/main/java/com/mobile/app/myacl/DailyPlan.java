@@ -22,6 +22,7 @@ import com.nhaarman.listviewanimations.itemmanipulation.swipedismiss.OnDismissCa
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -35,7 +36,7 @@ public class DailyPlan extends Fragment {
     protected DynamicListView lv;
     protected CategoryListAdapter adapter;
     protected Week week;
-    protected List<Category> categories;
+    protected Map<Integer,Category> categories;
 
     public static DailyPlan newInstance(Date date){
         DailyPlan plan = new DailyPlan();
@@ -55,9 +56,7 @@ public class DailyPlan extends Fragment {
         categories = week.getCategories();
 
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.daily_plan,container, false);
-        lv = (DynamicListView) view.findViewById(R.id.listViewCategories);
-        initializeAdapter(view);
+        View view = initializeAdapter(inflater, container);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View view, int position, long arg) {
@@ -71,10 +70,13 @@ public class DailyPlan extends Fragment {
 
     }
 
-    public void initializeAdapter(View view){
-        adapter = new CategoryListAdapter(view.getContext() , week.getCategories());
+    public View initializeAdapter(LayoutInflater inflater, ViewGroup container){
+        View view = inflater.inflate(R.layout.daily_plan,container, false);
+        lv = (DynamicListView) view.findViewById(R.id.listViewCategories);
+        adapter = new CategoryListAdapter(view.getContext() , week.getCategoryList());
         AlphaInAnimationAdapter animationAdapter = new AlphaInAnimationAdapter(adapter);
         animationAdapter.setAbsListView(lv);
         lv.setAdapter(animationAdapter);
+        return view;
     }
 }
