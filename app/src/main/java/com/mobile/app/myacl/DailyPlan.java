@@ -8,13 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListView;
 
 import com.mobile.app.myacl.PlanManager.Plan;
 import com.mobile.app.myacl.PlanManager.PlanManager;
 import com.mobile.app.myacl.ProtocolManager.Category;
 import com.mobile.app.myacl.ProtocolManager.Week;
-import com.mobile.app.myacl.ShowCategories.CategoryListAdapter;
+import com.mobile.app.myacl.CategoryAdapters.CategoryListAdapter;
 import com.mobile.app.myacl.exerciseShow.ExerciseTabs;
 import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter;
 import com.nhaarman.listviewanimations.itemmanipulation.DynamicListView;
@@ -32,42 +31,33 @@ import java.util.List;
 public class DailyPlan extends Fragment {
 
     public static final String EXTRA_EXERCISE = "EXERCISE";
+    protected static final String EXTRA_DATE = "DATE";
     protected DynamicListView lv;
     protected CategoryListAdapter adapter;
     protected Week week;
     protected List<Category> categories;
+
+    public static DailyPlan newInstance(Date date){
+        DailyPlan plan = new DailyPlan();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(EXTRA_DATE, date);
+        plan.setArguments(bundle);
+        return plan;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.daily_plan,container, false);
 
         Plan plan = new PlanManager(getActivity()).getPlan();
-
-        // ***************** TEST DATE!! *******************//
-        Calendar cal = Calendar.getInstance();
-        cal.set(2015,2,10);
-        cal.add(Calendar.MONTH, -1);
-        Date d = cal.getTime();
-        // *************************************************//
+        Date d = (Date) getArguments().getSerializable("DATE");
         week = plan.getWeekByDate(d);
         categories = week.getCategories();
-        lv = (DynamicListView) view.findViewById(R.id.listViewCategories);
-        adapter = new CategoryListAdapter(view.getContext() , week.getCategories());
 
-        AlphaInAnimationAdapter animationAdapter = new AlphaInAnimationAdapter(adapter);
-        animationAdapter.setAbsListView(lv);
-        lv.setAdapter(animationAdapter);
-        lv.enableSwipeToDismiss(
-                new OnDismissCallback() {
-                    @Override
-                    public void onDismiss(@NonNull final ViewGroup listView, @NonNull final int[] reverseSortedPositions) {
-                        for (int position : reverseSortedPositions) {
-                            adapter.remove(position);
-                        }
-                    }
-                }
-        );
+        // Inflate the layout for this fragment
+        View view =  inflater.inflate(R.layout.daily_plan,container, false);
+        lv = (DynamicListView) view.findViewById(R.id.listViewCategories);
+        initializeAdapter(view);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View view, int position, long arg) {
@@ -76,10 +66,15 @@ public class DailyPlan extends Fragment {
                 startActivity(intent);
             }
         });
-    return view;
+
+        return view;
 
     }
 
-
-
+    public void initializeAdapter(View view){
+        adapter = new CategoryListAdapter(view.getContext() , week.getCategories());
+        AlphaInAnimationAdapter animationAdapter = new AlphaInAnimationAdapter(adapter);
+        animationAdapter.setAbsListView(lv);
+        lv.setAdapter(animationAdapter);
+    }
 }

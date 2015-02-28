@@ -1,6 +1,7 @@
 package com.mobile.app.myacl.ProtocolManager;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -37,5 +38,14 @@ public class Week implements Serializable{
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public List<Category> getCategoriesCopy() {
+        List<Category> newCategories = new ArrayList<>();
+
+        for (Category c: categories)
+            newCategories.add(new Category(c.getId(),c.getDescription(),c.getExercises()));
+
+        return newCategories;
     }
 }

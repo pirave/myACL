@@ -20,7 +20,7 @@ import java.util.List;
  * Created by Alaa on 2/16/2015.
  */
 
-public class TimeLine extends Fragment {
+public class Timeline extends Fragment {
 
     public static final String EXTRA_EXERCISE = "EXERCISE";
     protected ListView lv;

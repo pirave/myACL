@@ -1,29 +1,24 @@
 package com.mobile.app.myacl;
 
 
-import android.app.TabActivity;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar.Tab;
-import android.view.Menu;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TabHost;
 
-import com.mobile.app.myacl.DatabaseManager.UserDB;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class MainActivity extends ActionBarActivity implements  android.support.v7.app.ActionBar.TabListener {
     private ViewPager viewPager;
     private PagerViewAdapter mAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,8 +68,8 @@ public class MainActivity extends ActionBarActivity implements  android.support.
     public void onClickShowTodayPlan(View view){
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.mfragment, new TodayPlan());
-        transaction.addToBackStack(null);
+        transaction.replace(R.id.mfragment, TodayPlan.newInstance());
+                transaction.addToBackStack(null);
 
         // Commit the transaction
         transaction.commit();

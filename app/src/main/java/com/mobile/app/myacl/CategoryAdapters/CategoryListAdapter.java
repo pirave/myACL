@@ -1,4 +1,4 @@
-package com.mobile.app.myacl.ShowCategories;
+package com.mobile.app.myacl.CategoryAdapters;
 
 /**
  * Created by Alaa on 2/23/2015.
@@ -16,8 +16,8 @@ import com.mobile.app.myacl.R;
 import java.util.List;
 
 public class CategoryListAdapter extends BaseAdapter {
-    List<Category> categories;
-    private static LayoutInflater inflater=null;
+    protected List<Category> categories;
+    protected LayoutInflater inflater=null;
     public CategoryListAdapter(Context context, List<Category> categories) {
         // TODO Auto-generated constructor stub
         this.categories =categories;
@@ -44,23 +44,23 @@ public class CategoryListAdapter extends BaseAdapter {
 
     public class Holder
     {
-        TextView goalitem;
+        TextView categoryItem;
     }
+
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
         Holder holder=new Holder();
         View rowView;
         rowView = inflater.inflate(R.layout.category_list, null);
-        holder.goalitem=(TextView) rowView.findViewById(R.id.goalitem);
-        holder.goalitem.setText(categories.get(position).getDescription());
+        holder.categoryItem =(TextView) rowView.findViewById(R.id.goalitem);
+        holder.categoryItem.setText(categories.get(position).getDescription());
 
         return rowView;
     }
 
-    public void remove(int pos) {
-        categories.remove(pos);
-        notifyDataSetChanged();
-    }
+    public void remove(int pos){
+        // Do nothing
+    };
 
 }
