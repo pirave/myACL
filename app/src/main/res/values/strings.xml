@@ -9,5 +9,6 @@
     <string name="surgery_type_b_label">B</string>
     <string name="surgery_type_a_table">protocolA.db</string>
     <string name="surgery_type_b_table">protocolB.db</string>
+    <string name="api">https://myacl.herokuapp.com/api/</string>
 
 </resources>

@@ -19,6 +19,7 @@ import android.provider.Settings.Secure;
 import com.mobile.app.myacl.DatabaseManager.DataAdapter;
 import com.mobile.app.myacl.DatabaseManager.UserDB;
 import com.mobile.app.myacl.PlanManager.PlanManager;
+import com.mobile.app.myacl.UserManager.APIClient;
 import com.mobile.app.myacl.UserManager.UserProfile;
 
 import java.text.SimpleDateFormat;
@@ -107,6 +108,8 @@ public class ProfileCreate extends ActionBarActivity {
                     long returnData = uDB.createProfileEntry(x);
                     Log.d("Add UserDB Entery", " " + returnData);
                     uDB.close();
+                    APIClient apiClient = new APIClient(ProfileCreate.this);
+                    apiClient.sendProfileData(x);
                     Toast.makeText(getApplicationContext(), "Profile Created!", Toast.LENGTH_SHORT).show();
                     DataAdapter mDataAdapter = new DataAdapter(getApplicationContext());
                     mDataAdapter.createDatabase();

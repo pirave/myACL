@@ -33,36 +33,47 @@ public final class UserProfile implements Serializable {
     public String getID() {
         return ID;
     }
+
     public void setID(String iD) {
         instance.ID = iD;
     }
+
     public String getUsername() {
         return username;
     }
+
     public void setUsername(String username){
         instance.username=username;
     }
+
     public String getGender() {
         return gender;
     }
+
     public void setGender(String gender){
         instance.gender=gender;
     }
+
     public int getAge() {
         return age;
     }
+
     public void setAge(int age){
         instance.age=age;
     }
+
     public String getSurgeryType() {
         return surgerytype;
     }
+
     public void setSurgeryType(String surgerytype){
         instance.surgerytype=surgerytype;
     }
+
     public java.util.Date getSurgeryDate() {
         return surgerydate;
     }
+
     public void setSurgeryDate(java.util.Date surgerydate) {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -72,11 +83,12 @@ public final class UserProfile implements Serializable {
             instance.surgerydate = surgerydate;
         }
     }
+
     public java.util.Date getCreateDate() {
         return createdate;
     }
+
     public void setCreateDate(java.util.Date createdate) {
         instance.createdate = createdate;
     }
-
 }
