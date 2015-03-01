@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 
 import com.mobile.app.myacl.CategoryAdapters.CategoryListAdapter;
 import com.mobile.app.myacl.CategoryAdapters.TodayCategoryListAdapter;
+import com.mobile.app.myacl.ProtocolManager.Category;
 import com.mobile.app.myacl.UserManager.ProgressTracker;
 import com.mobile.app.myacl.exerciseShow.ExerciseTabs;
 import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter;
@@ -65,7 +66,9 @@ public class TodayPlan extends DailyPlan {
                     @Override
                     public void onDismiss(@NonNull final ViewGroup listView, @NonNull final int[] reverseSortedPositions) {
                         for (int position : reverseSortedPositions) {
-                            adapterComplete.insert(adapter.remove(position));
+                            Category category = adapter.remove(position);
+                            adapterComplete.insert(category);
+                            tracker.markComplete(category);
                         }
                     }
                 }
@@ -83,7 +86,9 @@ public class TodayPlan extends DailyPlan {
                     @Override
                     public void onDismiss(@NonNull final ViewGroup listView, @NonNull final int[] reverseSortedPositions) {
                         for (int position : reverseSortedPositions) {
-                            adapter.insert(adapterComplete.remove(position));
+                            Category category = adapterComplete.remove(position);
+                            adapter.insert(category);
+                            tracker.markIncomplete(category);
                         }
                     }
                 }

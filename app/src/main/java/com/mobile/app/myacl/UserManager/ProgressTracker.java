@@ -1,6 +1,8 @@
 package com.mobile.app.myacl.UserManager;
 
 import android.content.Context;
+import android.os.AsyncTask;
+import android.util.Log;
 
 import com.mobile.app.myacl.DatabaseManager.UserDB;
 import com.mobile.app.myacl.PlanManager.Plan;
@@ -51,22 +53,17 @@ public final class ProgressTracker {
         // Begin DB Connection
         udb.open();
         initialize();
-        udb.close(); // close connection
+        //udb.close(); // close connection
     }
 
     private void initialize(){
-        progresses = udb.getProgressData(this.date);
-
-        for (UserProgress progress : progresses){
+        this.progresses = udb.getProgressData(this.date);
+        for (UserProgress progress : this.progresses){
             if (progress.isComplete())
                 complete.add(categories.get(progress.getCatID()));
             else
                 incomplete.add(categories.get(progress.getCatID()));
         }
-    }
-
-    public List<UserProgress> getProgresses() {
-        return progresses;
     }
 
     public List<Category> getComplete() {
@@ -77,12 +74,41 @@ public final class ProgressTracker {
         return incomplete;
     }
 
-    public void markComplete(int catID){
-//        for (UserProgress progress : incomplete){
-//            if (progress.getCatID() == catID){
-//                incomplete.remove(progress);
-//                complete.add(progress);
-//            }
-//        }
+    public void markComplete(Category category){
+        this.incomplete.remove(category);
+        this.complete.add(category);
+        new SetCompleteTask().execute(category);
+    }
+
+    public void markIncomplete(Category category){
+        this.complete.remove(category);
+        this.incomplete.add(category);
+        new SetIncompleteTask().execute(category);
+    }
+
+    private class SetCompleteTask extends AsyncTask<Category, Void, Void> {
+        @Override
+        protected Void doInBackground(Category... params) {
+            getUserProgressByCateogry(params[0], true);
+            return null;
+        }
+    }
+
+    private class SetIncompleteTask extends AsyncTask<Category, Void, Void> {
+        @Override
+        protected Void doInBackground(Category... params) {
+            getUserProgressByCateogry(params[0], false);
+            return null;
+        }
+    }
+
+    private void getUserProgressByCateogry(Category category, Boolean isComplete){
+        for (UserProgress p : progresses) {
+            if (p.getCatID() == category.getId()) {
+                p.setComplete(isComplete);
+                udb.updateProgressEntry(p);
+                return;
+            }
+        }
     }
 }

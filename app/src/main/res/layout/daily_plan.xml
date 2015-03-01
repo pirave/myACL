@@ -19,7 +19,9 @@
         <com.nhaarman.listviewanimations.itemmanipulation.DynamicListView
             android:id="@+id/listViewCategories"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent" />
+            android:layout_height="fill_parent"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="10dp" />
         </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>

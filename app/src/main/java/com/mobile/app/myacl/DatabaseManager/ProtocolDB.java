@@ -84,6 +84,7 @@ public class ProtocolDB {
                 categories.put(
                         cursor.getInt(0),
                         new Category(
+                            cursor.getInt(0),
                             cursor.getString(1),
                             getExercisesByWeekAndCategory(i, cursor.getInt(0))));
             } while (cursor.moveToNext());
