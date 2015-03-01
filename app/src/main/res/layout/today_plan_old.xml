@@ -1,15 +1,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingTop="10dp"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
     android:background="#ffffff"
-    android:paddingBottom="10dp"
-     tools:context=".MainActivity">
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
     <LinearLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:paddingTop="50dp"
+        android:paddingLeft="10dp"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,16 +18,12 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
                 android:text="Incomplete"
-                android:visibility="gone"
                 android:textColor="@android:color/holo_red_dark"
                 android:textStyle="bold"
                 android:textSize="20dp"/>
             <com.nhaarman.listviewanimations.itemmanipulation.DynamicListView
                 android:id="@+id/listIncomplete"
-                android:divider="@android:color/transparent"
-                android:dividerHeight="10dp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" />
 
@@ -35,7 +31,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Complete"
-                android:visibility="gone"
                 android:textColor="@android:color/holo_green_dark"
                 android:textStyle="bold"
                 android:textSize="20dp"
