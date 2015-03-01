@@ -2,10 +2,8 @@ package com.mobile.app.myacl.UserManager;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.mobile.app.myacl.DatabaseManager.UserDB;
-import com.mobile.app.myacl.PlanManager.Plan;
 import com.mobile.app.myacl.PlanManager.PlanManager;
 import com.mobile.app.myacl.ProtocolManager.Category;
 
@@ -89,7 +87,7 @@ public final class ProgressTracker {
     private class SetCompleteTask extends AsyncTask<Category, Void, Void> {
         @Override
         protected Void doInBackground(Category... params) {
-            getUserProgressByCateogry(params[0], true);
+            updatetUserProgress(params[0], true);
             return null;
         }
     }
@@ -97,12 +95,12 @@ public final class ProgressTracker {
     private class SetIncompleteTask extends AsyncTask<Category, Void, Void> {
         @Override
         protected Void doInBackground(Category... params) {
-            getUserProgressByCateogry(params[0], false);
+            updatetUserProgress(params[0], false);
             return null;
         }
     }
 
-    private void getUserProgressByCateogry(Category category, Boolean isComplete){
+    private void updatetUserProgress(Category category, Boolean isComplete){
         for (UserProgress p : progresses) {
             if (p.getCatID() == category.getId()) {
                 p.setComplete(isComplete);
