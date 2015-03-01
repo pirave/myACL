@@ -43,6 +43,7 @@
 
             <com.nhaarman.listviewanimations.itemmanipulation.DynamicListView
                 android:id="@+id/listComplete"
+                android:visibility="gone"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
