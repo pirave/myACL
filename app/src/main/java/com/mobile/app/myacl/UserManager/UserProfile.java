@@ -1,5 +1,9 @@
 package com.mobile.app.myacl.UserManager;
 
+import android.content.Context;
+
+import com.mobile.app.myacl.DatabaseManager.UserDB;
+
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,9 +19,14 @@ public final class UserProfile implements Serializable {
         // Exists only to defeat instantiation.
     }
 
-    public static UserProfile getInstance() {
+    public static UserProfile getInstance(Context context) {
         if(instance == null) {
-            instance = new UserProfile();
+            UserDB uDB = new UserDB(context);
+            uDB.open();
+            instance = uDB.openUserProfile(new UserProfile());
+            uDB.close();
+            if (instance == null)
+                instance = new UserProfile();
         }
         return instance;
     }
@@ -83,12 +92,11 @@ public final class UserProfile implements Serializable {
             instance.surgerydate = surgerydate;
         }
     }
-
     public java.util.Date getCreateDate() {
         return createdate;
     }
-
     public void setCreateDate(java.util.Date createdate) {
         instance.createdate = createdate;
     }
+
 }

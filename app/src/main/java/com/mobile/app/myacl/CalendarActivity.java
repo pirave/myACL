@@ -18,6 +18,10 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mobile.app.myacl.PlanManager.Plan;
+import com.mobile.app.myacl.PlanManager.PlanManager;
+import com.mobile.app.myacl.UserManager.UserProfile;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,6 +31,7 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 @TargetApi(3)
 public class CalendarActivity extends Fragment implements OnClickListener {
@@ -57,9 +62,14 @@ public class CalendarActivity extends Fragment implements OnClickListener {
 		year = _calendar.get(Calendar.YEAR);
 		Log.d(tag, "Calendar Instance:= " + "Month: " + month + " " + "Year: "
                 + year);
-        maxmonth= month +3;
-        minmonth=month;
-        thismonth=month-1;
+        Plan plan = new PlanManager(getActivity()).getPlan();
+        Date lastDate = addDays(plan.getLastWeek(), 7);
+        maxmonth = lastDate.getMonth() + 1;
+        UserProfile userProfile = UserProfile.getInstance(getActivity());
+        Date surgeryDate = userProfile.getSurgeryDate();
+        minmonth = surgeryDate.getMonth() + 1;
+
+        thismonth = month-1;
 		selectedDayMonthYearButton = (Button) view
 				.findViewById(R.id.selectedDayMonthYear);
 		selectedDayMonthYearButton.setText("Selected: ");
@@ -138,6 +148,14 @@ public class CalendarActivity extends Fragment implements OnClickListener {
 		Log.d(tag, "Destroying View ...");
 		super.onDestroy();
 	}
+
+    private static Date addDays(Date date, int days)
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, days); //minus number would decrement the days
+        return cal.getTime();
+    }
 
 	// Inner Class
 	public class GridCellAdapter extends BaseAdapter implements OnClickListener {

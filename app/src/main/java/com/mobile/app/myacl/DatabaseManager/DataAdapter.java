@@ -22,7 +22,7 @@ public class DataAdapter
     private ProtocolDBHandler mDBHandler;
 
     public DataAdapter(Context context){
-        String type = UserProfile.getInstance().getSurgeryType();
+        String type = UserProfile.getInstance(context).getSurgeryType();
         if (type == context.getString(R.string.surgery_type_a_label))
             ProtocolDBHandler.DATABASE_NAME = context.getString(R.string.surgery_type_a_table);
         else

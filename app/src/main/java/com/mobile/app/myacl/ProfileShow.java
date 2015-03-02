@@ -24,9 +24,7 @@ public class ProfileShow extends Fragment {
     private Calendar selectedDate;
     TextView surgerydate, name,age,surgerytype,sid,gender;
 
-    UserProfile x;
     String android_id;
-    UserDB uDB;
     UserProfile uprofile;
 
     @Override
@@ -41,12 +39,8 @@ public class ProfileShow extends Fragment {
         sid=(TextView) view.findViewById(R.id.sids);
         surgerydate = (TextView) view.findViewById(R.id.spsurgerydate);
         gender=(TextView) view.findViewById(R.id.sgender);
-        uDB = new UserDB(getActivity());
-        uDB.open();
-        uDB.openUserProfile();
-        uDB.close();
 
-        uprofile = UserProfile.getInstance();
+        uprofile = UserProfile.getInstance(getActivity());
         name.setText(uprofile.getUsername());
         age.setText(Integer.toString(uprofile.getAge()));
         surgerytype.setText(uprofile.getSurgeryType());

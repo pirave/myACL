@@ -46,7 +46,7 @@ public class ProfileCreate extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profilecreate);
-        x = UserProfile.getInstance();
+        x = UserProfile.getInstance(this);
 
         bdone=(Button)findViewById(R.id.buttondone);
         bcancel=(Button)findViewById(R.id.buttoncancel);

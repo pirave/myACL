@@ -25,12 +25,14 @@ class PlanGenerator {
     private Plan plan;
     private ProtocolDB pdb;
     private UserDB udb;
+    private Context context;
 
     /**
      * TODO:CHANGE PLAN TYPE HERE SOMEHOW!
      */
     public PlanGenerator(Context context) {
-        plan = new Plan();
+        this.context = context;
+        plan = new Plan(context);
         pdb = new ProtocolDB(context);
         udb = new UserDB(context);
 
@@ -52,7 +54,7 @@ class PlanGenerator {
      * TODO: Populate plan with data from db
      */
     private void generate(){
-        Date startDate = UserProfile.getInstance().getSurgeryDate();
+        Date startDate = UserProfile.getInstance(context).getSurgeryDate();
         for (int i = 0; i<= pdb.getNumWeeks(); i++) {
             Week week = populateWeek(i);
             startDate = populateUserProgressTable(startDate, week);

@@ -1,5 +1,6 @@
 package com.mobile.app.myacl.PlanManager;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -20,8 +21,8 @@ public class Plan implements Parcelable, Serializable{
     private String type;
     private TreeMap<Date,Week> weeks;
 
-    public Plan() {
-        this.type = UserProfile.getInstance().getSurgeryType();
+    public Plan(Context context) {
+        this.type = UserProfile.getInstance(context).getSurgeryType();
         this.weeks = new TreeMap<>();
     }
 
@@ -48,6 +49,10 @@ public class Plan implements Parcelable, Serializable{
 
     public List<Week> getWeeksList(){
         return new ArrayList<Week>(weeks.values());
+    }
+
+    public Date getLastWeek(){
+        return weeks.lastKey();
     }
 
     @Override
