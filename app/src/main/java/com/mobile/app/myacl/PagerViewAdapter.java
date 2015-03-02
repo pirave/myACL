@@ -21,7 +21,7 @@ public class PagerViewAdapter extends FragmentPagerAdapter {
 
         switch (index) {
             case 0:
-                return new Home();
+                return new CalendarActivity();
             case 1:
                 return new Timeline();
             case 2:
