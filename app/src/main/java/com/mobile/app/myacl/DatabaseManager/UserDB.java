@@ -62,7 +62,7 @@ public class UserDB {
         return cv;
     }
 
-    public UserProfile openUserProfile(UserProfile userProfile){
+    public void openUserProfile(UserProfile userProfile){
         String[] columns = new String[] {
                 UserDBHandler.KEY_USERID,
                 UserDBHandler.KEY_USERNAME,
@@ -85,25 +85,25 @@ public class UserDB {
 
         try {
             c.moveToFirst();
-            userProfile.setID(c.getString(iUserid));
-            userProfile.setUsername(c.getString(iUsername));
-            userProfile.setGender(c.getString(iGender));
-            userProfile.setAge(c.getInt(iAge));
-            userProfile.setSurgeryType(c.getString(iSurgerytype));
-            try {
-                userProfile.setSurgeryDate(dateFormat.parse(c.getString(iSurgerydate)));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            try {
-                userProfile.setCreateDate(dateFormat.parse(c.getString(iCreatedate)));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            return userProfile;
-        } catch (Exception e){
-            return null;
+        } catch(Exception e){
+            return;
         }
+        userProfile.setID(c.getString(iUserid));
+        userProfile.setUsername(c.getString(iUsername));
+        userProfile.setGender(c.getString(iGender));
+        userProfile.setAge(c.getInt(iAge));
+        userProfile.setSurgeryType(c.getString(iSurgerytype));
+        try {
+            userProfile.setSurgeryDate(dateFormat.parse(c.getString(iSurgerydate)));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        try {
+            userProfile.setCreateDate(dateFormat.parse(c.getString(iCreatedate)));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public long updateProfileEntry(UserProfile userprofile) throws SQLException {

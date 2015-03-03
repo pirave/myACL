@@ -23,10 +23,9 @@ public final class UserProfile implements Serializable {
         if(instance == null) {
             UserDB uDB = new UserDB(context);
             uDB.open();
-            instance = uDB.openUserProfile(new UserProfile());
+            instance = new UserProfile();
+            uDB.openUserProfile(instance);
             uDB.close();
-            if (instance == null)
-                instance = new UserProfile();
         }
         return instance;
     }
