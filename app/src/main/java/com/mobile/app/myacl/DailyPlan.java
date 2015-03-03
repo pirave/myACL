@@ -36,7 +36,7 @@ public class DailyPlan extends Fragment {
     protected DynamicListView lv;
     protected CategoryListAdapter adapter;
     protected Week week;
-    protected Map<Integer,Category> categories;
+    protected List<Category> categories;
 
     public static DailyPlan newInstance(Date date){
         DailyPlan plan = new DailyPlan();
@@ -53,7 +53,7 @@ public class DailyPlan extends Fragment {
         Plan plan = new PlanManager(getActivity()).getPlan();
         Date d = (Date) getArguments().getSerializable("DATE");
         week = plan.getWeekByDate(d);
-        categories = week.getCategories();
+        categories = week.getCategoryList();
 
         // Inflate the layout for this fragment
         View view = initializeAdapter(inflater, container);
@@ -73,7 +73,7 @@ public class DailyPlan extends Fragment {
     public View initializeAdapter(LayoutInflater inflater, ViewGroup container){
         View view = inflater.inflate(R.layout.daily_plan,container, false);
         lv = (DynamicListView) view.findViewById(R.id.listViewCategories);
-        adapter = new CategoryListAdapter(view.getContext() , week.getCategoryList());
+        adapter = new CategoryListAdapter(view.getContext() , categories);
         AlphaInAnimationAdapter animationAdapter = new AlphaInAnimationAdapter(adapter);
         animationAdapter.setAbsListView(lv);
         lv.setAdapter(animationAdapter);
