@@ -9,9 +9,12 @@ import com.mobile.app.myacl.UserManager.UserProfile;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 /**
@@ -53,6 +56,31 @@ public class Plan implements Parcelable, Serializable{
 
     public Date getLastWeek(){
         return weeks.lastKey();
+    }
+
+    public List<Integer> getWeekDaysByDate(Date startDate){
+        List<Integer> days = new ArrayList<>();
+        ArrayList<Date> keys = new ArrayList(weeks.keySet());
+        int next = keys.indexOf(weeks.floorKey(startDate)) + 1;
+
+        Date endDate;
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(startDate);
+
+        if (next < keys.size())
+            endDate = keys.get(next);
+        else{
+            cal.add(Calendar.DATE, 7);
+            endDate = cal.getTime();
+            cal.add(Calendar.DATE, -7);
+        }
+
+        while (cal.getTime().before(endDate)) {
+            cal.add(Calendar.DATE, 1);
+            days.add(cal.get(Calendar.DAY_OF_MONTH));
+        }
+
+        return days;
     }
 
     @Override

@@ -69,6 +69,10 @@ public class CalendarActivity extends Fragment implements OnClickListener {
         Date surgeryDate = userProfile.getSurgeryDate();
         minmonth = surgeryDate.getMonth() + 1;
 
+        // test on how to get the list
+        List<Integer> x = plan.getWeekDaysByDate(surgeryDate);
+        List<Integer> y = plan.getWeekDaysByDate(new Date());
+
         thismonth = month-1;
 		selectedDayMonthYearButton = (Button) view
 				.findViewById(R.id.selectedDayMonthYear);
