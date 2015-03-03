@@ -23,7 +23,7 @@ public class PagerViewAdapter extends FragmentPagerAdapter {
             case 0:
                 return new CalendarActivity();
             case 1:
-                return new Timeline();
+                return new TimelineHome();
             case 2:
                 // ***************** TEST DATE!! *******************//
                 Calendar cal = Calendar.getInstance();
