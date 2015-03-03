@@ -50,6 +50,7 @@ public class CalendarActivity extends Fragment implements OnClickListener {
 	@SuppressLint({ "NewApi", "NewApi", "NewApi", "NewApi" })
 	private final DateFormat dateFormatter = new DateFormat();
 	private static final String dateTemplate = "MMMM yyyy";
+    List<Integer> y;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -70,8 +71,8 @@ public class CalendarActivity extends Fragment implements OnClickListener {
         minmonth = surgeryDate.getMonth() + 1;
 
         // test on how to get the list
-        List<Integer> x = plan.getWeekDaysByDate(surgeryDate);
-        List<Integer> y = plan.getWeekDaysByDate(new Date());
+        //List<Integer> x = plan.getWeekDaysByDate(surgeryDate);
+        y = plan.getWeekDaysByDate(new Date());
 
         thismonth = month-1;
 		selectedDayMonthYearButton = (Button) view
@@ -322,10 +323,15 @@ public class CalendarActivity extends Fragment implements OnClickListener {
 			for (int i = 1; i <= daysInMonth; i++) {
 				Log.d(currentMonthName, String.valueOf(i) + " "
                         + getMonthAsString(currentMonth) + " " + yy);
-				if (i == getCurrentDayOfMonth()) {
-					list.add(String.valueOf(i) + "-BLUE" + "-"
-							+ getMonthAsString(currentMonth) + "-" + yy);
-				} else {
+                if (y.contains(i))
+                {
+                    list.add(String.valueOf(i) + "-BLUE" + "-"+ getMonthAsString(currentMonth) + "-" + yy);
+                }
+				//if (i == getCurrentDayOfMonth()) {
+				//	list.add(String.valueOf(i) + "-BLUE" + "-"
+				//			+ getMonthAsString(currentMonth) + "-" + yy);
+				//}
+				else {
 					list.add(String.valueOf(i) + "-WHITE" + "-"
 							+ getMonthAsString(currentMonth) + "-" + yy);
 				}
@@ -418,7 +424,8 @@ public class CalendarActivity extends Fragment implements OnClickListener {
 						R.color.black));
 			}
 			if (day_color[1].equals("BLUE")) {
-				gridcell.setTextColor(getResources().getColor(R.color.orrange));
+				gridcell.setTextColor(getResources().getColor(R.color.white));
+                gridcell.setBackgroundColor(getResources().getColor(R.color.lightgreen));
 			}
 			return row;
 		}

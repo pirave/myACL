@@ -61,8 +61,9 @@ public class Plan implements Parcelable, Serializable{
     public List<Integer> getWeekDaysByDate(Date startDate){
         List<Integer> days = new ArrayList<>();
         ArrayList<Date> keys = new ArrayList(weeks.keySet());
-        int next = keys.indexOf(weeks.floorKey(startDate)) + 1;
-
+        startDate = weeks.floorKey(startDate);
+        int next = keys.indexOf(startDate) + 1;
+        
         Date endDate;
         Calendar cal = Calendar.getInstance();
         cal.setTime(startDate);
