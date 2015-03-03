@@ -63,7 +63,7 @@ public class Plan implements Parcelable, Serializable{
         ArrayList<Date> keys = new ArrayList(weeks.keySet());
         startDate = weeks.floorKey(startDate);
         int next = keys.indexOf(startDate) + 1;
-        
+
         Date endDate;
         Calendar cal = Calendar.getInstance();
         cal.setTime(startDate);
