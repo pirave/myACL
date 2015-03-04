@@ -1,3 +1,4 @@
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -5,107 +6,204 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="#ffffff"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+
     <RelativeLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:paddingTop="50dp"
-        android:paddingLeft="10dp"
-        >
-    <TextView
-        android:id="@+id/spname_label"
-        android:text="Name:"
-        android:textSize="20dp"
-        android:paddingTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/spname"
-        android:layout_toRightOf="@+id/spname_label"
-        android:layout_marginLeft="10dp"
-        android:paddingTop="10dp"
-        android:textSize="20dp"
-        android:text="Your name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:paddingTop="5dp">
 
-    <TextView
-        android:id="@+id/spage_label"
-        android:text="Age:"
-        android:paddingTop="10dp"
-        android:textSize="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/spname"
-        android:layout_alignParentStart="true" />
-    <TextView
-        android:id="@+id/spage"
-        android:layout_marginLeft="10dp"
-        android:text="Your age"
-        android:paddingTop="10dp"
-        android:textSize="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/spname"
-        android:layout_toEndOf="@+id/spname_label" />
+        <RelativeLayout
+            android:id="@+id/lay1"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@color/lightgreen"
+            android:paddingTop="5dp"
+            android:paddingLeft="5dp">
+            <TextView
+                android:id="@+id/spname_label"
+                android:text="Name"
+                android:gravity="center_horizontal"
+                android:textSize="16dp"
+                android:textColor="@color/white"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/spname"
+            android:layout_below="@+id/lay1"
+            android:layout_marginLeft="10dp"
+            android:paddingTop="10dp"
+            android:textSize="16dp"
+            android:layout_marginBottom="5dp"
+            android:text="Your name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:id="@+id/lay2"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@color/lightgreen"
+            android:layout_below="@+id/spname"
+            android:paddingTop="5dp"
+            android:paddingLeft="5dp">
+            <TextView
+                android:id="@+id/spage_label"
+                android:text="Age"
+                android:gravity="center_horizontal"
+                android:textSize="16dp"
+                android:textColor="@color/white"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/spage"
+            android:layout_marginLeft="10dp"
+            android:text="Your age"
+            android:paddingTop="10dp"
+            android:textSize="16dp"
+            android:layout_marginBottom="5dp"
+            android:inputType="number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lay2" />
 
-    <TextView
-        android:id="@+id/spsurgerydate_label"
-        android:text="Surgery date:"
-        android:paddingTop="20dp"
-        android:layout_below="@id/spage_label"
-        android:textSize="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true" />
-    <TextView
-        android:id="@+id/spsurgerydate"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/spsurgerydate_label"
-        android:paddingTop="20dp"
-        android:textSize="20dp"
-        android:text="Today"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/spage_label" />
+        <RelativeLayout
+            android:id="@+id/lay3"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@color/lightgreen"
+            android:layout_below="@+id/spage"
+            android:paddingTop="5dp"
+            android:paddingLeft="5dp">
+            <TextView
+                android:id="@+id/spsurgerydate_label"
+                android:text="Surgery Date"
+                android:gravity="center_horizontal"
+                android:textSize="16dp"
+                android:textColor="@color/white"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/spsurgerydate"
+            android:layout_marginLeft="10dp"
+            android:paddingTop="5dp"
+            android:textSize="16dp"
+            android:text="Today"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lay3" />
 
 
-    <TextView
-        android:id="@+id/spsurgerytype_label"
-        android:text="Surgery type:"
-        android:paddingTop="20dp"
-        android:layout_below="@id/spsurgerydate_label"
-        android:textSize="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true" />
-
-
+        <RelativeLayout
+            android:id="@+id/lay4"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@color/lightgreen"
+            android:layout_below="@+id/spsurgerydate"
+            android:paddingTop="5dp"
+            android:paddingLeft="5dp">
+            <TextView
+                android:id="@+id/spsurgerytype_label"
+                android:text="Surgery Type"
+                android:gravity="center_horizontal"
+                android:textSize="16dp"
+                android:textColor="@color/white"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
         <TextView
             android:id="@+id/spsurgerytype"
             android:text="Surgery Type"
-            android:paddingTop="20dp"
-            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            android:paddingTop="5dp"
+            android:textSize="16dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/spsurgerydate"
-            android:layout_alignStart="@+id/spsurgerydate" />
+            android:layout_below="@+id/lay4" />
+
+        <RelativeLayout
+            android:id="@+id/lay5"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@color/lightgreen"
+            android:layout_below="@+id/spsurgerytype"
+            android:paddingTop="5dp"
+            android:paddingLeft="5dp">
+            <TextView
+                android:id="@+id/spgender_label"
+                android:text="Gender"
+                android:gravity="center_horizontal"
+                android:textSize="16dp"
+                android:textColor="@color/white"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/sgender"
+            android:text="Gender"
+            android:layout_marginLeft="10dp"
+            android:paddingTop="5dp"
+            android:textSize="16dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lay5" />
+        <RelativeLayout
+            android:id="@+id/lay6"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@color/lightgreen"
+            android:layout_below="@+id/sgender"
+            android:paddingTop="5dp"
+            android:paddingLeft="5dp">
+            <TextView
+                android:id="@+id/sids_label"
+                android:text="ID"
+                android:gravity="center_horizontal"
+                android:textSize="16dp"
+                android:textColor="@color/white"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/sids"
             android:text="ID"
-            android:paddingTop="20dp"
-            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            android:paddingTop="5dp"
+            android:textSize="16dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/spsurgerytype" />
-        <TextView
-            android:id="@+id/sgender"
-            android:text="Gender"
-            android:paddingTop="20dp"
-            android:textSize="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/sids" />
+            android:layout_below="@+id/lay6" />
+
 
     </RelativeLayout>
 </RelativeLayout>
+
