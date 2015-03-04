@@ -44,6 +44,7 @@ public class Timeline extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapter, View view, int position, long arg) {
 
+                // Switch to Calendar View with given date
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(android.R.id.tabcontent, CalendarActivity.newInstance(plan.getWeeksList().get(position).getDate()));
                 transaction.addToBackStack(null);
