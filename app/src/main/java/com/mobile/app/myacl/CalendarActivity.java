@@ -6,12 +6,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
@@ -455,6 +457,14 @@ public class CalendarActivity extends Fragment implements OnClickListener {
 			try {
 				Date parsedDate = dateFormatter.parse(date_month_year);
 				Log.d(tag, "Parsed Date: " + parsedDate.toString());
+
+                // Switch to Calendar View with given date
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(android.R.id.tabcontent, DailyPlan.newInstance(parsedDate));
+                transaction.addToBackStack(null);
+
+                // Commit the transaction
+                transaction.commit();
 
 			} catch (ParseException e) {
 				e.printStackTrace();
