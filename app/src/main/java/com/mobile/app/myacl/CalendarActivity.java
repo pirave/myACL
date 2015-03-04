@@ -51,6 +51,15 @@ public class CalendarActivity extends Fragment implements OnClickListener {
 	private final DateFormat dateFormatter = new DateFormat();
 	private static final String dateTemplate = "MMMM yyyy";
     List<Integer> y;
+    protected static final String EXTRA_CLICKED_DATE = "DATE";
+
+    public static CalendarActivity newInstance(Date date){
+        CalendarActivity calendarActivity = new CalendarActivity();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(EXTRA_CLICKED_DATE, date);
+        calendarActivity.setArguments(bundle);
+        return calendarActivity;
+    }
 
 	/** Called when the activity is first created. */
 	@Override
@@ -59,6 +68,14 @@ public class CalendarActivity extends Fragment implements OnClickListener {
         View view =  inflater.inflate(R.layout.my_calendar_view,container, false);
 
 		_calendar = Calendar.getInstance(Locale.getDefault());
+        Date date;
+        try {
+            date = (Date) getArguments().getSerializable(EXTRA_CLICKED_DATE);
+        }
+        catch (Exception e){
+            date = new Date();
+        }
+        _calendar.setTime(date);
 		month = _calendar.get(Calendar.MONTH) + 1;
 		year = _calendar.get(Calendar.YEAR);
 		Log.d(tag, "Calendar Instance:= " + "Month: " + month + " " + "Year: "
@@ -72,7 +89,7 @@ public class CalendarActivity extends Fragment implements OnClickListener {
 
         // test on how to get the list
         //List<Integer> x = plan.getWeekDaysByDate(surgeryDate);
-        y = plan.getWeekDaysByDate(new Date());
+        y = plan.getWeekDaysByDate(date);
 
         thismonth = month-1;
 		selectedDayMonthYearButton = (Button) view
