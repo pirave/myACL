@@ -40,7 +40,7 @@ public class TimelineHome extends Fragment {
         tabHost.addTab(tabHost.newTabSpec("Tab2").setIndicator("", getResources().getDrawable(R.drawable.icon_plan_tab)),
                 CalendarActivity.class, arg2);
         Bundle arg3 = new Bundle();
-        arg2.putInt("Arg for Frag3", 3);
+        arg3.putSerializable(DailyPlan.EXTRA_DATE, new Date());
         tabHost.addTab(tabHost.newTabSpec("Tab3").setIndicator("", getResources().getDrawable(R.drawable.icon_plan_tab)),
                 DailyPlan.class, arg3);
 
