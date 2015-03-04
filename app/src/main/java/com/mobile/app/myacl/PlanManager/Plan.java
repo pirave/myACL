@@ -58,8 +58,8 @@ public class Plan implements Parcelable, Serializable{
         return weeks.lastKey();
     }
 
-    public List<Integer> getWeekDaysByDate(Date startDate){
-        List<Integer> days = new ArrayList<>();
+    public List<Date> getWeekDaysByDate(Date startDate){
+        List<Date> days = new ArrayList<>();
         ArrayList<Date> keys = new ArrayList(weeks.keySet());
         startDate = weeks.floorKey(startDate);
         int next = keys.indexOf(startDate) + 1;
@@ -77,7 +77,7 @@ public class Plan implements Parcelable, Serializable{
         }
 
         while (cal.getTime().before(endDate)) {
-            days.add(cal.get(Calendar.DAY_OF_MONTH));
+            days.add(cal.getTime());
             cal.add(Calendar.DATE, 1);
         }
 

@@ -53,7 +53,7 @@ public class CalendarActivity extends Fragment implements OnClickListener {
 	@SuppressLint({ "NewApi", "NewApi", "NewApi", "NewApi" })
 	private final DateFormat dateFormatter = new DateFormat();
 	private static final String dateTemplate = "MMMM yyyy";
-    List<Integer> y;
+    List<Date> y;
     protected static final String EXTRA_CLICKED_DATE = "DATE";
 
     public static CalendarActivity newInstance(Date date){
@@ -340,37 +340,29 @@ public class CalendarActivity extends Fragment implements OnClickListener {
 						+ prevYear);
 			}
 
-            if (currentMonth==thismonth)
-            {
+
 			// Current Month Days
 			for (int i = 1; i <= daysInMonth; i++) {
 				Log.d(currentMonthName, String.valueOf(i) + " "
                         + getMonthAsString(currentMonth) + " " + yy);
-                if (y.contains(i))
-                {
-                    list.add(String.valueOf(i) + "-BLUE" + "-"+ getMonthAsString(currentMonth) + "-" + yy);
+                Calendar curCal = Calendar.getInstance();
+                Boolean flag = true;
+                for (Date d: y){
+                    curCal.setTime(d);
+                    if (curCal.get(Calendar.DAY_OF_MONTH) == i && curCal.get(Calendar.MONTH) == currentMonth) {
+                        list.add(String.valueOf(i) + "-BLUE" + "-" + getMonthAsString(currentMonth) + "-" + yy);
+                        flag = false;
+                    }
                 }
+                if (flag)
+                    list.add(String.valueOf(i) + "-WHITE" + "-"
+                            + getMonthAsString(currentMonth) + "-" + yy);
 				//if (i == getCurrentDayOfMonth()) {
 				//	list.add(String.valueOf(i) + "-BLUE" + "-"
 				//			+ getMonthAsString(currentMonth) + "-" + yy);
 				//}
-				else {
-					list.add(String.valueOf(i) + "-WHITE" + "-"
-							+ getMonthAsString(currentMonth) + "-" + yy);
-				}
 			}
-            }
-            else
-            {
-                for (int i = 1; i <= daysInMonth; i++) {
-                    Log.d(currentMonthName, String.valueOf(i) + " "
-                            + getMonthAsString(currentMonth) + " " + yy);
 
-                        list.add(String.valueOf(i) + "-WHITE" + "-"
-                                + getMonthAsString(currentMonth) + "-" + yy);
-
-                }
-            }
 
 			// Leading Month days
 			for (int i = 0; i < list.size() % 7; i++) {
