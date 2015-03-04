@@ -51,7 +51,7 @@ public class DailyPlan extends Fragment {
     {
 
         Plan plan = new PlanManager(getActivity()).getPlan();
-        Date d = (Date) getArguments().getSerializable("DATE");
+        Date d = (Date) getArguments().getSerializable(EXTRA_DATE);
         week = plan.getWeekByDate(d);
         categories = week.getCategoryList();
 
