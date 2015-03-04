@@ -44,13 +44,22 @@ public class Timeline extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapter, View view, int position, long arg) {
 
-                // Switch to Calendar View with given date
+                FragmentTabHost tabHost = (FragmentTabHost)  getActivity().findViewById(android.R.id.tabhost);
+                tabHost.setCurrentTab(1);
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(android.R.id.tabcontent, CalendarActivity.newInstance(plan.getWeeksList().get(position).getDate()));
                 transaction.addToBackStack(null);
-//this is pi :P
+//this is me all
                 // Commit the transaction
                 transaction.commit();
+                // Switch to Calendar View with given date
+              //  FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+               //  CalendarActivity.newInstance(plan.getWeeksList().get(position).getDate());
+               // transaction.addToBackStack(null);
+            //    tabHost.setCurrentTab(2);
+//this is pi :P
+                // Commit the transaction
+             //  transaction.commit();
             }
         });
         return view;

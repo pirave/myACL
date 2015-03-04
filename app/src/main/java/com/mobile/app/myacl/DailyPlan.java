@@ -49,9 +49,11 @@ public class DailyPlan extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-
         Plan plan = new PlanManager(getActivity()).getPlan();
         Date d = (Date) getArguments().getSerializable(EXTRA_DATE);
+        if (d==null)
+            d= new  Date(System.currentTimeMillis());
+
         week = plan.getWeekByDate(d);
         categories = week.getCategoryList();
 
