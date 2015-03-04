@@ -57,14 +57,6 @@ public class DailyPlan extends Fragment {
 
         // Inflate the layout for this fragment
         View view = initializeAdapter(inflater, container);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapter, View view, int position, long arg) {
-                Intent intent = new Intent(view.getContext(), ExerciseTabs.class);
-                intent.putExtra(EXTRA_EXERCISE, categories.get(position));
-                startActivity(intent);
-            }
-        });
 
         return view;
 
@@ -77,6 +69,14 @@ public class DailyPlan extends Fragment {
         AlphaInAnimationAdapter animationAdapter = new AlphaInAnimationAdapter(adapter);
         animationAdapter.setAbsListView(lv);
         lv.setAdapter(animationAdapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View view, int position, long arg) {
+                Intent intent = new Intent(view.getContext(), ExerciseTabs.class);
+                intent.putExtra(EXTRA_EXERCISE, categories.get(position));
+                startActivity(intent);
+            }
+        });
         return view;
     }
 }

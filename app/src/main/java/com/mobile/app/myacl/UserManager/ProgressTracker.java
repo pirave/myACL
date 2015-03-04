@@ -74,13 +74,13 @@ public final class ProgressTracker {
 
     public void markComplete(Category category){
         this.incomplete.remove(category);
-        this.complete.add(category);
+        //this.complete.add(category);
         new SetCompleteTask().execute(category);
     }
 
     public void markIncomplete(Category category){
         this.complete.remove(category);
-        this.incomplete.add(category);
+        //this.incomplete.add(category);
         new SetIncompleteTask().execute(category);
     }
 

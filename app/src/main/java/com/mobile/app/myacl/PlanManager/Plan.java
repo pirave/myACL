@@ -77,8 +77,8 @@ public class Plan implements Parcelable, Serializable{
         }
 
         while (cal.getTime().before(endDate)) {
-            cal.add(Calendar.DATE, 1);
             days.add(cal.get(Calendar.DAY_OF_MONTH));
+            cal.add(Calendar.DATE, 1);
         }
 
         return days;

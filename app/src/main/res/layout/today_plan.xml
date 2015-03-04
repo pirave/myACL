@@ -20,7 +20,6 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="10dp"
                 android:text="Incomplete"
-                android:visibility="gone"
                 android:textColor="@android:color/holo_red_dark"
                 android:textStyle="bold"
                 android:textSize="20dp"/>
@@ -35,7 +34,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Complete"
-                android:visibility="gone"
                 android:textColor="@android:color/holo_green_dark"
                 android:textStyle="bold"
                 android:textSize="20dp"
@@ -43,9 +41,10 @@
 
             <com.nhaarman.listviewanimations.itemmanipulation.DynamicListView
                 android:id="@+id/listComplete"
-                android:visibility="gone"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="10dp" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
