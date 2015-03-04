@@ -2,8 +2,6 @@ package com.mobile.app.myacl;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTabHost;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +13,6 @@ import com.mobile.app.myacl.PlanManager.PlanManager;
 import com.mobile.app.myacl.ProtocolManager.Category;
 import com.mobile.app.myacl.ProtocolManager.Week;
 
-import java.util.Date;
 import java.util.List;
 
 
@@ -35,7 +32,7 @@ public class Timeline extends Fragment {
     {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.timeline_page,container, false);
-        final Plan plan = new PlanManager(getActivity()).getPlan();
+        Plan plan = new PlanManager(getActivity()).getPlan();
 
         lv = (ListView) view.findViewById(R.id.listtime);
         adapter = new TimelineListAdapter(view.getContext(), plan.getWeeksList());
@@ -43,13 +40,9 @@ public class Timeline extends Fragment {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View view, int position, long arg) {
-
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(android.R.id.tabcontent, CalendarActivity.newInstance(plan.getWeeksList().get(position).getDate()));
-                transaction.addToBackStack(null);
-
-                // Commit the transaction
-                transaction.commit();
+//                Intent intent = new Intent(view.getContext(), ExerciseTabs.class);
+//                intent.putExtra(EXTRA_EXERCISE, categories.get(position));
+//                startActivity(intent);
             }
         });
     return view;
