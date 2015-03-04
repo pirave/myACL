@@ -47,7 +47,7 @@ public class Timeline extends Fragment {
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(android.R.id.tabcontent, CalendarActivity.newInstance(plan.getWeeksList().get(position).getDate()));
                 transaction.addToBackStack(null);
-
+//this is me all
                 // Commit the transaction
                 transaction.commit();
             }
