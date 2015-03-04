@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTabHost;
 import android.support.v4.app.FragmentTransaction;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -77,6 +78,9 @@ public class CalendarActivity extends Fragment implements OnClickListener {
         catch (Exception e){
             date = new Date();
         }
+        if (date==null)
+            date= new  Date(System.currentTimeMillis());
+
         _calendar.setTime(date);
 		month = _calendar.get(Calendar.MONTH) + 1;
 		year = _calendar.get(Calendar.YEAR);
@@ -457,7 +461,8 @@ public class CalendarActivity extends Fragment implements OnClickListener {
 			try {
 				Date parsedDate = dateFormatter.parse(date_month_year);
 				Log.d(tag, "Parsed Date: " + parsedDate.toString());
-
+                FragmentTabHost tabHost = (FragmentTabHost)  getActivity().findViewById(android.R.id.tabhost);
+                tabHost.setCurrentTab(2);
                 // Switch to Calendar View with given date
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(android.R.id.tabcontent, DailyPlan.newInstance(parsedDate));
