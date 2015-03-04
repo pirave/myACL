@@ -15,6 +15,8 @@ import com.mobile.app.myacl.ProtocolManager.Goal;
 import com.mobile.app.myacl.ProtocolManager.Week;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class TimelineListAdapter extends BaseAdapter{
@@ -68,12 +70,19 @@ public class TimelineListAdapter extends BaseAdapter{
         holder.dateYear.setText(new SimpleDateFormat("yyyy").format(week.getDate()));
 
         // if week.date <,=,> today date we will change the pics
-        if (position==0)
-           holder.pic.setImageResource(R.drawable.circle_week_comp);
-        else if (position==1)
-            holder.pic.setImageResource(R.drawable.circle_week_notcom);
-        else
+        Date today;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            today = sdf.parse(sdf.format(new Date()));
+        } catch (Exception e){
+            today = new Date();
+        }
+        if (week.getDate().before(today))
+            holder.pic.setImageResource(R.drawable.circle_week_comp);
+        else if (week.getDate().after(today))
             holder.pic.setImageResource(R.drawable.circle_week_all);
+        else
+            holder.pic.setImageResource(R.drawable.circle_week_notcom);
 
 
         return rowView;
