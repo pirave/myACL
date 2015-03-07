@@ -33,11 +33,11 @@ public class TimelineHome extends Fragment {
 
         Bundle arg1 = new Bundle();
         arg1.putInt("Arg for Frag1", 1);
-        tabHost.addTab(tabHost.newTabSpec("Tab1").setIndicator("", getResources().getDrawable(R.drawable.icon_cal_tab)),
+        tabHost.addTab(tabHost.newTabSpec("Tab1").setIndicator("", getResources().getDrawable(R.drawable.icon_mytime_tab)),
                 Timeline.class, arg1);
         Bundle arg2 = new Bundle();
         arg2.putInt("Arg for Frag2", 2);
-        tabHost.addTab(tabHost.newTabSpec("Tab2").setIndicator("", getResources().getDrawable(R.drawable.icon_mytime_tab)),
+        tabHost.addTab(tabHost.newTabSpec("Tab2").setIndicator("", getResources().getDrawable(R.drawable.icon_cal_tab)),
                 CalendarActivity.class, arg2);
         Bundle arg3 = new Bundle();
         arg3.putSerializable(DailyPlan.EXTRA_DATE, new Date());
