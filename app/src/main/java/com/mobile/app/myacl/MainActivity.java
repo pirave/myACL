@@ -1,6 +1,9 @@
 package com.mobile.app.myacl;
 
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -20,6 +23,7 @@ import java.util.Date;
 public class MainActivity extends ActionBarActivity implements  android.support.v7.app.ActionBar.TabListener {
     private ViewPager viewPager;
     private PagerViewAdapter mAdapter;
+    private PendingIntent pendingIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +69,28 @@ public class MainActivity extends ActionBarActivity implements  android.support.
             public void onPageScrollStateChanged(int arg0) {
             }
         });
+
+
+
+
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.setTimeInMillis(System.currentTimeMillis());
+        calendar2.set(Calendar.HOUR_OF_DAY, 9);
+        calendar2.set(Calendar.MINUTE, 57);
+        calendar2.set(Calendar.AM_PM,Calendar.PM);
+
+
+        Intent myIntent = new Intent(MainActivity.this, MyReceiver.class);
+
+        pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, myIntent, 0);
+        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+
+        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar2.getTimeInMillis(), pendingIntent);
+// setRepeating() lets you specify a precise custom interval--in this case,
+// 20 minutes.
+      //  alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,    calendar2.getTimeInMillis(),
+        //        1000 * 60 * 480, pendingIntent);
+
     }
 
     public void onClickShowTodayPlan(View view){
