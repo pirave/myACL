@@ -3,9 +3,11 @@ package com.mobile.app.myacl;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -13,6 +15,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.Toast;
 
 import com.mobile.app.myacl.UserManager.UserProfile;
 
@@ -25,10 +28,20 @@ public class MainActivity extends ActionBarActivity implements  android.support.
     private PagerViewAdapter mAdapter;
     private PendingIntent pendingIntent;
 
+    static String rd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String value = extras.getString("rangofmotion");
+            rd=value;
+            Toast.makeText(this, "Voic" + rd, Toast.LENGTH_SHORT).show();
+
+        }
+
         // Initilization
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         mAdapter = new PagerViewAdapter(getSupportFragmentManager());
@@ -102,7 +115,26 @@ public class MainActivity extends ActionBarActivity implements  android.support.
         // Commit the transaction
         transaction.commit();
     }
+    public void onClickGoToMyKnee(View view){
 
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.setComponent(new ComponentName("ca.utoronto.ece1778", "ca.utoronto.ece1778.MainActivity"));
+        startActivity(intent);
+
+
+       /* Intent intent = getPackageManager().getLaunchIntentForPackage("ca.utoronto.myknee");
+        if (intent != null) {*/
+    /* We found the activity now start the activity */
+      /*      intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        } else {
+    // Bring user to the market or let them choose an app?
+            intent = new Intent(Intent.ACTION_VIEW);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setData(Uri.parse("market://details?id=" + "ca.utoronto.myknee"));
+            startActivity(intent);
+        }*/
+    }
     @Override
     public void onTabSelected(android.support.v7.app.ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
         viewPager.setCurrentItem(tab.getPosition());
@@ -119,4 +151,15 @@ public class MainActivity extends ActionBarActivity implements  android.support.
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();  // Always call the superclass method first
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String value =  getIntent(). getExtras().getString("rangofmotion");
+            rd=value;
+            Toast.makeText(this, "Voic" + rd, Toast.LENGTH_SHORT).show();
+
+        }
+    }
 }
