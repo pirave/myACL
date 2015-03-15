@@ -51,8 +51,6 @@ public class PlanManager {
             this.plan = (Plan) in.readObject();
             in.close();
             fis.close();
-            Log.d(TAG,"Opened Plan. Proof: ");
-            PlanGenerator.check(plan);
             return true;
         }
         catch (IOException e) {

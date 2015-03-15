@@ -26,15 +26,7 @@ public class PagerViewAdapter extends FragmentPagerAdapter {
             case 1:
                 return new TimelineHome();
             case 2:
-                // ***************** TEST DATE!! *******************//
-                Calendar cal = Calendar.getInstance();
-                cal.set(2015,2,28);
-                cal.add(Calendar.MONTH, -1);
-                Date d = cal.getTime();
-                // *************************************************//
-                return DailyPlan.newInstance(new Date());
-            case 3:
-                return new ProfileShow();
+                return new Summary();
             default:
                 return new ProfileShow();
         }

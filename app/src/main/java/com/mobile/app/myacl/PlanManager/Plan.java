@@ -84,6 +84,10 @@ public class Plan implements Parcelable, Serializable{
         return days;
     }
 
+    public Map<Date, Week> getPreviousWeeks(Date d){
+        return weeks.headMap(d);
+    }
+
     @Override
     public int describeContents() {
         return 0;

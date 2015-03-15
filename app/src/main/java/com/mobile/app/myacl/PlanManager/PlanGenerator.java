@@ -42,7 +42,6 @@ class PlanGenerator {
         generate();
         udb.close();
         pdb.close(); // close PDB connection
-        check(plan);
 
     }
 
@@ -112,18 +111,5 @@ class PlanGenerator {
         cal.setTime(date);
         cal.add(Calendar.DATE, days); //minus number would decrement the days
         return cal.getTime();
-    }
-
-    public static void check(Plan plan){
-        for (Week w : plan.getWeeks().values()) {
-            Log.d(TAG, Integer.toString(w.getNum()));
-            for (Goal g : w.getGoals())
-                Log.d(TAG + "_GOALS", g.getDescription());
-            for (Category c : w.getCategories().values()){
-                Log.d(TAG + "_CATEGORY", c.getDescription());
-                for (Exercise e : c.getExercises())
-                    Log.d(TAG + "_EXERCISE", e.toString());
-            }
-        }
     }
 }
