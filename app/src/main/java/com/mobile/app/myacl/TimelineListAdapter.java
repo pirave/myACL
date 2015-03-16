@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mobile.app.myacl.PlanManager.PlanManager;
 import com.mobile.app.myacl.ProtocolManager.Goal;
 import com.mobile.app.myacl.ProtocolManager.Week;
 
@@ -96,7 +97,7 @@ public class TimelineListAdapter extends BaseAdapter{
         }
         if (week.getDate().before(today))
             holder.pic.setImageResource(R.drawable.timeline_circle_comp);
-        else if (week.getDate().after(today))
+        else if (new PlanManager(context).getPlan().getWeekDaysByDate(week.getDate()).contains(today))
             holder.pic.setImageResource(R.drawable.timeline_circle_curr);
         else
             holder.pic.setImageResource(R.drawable.timeline_circle_incomp);

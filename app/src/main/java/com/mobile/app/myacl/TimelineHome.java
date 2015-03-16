@@ -28,9 +28,6 @@ public class TimelineHome extends Fragment {
         tabHost = (FragmentTabHost) view.findViewById(android.R.id.tabhost);
         tabHost.setup(getActivity(), getChildFragmentManager(), android.R.id.tabcontent);
 
-        //tabHost = new FragmentTabHost(getActivity());
-     //   tabHost.setup(getActivity(), getChildFragmentManager(), R.layout.timeline_home);
-
         Bundle arg1 = new Bundle();
         arg1.putInt("Arg for Frag1", 1);
         tabHost.addTab(tabHost.newTabSpec("Tab1").setIndicator("", getResources().getDrawable(R.drawable.icon_mytime_tab)),
