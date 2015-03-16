@@ -1,6 +1,7 @@
 package com.mobile.app.myacl.SummaryBuilder;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 
 import com.github.mikephil.charting.data.Entry;
@@ -31,7 +32,7 @@ public class SummaryBuilder {
      * generates less data (1 DataSet, 2 values)
      * @return
      */
-    public PieData generatePieData(Float val) {
+    public PieData generatePieData(Float val, int colorA, int colorB, boolean showVal) {
 
         ArrayList<Entry> entries = new ArrayList<Entry>();
         ArrayList<String> xVals = new ArrayList<String>();
@@ -43,14 +44,11 @@ public class SummaryBuilder {
         entries.add(new Entry(100 - val,1));
 
         PieDataSet ds1 = new PieDataSet(entries, "");
-        ds1.setColors(
-                new ArrayList<Integer>(Arrays.asList(
-                        ColorTemplate.VORDIPLOM_COLORS[0],
-                        ColorTemplate.VORDIPLOM_COLORS[4])));
+        ds1.setColors(new ArrayList<Integer>(Arrays.asList(colorA, colorB)));
         ds1.setSliceSpace(2f);
 
         PieData data = new PieData(xVals, ds1);
-        data.setValueTypeface(mTf);
+        data.setDrawValues(showVal);
         return data;
     }
 

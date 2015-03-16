@@ -11,6 +11,7 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.mobile.app.myacl.PlanManager.Plan;
 import com.mobile.app.myacl.PlanManager.PlanManager;
 import com.mobile.app.myacl.SummaryBuilder.SummaryBuilder;
@@ -107,7 +108,13 @@ public class Summary extends Fragment {
         int done = plan.getPreviousWeeks(new Date()).values().size();
         int total = plan.getWeeksList().size();
 
-        mProgressChart.setData(summaryBuilder.generatePieData((float) done / total * 100f));
+        float progress = (float) done / total * 100f;
+        mProgressChart.setData(summaryBuilder.generatePieData(
+                progress,
+                ColorTemplate.VORDIPLOM_COLORS[0],
+                ColorTemplate.VORDIPLOM_COLORS[4],
+                true));
+        mProgressChart.setCenterTextTypeface(summaryBuilder.getTf());
         mProgressChart.invalidate();
     }
 
