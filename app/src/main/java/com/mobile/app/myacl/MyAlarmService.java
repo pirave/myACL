@@ -9,6 +9,9 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.util.Log;
+
+import com.mobile.app.myacl.UserManager.ProgressTracker;
 
 /**
  * Created by Alaa on 3/8/2015.
@@ -38,20 +41,30 @@ public class MyAlarmService extends Service
     public void onStart(Intent intent, int startId)
     {
         super.onStart(intent, startId);
+        Boolean  isNoton= getSharedPreferences("SETTINGMODE", MODE_PRIVATE).getBoolean("Setmode", true);
+        Boolean isDone = ProgressTracker.getInstance(getApplicationContext()).getIncomplete().size() == 0;
+        if (isNoton && !isDone) {
+            NotificationCompat.Builder mBuilder =
+                    new NotificationCompat.Builder(getApplicationContext())
+                            .setSmallIcon(R.drawable.ic_launcher)
+                            .setContentTitle("Today Routine is Waiting for You!")
+                            .setContentText("Click here to go to your today routine and do it");
+            Intent resultIntent = new Intent(getApplicationContext(), MainActivity.class);
+            TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
+            stackBuilder.addParentStack(MainActivity.class);
+            stackBuilder.addNextIntent(resultIntent);
+            PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+            mBuilder.setContentIntent(resultPendingIntent);
+            NotificationManager mNotificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+            mNotificationManager.notify(1, mBuilder.build());
+        } else
+        {
+            stopSelf();
+            Log.v("placeitService", "stopSelf() called");
 
-        NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(getApplicationContext())
-                        .setSmallIcon(R.drawable.ic_launcher)
-                        .setContentTitle("Today Routine is Waiting for You!")
-                        .setContentText("Click here to go to your today routine and do it");
-        Intent resultIntent = new Intent(getApplicationContext(), MainActivity.class);
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
-        stackBuilder.addParentStack(MainActivity.class);
-        stackBuilder.addNextIntent(resultIntent);
-        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-        mBuilder.setContentIntent(resultPendingIntent);
-        NotificationManager mNotificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.notify(1, mBuilder.build());
+            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            notificationManager.cancelAll();
+        }
     }
 
     @Override

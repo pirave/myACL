@@ -88,8 +88,8 @@ public class MainActivity extends ActionBarActivity implements  android.support.
 
         Calendar calendar2 = Calendar.getInstance();
         calendar2.setTimeInMillis(System.currentTimeMillis());
-        calendar2.set(Calendar.HOUR_OF_DAY, 9);
-        calendar2.set(Calendar.MINUTE, 57);
+        calendar2.set(Calendar.HOUR_OF_DAY, 12);
+        calendar2.set(Calendar.MINUTE, 05);
         calendar2.set(Calendar.AM_PM,Calendar.PM);
 
 
@@ -104,6 +104,15 @@ public class MainActivity extends ActionBarActivity implements  android.support.
       //  alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,    calendar2.getTimeInMillis(),
         //        1000 * 60 * 480, pendingIntent);
 
+    }
+    public void onClickProfile(View view){
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.settingfragment, new ProfileShow());
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
     }
 
     public void onClickShowTodayPlan(View view){
@@ -158,22 +167,33 @@ public class MainActivity extends ActionBarActivity implements  android.support.
         {
             TimelineHome.tabHost.setCurrentTab(0);
         }
+        if (tab.getPosition() == 3)
+        {
+
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.settingfragment, new Setting());
+            transaction.addToBackStack(null);
+
+            // Commit the transaction
+            transaction.commit();
+
+        }
     }
 
     @Override
     public void onTabReselected(android.support.v7.app.ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
 
-    }
+    /*}
 
     @Override
     public void onResume() {
         super.onResume();  // Always call the superclass method first
-        Bundle extras = getIntent().getExtras();
+      Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String value =  getIntent(). getExtras().getString("rangofmotion");
             rd=value;
             Toast.makeText(this, "Voic" + rd, Toast.LENGTH_SHORT).show();
 
         }
-    }
+ */   }
 }

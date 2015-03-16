@@ -1,0 +1,88 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#ffffff"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+
+<RelativeLayout
+    android:layout_marginTop="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:id="@+id/layset1"
+    android:background="@drawable/round_corner">
+    <TextView
+        android:id="@+id/notifiaction_label"
+        android:text="Notifiactions Off"
+        android:textColor="@color/black"
+        android:layout_marginLeft="20dp"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+    <CheckBox
+        android:layout_marginRight="20dp"
+        android:id="@+id/chknot"
+        android:gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:clickable="true"
+        android:onClick="onClickProfile"
+        android:layout_below="@+id/layset1"
+        android:id="@+id/layset2"
+        android:background="@drawable/round_corner">
+        <TextView
+            android:id="@+id/profile_label"
+            android:text="My Profile"
+            android:textColor="@color/black"
+            android:layout_marginLeft="20dp"
+            android:clickable="true"
+            android:onClick="onClickProfile"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/layset2"
+        android:id="@+id/layset3"
+        android:background="@drawable/round_corner">
+        <TextView
+            android:id="@+id/contact_label"
+            android:text="Contact us"
+            android:textColor="@color/black"
+            android:layout_marginLeft="20dp"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
+        <ImageView
+            android:layout_marginRight="20dp"
+            android:id="@+id/nextbut2"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/cal_right_arrow_on"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+
+</RelativeLayout>
