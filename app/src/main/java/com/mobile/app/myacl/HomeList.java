@@ -70,7 +70,7 @@ public class HomeList extends Fragment {
         }
         catch (ParseException e){}
         List<Date> dates = plan.getWeekDaysByDate(today);
-        int done = dates.indexOf(today);
+        int done = dates.indexOf(today) + 1;
         int total = dates.size();
         float progress = (float) done / total * 100f;
 

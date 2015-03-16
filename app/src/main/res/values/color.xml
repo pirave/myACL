@@ -18,4 +18,12 @@
     <color name="lightgreen">#61bf87</color>
     <color name="orrange">#e33d1b</color>
     <color name="darkorrange">#cc2303</color>
+    <color name="vordiplom_green">#C0FF8C</color>
+    <color name="vordiplom_yellow">#FFF78C</color>
+    <color name="vordiplom_orange">#FFD08C</color>
+    <color name="vordiplom_blue">#8CEAFF</color>
+    <color name="vordiplom_pink">#FF8C9D</color>
+    <color name="custom_red">#FF5A5A</color>
+    <color name="custom_green">#8BC75D</color>
+    <color name="custom_yellow">#E5D92A</color>
 </resources>

@@ -4,6 +4,7 @@ package com.mobile.app.myacl;
  * Created by Alaa on 2/23/2015.
  */
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,6 @@ import com.mobile.app.myacl.ProtocolManager.Goal;
 import com.mobile.app.myacl.ProtocolManager.Week;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -23,11 +23,15 @@ public class TimelineListAdapter extends BaseAdapter{
     List<Week> weeks;
     Context context;
     private static LayoutInflater inflater;
+    private Typeface tfLight;
+    private Typeface tfSemiBold;
 
     public TimelineListAdapter(Context context, List<Week> weeks) {
         // TODO Auto-generated constructor stub
         this.weeks = weeks;
-        this.context =context;
+        this.context = context;
+        this.tfLight = Typeface.createFromAsset(context.getAssets(),"fonts/OpenSans-Light.ttf");
+        this.tfSemiBold = Typeface.createFromAsset(context.getAssets(),"fonts/OpenSans-Semibold.ttf");
         inflater = ( LayoutInflater )context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -60,14 +64,27 @@ public class TimelineListAdapter extends BaseAdapter{
 
         holder.goal = (TextView) rowView.findViewById(R.id.txtGoals);
         holder.weekNum = (TextView) rowView.findViewById(R.id.week_num_image);
-        holder.dateDay =(TextView) rowView.findViewById(R.id.startweekdate);
-        holder.dateYear =(TextView) rowView.findViewById(R.id.startweekyear);
-        holder.pic=(ImageView)rowView.findViewById(R.id.circle_image);
+        holder.weekText = (TextView) rowView.findViewById(R.id.week_text_image);
+        holder.dateDay = (TextView) rowView.findViewById(R.id.startweekdate);
+        holder.dateYear = (TextView) rowView.findViewById(R.id.startweekyear);
+        holder.pic = (ImageView) rowView.findViewById(R.id.circle_image);
 
         holder.goal.setText(buildGoalsText(week.getGoals()));
+        holder.goal.setTypeface(tfLight);
         holder.weekNum.setText(String.valueOf(position));
+        holder.weekNum.setTypeface(tfSemiBold);
+        holder.weekText.setText("Week");
+        holder.weekText.setTypeface(tfSemiBold);
         holder.dateDay.setText(new SimpleDateFormat("MMM dd").format(week.getDate()));
+        holder.dateDay.setTypeface(tfSemiBold);
         holder.dateYear.setText(new SimpleDateFormat("yyyy").format(week.getDate()));
+        holder.dateYear.setTypeface(tfSemiBold);
+
+        // Custom "Day 1" for week 0
+        if (position == 0) {
+            holder.weekText.setText("Day");
+            holder.weekNum.setText(String.valueOf(1));
+        }
 
         // if week.date <,=,> today date we will change the pics
         Date today;
@@ -78,11 +95,11 @@ public class TimelineListAdapter extends BaseAdapter{
             today = new Date();
         }
         if (week.getDate().before(today))
-            holder.pic.setImageResource(R.drawable.circle_week_comp);
+            holder.pic.setImageResource(R.drawable.timeline_circle_comp);
         else if (week.getDate().after(today))
-            holder.pic.setImageResource(R.drawable.circle_week_all);
+            holder.pic.setImageResource(R.drawable.timeline_circle_curr);
         else
-            holder.pic.setImageResource(R.drawable.circle_week_notcom);
+            holder.pic.setImageResource(R.drawable.timeline_circle_incomp);
 
 
         return rowView;
@@ -92,6 +109,7 @@ public class TimelineListAdapter extends BaseAdapter{
     {
         TextView goal;
         TextView weekNum;
+        TextView weekText;
         TextView dateDay;
         TextView dateYear;
         ImageView pic;

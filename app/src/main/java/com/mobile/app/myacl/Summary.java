@@ -105,7 +105,7 @@ public class Summary extends Fragment {
         mProgressChart.setDescription("");
 
         Plan plan = new PlanManager(mContext).getPlan();
-        int done = plan.getPreviousWeeks(new Date()).values().size();
+        int done = plan.getPreviousWeeks(new Date()).values().size() - 1;
         int total = plan.getWeeksList().size();
 
         float progress = (float) done / total * 100f;

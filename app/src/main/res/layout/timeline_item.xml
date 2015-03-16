@@ -8,22 +8,22 @@
     android:id="@+id/linearlayoutservicerow">
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="65dp"
+        android:layout_width="45dp"
         android:layout_height="130dp"
         android:id="@+id/layoutotherrowelements2"
         android:weightSum="1">
         <RelativeLayout
-            android:layout_width="65dp"
+            android:layout_width="45dp"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_marginLeft="15dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:id="@+id/startweekdate"
-            android:text="Feb 25"
-            android:textSize="12dp"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true" />
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/startweekdate"
+                android:text="Feb 25"
+                android:textSize="12dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:id="@+id/startweekyear"
@@ -39,7 +39,8 @@
         android:layout_width="55dp"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:layout_marginLeft="15dp">
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="4dp">
 
         <View
             android:layout_width="4dp"
@@ -61,9 +62,21 @@
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:gravity="center"
-                android:src="@drawable/circle_week_all"
+                android:src="@drawable/timeline_circle_comp"
                 android:background="@android:color/transparent" >
             </ImageView>
+
+            <TextView
+                android:id="@+id/week_text_image"
+                android:paddingBottom="15dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:gravity="center"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:text="Week" />
+
             <TextView
                 android:id="@+id/week_num_image"
                 android:paddingTop="25dp"
