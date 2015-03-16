@@ -1,7 +1,6 @@
 package com.mobile.app.myacl.SummaryBuilder;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Typeface;
 
 import com.github.mikephil.charting.data.Entry;
@@ -62,7 +61,7 @@ public class SummaryBuilder {
         ArrayList<String> xVals = new ArrayList<String>();
         ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
 
-        List<Float> rawData = FrequencyData.getInstance(mContext).getData();
+        List<Float> rawData = LineGraphData.getInstance(mContext).getFrequencyData();
         for (int i = 0; i < rawData.size(); i++){
             valsComplete.add(new Entry(rawData.get(i),i));
             valsIncomplete.add(new Entry(100-rawData.get(i),i));
@@ -100,8 +99,9 @@ public class SummaryBuilder {
         ArrayList<String> xVals = new ArrayList<String>();
         ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
 
-        for (int i = 0; i < 10; i++){
-            yVals.add(new Entry(i * 10, i));
+        List<Float> rawData = LineGraphData.getInstance(mContext).getRomData();
+        for (int i = 0; i < rawData.size(); i++){
+            yVals.add(new Entry(rawData.get(i),i));
             xVals.add("Week " + Integer.toString(i));
         }
 

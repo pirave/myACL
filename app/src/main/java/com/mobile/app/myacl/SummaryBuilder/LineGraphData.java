@@ -9,26 +9,26 @@ import com.mobile.app.myacl.ProtocolManager.Week;
 import com.mobile.app.myacl.UserManager.UserProgress;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by pirave on 15-03-15.
  */
-public class FrequencyData {
-    private static FrequencyData ourInstance;
-    private static List<Float> data;
+public class LineGraphData {
+    private static LineGraphData ourInstance;
+    private static List<Float> frequencyData;
+    private static List<Float> romData;
     private Plan plan;
     private UserDB uDB;
 
-    public static FrequencyData getInstance(Context c) {
+    public static LineGraphData getInstance(Context c) {
         if (ourInstance == null)
-            ourInstance = new FrequencyData(c);
+            ourInstance = new LineGraphData(c);
         return ourInstance;
     }
 
-    private FrequencyData(Context c) {
+    private LineGraphData(Context c) {
         uDB = new UserDB(c);
         uDB.open();
         generateData(c);
@@ -38,12 +38,13 @@ public class FrequencyData {
     private void generateData(Context c){
         plan = new PlanManager(c).getPlan();
         Week currentWeek = plan.getWeekByDate(new Date());
-        data = new ArrayList<Float>();
+        frequencyData = new ArrayList<Float>();
+        romData = new ArrayList<Float>();
         for (Week week: plan.getPreviousWeeks(currentWeek.getDate()).values())
-            data.add(generateDataByWeekNum(week));
+            generateDataByWeekNum(week);
     }
 
-    private Float generateDataByWeekNum(Week week){
+    private void generateDataByWeekNum(Week week){
         Float result = 0.0f;
         Float total = 0.0f;
         for (Date date: plan.getWeekDaysByDate(week.getDate())){
@@ -52,10 +53,15 @@ public class FrequencyData {
                 total += 1.0f;
             }
         }
-        return result / total * 100;
+        frequencyData.add(result / total * 100);
+        romData.add(result / total * 100);
     }
 
-    public static List<Float> getData() {
-        return data;
+    public static List<Float> getFrequencyData() {
+        return frequencyData;
+    }
+
+    public static List<Float> getRomData() {
+        return romData;
     }
 }
