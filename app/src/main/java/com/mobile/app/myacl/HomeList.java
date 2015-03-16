@@ -60,7 +60,6 @@ public class HomeList extends Fragment {
 
     private void makeWeeklyProgressChart(){
         mWeeklyProgressChart.setNoDataTextDescription(getActivity().getString(R.string.noDataDesc));
-        mWeeklyProgressChart.setDescription("");
 
         Plan plan = new PlanManager(mContext).getPlan();
         Date today = new Date();
@@ -80,7 +79,14 @@ public class HomeList extends Fragment {
                         ColorTemplate.VORDIPLOM_COLORS[0],
                         Color.WHITE,
                         false));
-        mWeeklyProgressChart.setCenterText(String.format("%.1f%%", progress));
+        if ((total - done) == 0)
+            mWeeklyProgressChart.setCenterText("Last\nDay");
+        else if ((total - done) == 1)
+            mWeeklyProgressChart.setCenterText("1 Day\nLeft");
+        else
+            mWeeklyProgressChart.setCenterText(String.format("%d Days\nLeft", total - done));
+        mWeeklyProgressChart.setDescription(String.format("You are at week %d", plan.getWeekByDate(today).getNum()));
+        mWeeklyProgressChart.setDescriptionTypeface(summaryBuilder.getTf());
         mWeeklyProgressChart.getLegend().setEnabled(false);
         mWeeklyProgressChart.setCenterTextTypeface(summaryBuilder.getTf());
         mWeeklyProgressChart.setCenterTextSize(22f);

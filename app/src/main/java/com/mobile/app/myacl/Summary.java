@@ -114,7 +114,7 @@ public class Summary extends Fragment {
                 ColorTemplate.VORDIPLOM_COLORS[0],
                 ColorTemplate.VORDIPLOM_COLORS[4],
                 true));
-        mProgressChart.setCenterTextTypeface(summaryBuilder.getTf());
+        //mProgressChart.setCenterTextTypeface(summaryBuilder.getTf());
         mProgressChart.invalidate();
     }
 
