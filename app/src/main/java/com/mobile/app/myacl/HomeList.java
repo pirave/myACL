@@ -41,8 +41,6 @@ public class HomeList extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.home_list,container, false);
         mContext = view.getContext();
-        TextView d = (TextView) view.findViewById(R.id.textm);
-        d.setText(MainActivity.rd);
 
         mWeeklyProgressChart = (PieChart) view.findViewById(R.id.weekly_pie_chart);
 

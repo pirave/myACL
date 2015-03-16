@@ -1,5 +1,6 @@
 package com.mobile.app.myacl;
 
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -54,7 +55,14 @@ public class DailyPlan extends Fragment {
         week = plan.getWeekByDate(d);
         categories = week.getCategoryList();
 
-        // Inflate the layout for this fragment
+        List<Date> daysInWeek = plan.getWeekDaysByDate(d);
+        if (daysInWeek.indexOf(d) != daysInWeek.size() - 1) {
+            Category rom = week.getCategories().get(
+                    Integer.parseInt(getActivity().getString(R.string.MyKneeCatID)));
+            categories.remove(rom);
+        }
+
+        //Inflate the layout for this fragment
         View view = initializeAdapter(inflater, container);
 
         return view;

@@ -11,6 +11,7 @@ import com.mobile.app.myacl.ProtocolManager.Category;
 import com.mobile.app.myacl.ProtocolManager.ExerciseManager.Exercise;
 import com.mobile.app.myacl.ProtocolManager.Goal;
 import com.mobile.app.myacl.ProtocolManager.Week;
+import com.mobile.app.myacl.R;
 import com.mobile.app.myacl.UserManager.UserProfile;
 import com.mobile.app.myacl.UserManager.UserProgress;
 
@@ -90,16 +91,21 @@ class PlanGenerator {
                 break;
         }
         for (int i = 1; i <= numDaysInWeek; i++){
-            for (int c : week.getCategories().keySet())
+            for (int c : week.getCategories().keySet()) {
+                if (c == Integer.parseInt(context.getString(R.string.MyKneeCatID)))
+                    if (i != numDaysInWeek)
+                        continue;
+
                 udb.createProgressEntry(
                         new UserProgress(
-                            c,
-                            false,
-                            week.getNum(),
-                            i,
-                            addDays(newStartDate, i-1)
+                                c,
+                                false,
+                                week.getNum(),
+                                i,
+                                addDays(newStartDate, i - 1)
                         )
                 );
+            }
         }
 
         return newStartDate;
