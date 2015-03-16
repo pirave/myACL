@@ -143,7 +143,21 @@ public class MainActivity extends ActionBarActivity implements  android.support.
 
     @Override
     public void onTabUnselected(android.support.v7.app.ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+        if (tab.getPosition()== 0)
+        {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.mfragment, new Home());
+            transaction.addToBackStack(null);
 
+            // Commit the transaction
+            transaction.commit();
+           // viewPager.setCurrentItem(tab.getPosition());
+
+        }
+        if (tab.getPosition()== 1)
+        {
+            TimelineHome.tabHost.setCurrentTab(0);
+        }
     }
 
     @Override
