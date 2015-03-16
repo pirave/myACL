@@ -12,10 +12,12 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.utils.ValueFormatter;
 import com.mobile.app.myacl.PlanManager.Plan;
 import com.mobile.app.myacl.PlanManager.PlanManager;
 import com.mobile.app.myacl.SummaryBuilder.SummaryBuilder;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 
 public class Summary extends Fragment {
@@ -66,6 +68,7 @@ public class Summary extends Fragment {
         // Set Axis style
         yAxis.setTypeface(summaryBuilder.getTf());
         yAxis.setStartAtZero(true);
+        yAxis.setValueFormatter(new MyValueFormatter());
         yAxis.setAxisMaxValue(100);
         xAxis.setEnabled(true);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -90,7 +93,8 @@ public class Summary extends Fragment {
         // Set Axis style
         yAxis.setTypeface(summaryBuilder.getTf());
         yAxis.setStartAtZero(true);
-        yAxis.setAxisMaxValue(100);
+        yAxis.setValueFormatter(new MyValueFormatter());
+        //yAxis.setAxisMaxValue(100);
         xAxis.setEnabled(true);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setTypeface(summaryBuilder.getTf());
@@ -118,6 +122,11 @@ public class Summary extends Fragment {
         mProgressChart.invalidate();
     }
 
-
+    public class MyValueFormatter implements ValueFormatter {
+        @Override
+        public String getFormattedValue(float value) {
+            return new DecimalFormat("###,###,##0").format(value);
+        }
+    }
 
 }

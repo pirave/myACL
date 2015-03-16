@@ -102,7 +102,7 @@ public class SummaryBuilder {
         List<Float> rawData = LineGraphData.getInstance(mContext).getRomData();
         for (int i = 0; i < rawData.size(); i++){
             yVals.add(new Entry(rawData.get(i),i));
-            xVals.add("Week " + Integer.toString(i));
+            xVals.add("Week " + Integer.toString(i + 1));
         }
 
         LineDataSet setComplete = new LineDataSet(yVals, "Range of Motion");

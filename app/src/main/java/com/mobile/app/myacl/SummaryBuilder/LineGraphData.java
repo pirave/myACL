@@ -6,6 +6,7 @@ import com.mobile.app.myacl.DatabaseManager.UserDB;
 import com.mobile.app.myacl.PlanManager.Plan;
 import com.mobile.app.myacl.PlanManager.PlanManager;
 import com.mobile.app.myacl.ProtocolManager.Week;
+import com.mobile.app.myacl.R;
 import com.mobile.app.myacl.UserManager.UserProgress;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class LineGraphData {
     private static List<Float> romData;
     private Plan plan;
     private UserDB uDB;
+    private Context context;
 
     public static LineGraphData getInstance(Context c) {
         if (ourInstance == null)
@@ -29,14 +31,15 @@ public class LineGraphData {
     }
 
     private LineGraphData(Context c) {
+        this.context = c;
         uDB = new UserDB(c);
         uDB.open();
-        generateData(c);
+        generateData();
         uDB.close();
     }
 
-    private void generateData(Context c){
-        plan = new PlanManager(c).getPlan();
+    private void generateData(){
+        plan = new PlanManager(context).getPlan();
         Week currentWeek = plan.getWeekByDate(new Date());
         frequencyData = new ArrayList<Float>();
         romData = new ArrayList<Float>();
@@ -51,10 +54,15 @@ public class LineGraphData {
             for (UserProgress progress: uDB.getProgressData(date)){
                 result += progress.isComplete() ? 1.0f : 0.0f;
                 total += 1.0f;
+                if (progress.getCatID() == Integer.parseInt(context.getString(R.string.MyKneeCatID))) {
+                    if (progress.getRangeDegree() != null)
+                        romData.add((float) progress.getRangeDegree());
+                    else
+                        romData.add(0f);
+                }
             }
         }
         frequencyData.add(result / total * 100);
-        romData.add(result / total * 100);
     }
 
     public static List<Float> getFrequencyData() {
