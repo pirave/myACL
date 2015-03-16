@@ -19,7 +19,7 @@ import java.util.Date;
 
 public class TimelineHome extends Fragment {
 
-    private FragmentTabHost tabHost;
+    public static FragmentTabHost tabHost;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
