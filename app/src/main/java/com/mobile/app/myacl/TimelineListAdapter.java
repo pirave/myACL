@@ -95,10 +95,10 @@ public class TimelineListAdapter extends BaseAdapter{
         } catch (Exception e){
             today = new Date();
         }
-        if (week.getDate().before(today))
-            holder.pic.setImageResource(R.drawable.timeline_circle_comp);
-        else if (new PlanManager(context).getPlan().getWeekDaysByDate(week.getDate()).contains(today))
+        if (new PlanManager(context).getPlan().getWeekDaysByDate(week.getDate()).contains(today))
             holder.pic.setImageResource(R.drawable.timeline_circle_curr);
+        else if (week.getDate().before(today))
+            holder.pic.setImageResource(R.drawable.timeline_circle_comp);
         else
             holder.pic.setImageResource(R.drawable.timeline_circle_incomp);
 
