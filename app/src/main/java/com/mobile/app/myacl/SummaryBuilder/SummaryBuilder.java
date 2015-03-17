@@ -46,7 +46,8 @@ public class SummaryBuilder {
 
         PieDataSet ds1 = new PieDataSet(entries, "");
         ds1.setColors(new ArrayList<Integer>(Arrays.asList(colorA, colorB)));
-        ds1.setSliceSpace(2f);
+        if (val != 100)
+            ds1.setSliceSpace(2f);
 
         PieData data = new PieData(xVals, ds1);
         data.setDrawValues(showVal);
