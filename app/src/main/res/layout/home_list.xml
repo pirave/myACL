@@ -1,11 +1,286 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:layout_height="match_parent"
     android:background="#ffffff"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    tools:context=".MainActivity">
 
+    <RelativeLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp"
+        android:id="@+id/relativeLayout">
+
+        <RelativeLayout
+            android:id="@+id/boxes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_centerVertical="true"
+            android:id="@+id/box1"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="4dp"
+            android:layout_width="38dp"
+            android:layout_height="40dp"
+            android:background="@color/gray">
+        <TextView
+            android:id="@+id/textday1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="S"
+            android:textStyle="bold"
+            android:textSize="12dp"
+            android:textColor="@color/white"/>
+            <View
+                android:id="@+id/lineday1"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:visibility="gone"
+                android:layout_width="38dp"
+                android:layout_height="5dp"
+                android:background="@color/sky"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:id="@+id/box2"
+            android:layout_toRightOf="@+id/box1"
+            android:layout_width="38dp"
+            android:layout_height="40dp"
+            android:background="@color/gray">
+            <TextView
+                android:id="@+id/textday2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="M"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:textColor="@color/white"/>
+            <View
+                android:id="@+id/lineday2"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="38dp"
+                android:layout_height="5dp"
+                android:visibility="gone"
+                android:background="@color/sky"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:id="@+id/box3"
+            android:layout_toRightOf="@+id/box2"
+            android:layout_width="38dp"
+            android:layout_height="40dp"
+            android:background="@color/gray">
+            <TextView
+                android:id="@+id/textday3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="T"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:textColor="@color/white"/>
+            <View
+                android:id="@+id/lineday3"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="38dp"
+                android:layout_height="5dp"
+                android:visibility="gone"
+                android:background="@color/sky"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:id="@+id/box4"
+            android:layout_toRightOf="@+id/box3"
+            android:layout_width="38dp"
+            android:layout_height="40dp"
+            android:background="@color/gray">
+            <TextView
+                android:id="@+id/textday4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="W"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:textColor="@color/white"/>
+            <View
+                android:id="@+id/lineday4"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="38dp"
+                android:layout_height="5dp"
+                android:visibility="gone"
+                android:background="@color/sky"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:id="@+id/box5"
+            android:layout_toRightOf="@+id/box4"
+            android:layout_width="38dp"
+            android:layout_height="40dp"
+            android:background="@color/gray">
+            <TextView
+                android:id="@+id/textday5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="T"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:textColor="@color/white"/>
+            <View
+                android:id="@+id/lineday5"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="38dp"
+                android:layout_height="5dp"
+                android:visibility="visible"
+                android:background="@color/sky"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:id="@+id/box6"
+            android:layout_toRightOf="@+id/box5"
+            android:layout_width="38dp"
+            android:layout_height="40dp"
+            android:background="@color/gray">
+            <TextView
+                android:id="@+id/textday6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="F"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:textColor="@color/white"/>
+            <View
+                android:id="@+id/lineday6"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="38dp"
+                android:layout_height="5dp"
+                android:visibility="gone"
+                android:background="@color/sky"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="4dp"
+            android:id="@+id/box7"
+            android:layout_toRightOf="@+id/box6"
+            android:layout_width="38dp"
+            android:layout_height="40dp"
+            android:background="@color/gray">
+            <TextView
+                android:id="@+id/textday7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="S"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:textColor="@color/white"/>
+            <View
+                android:id="@+id/lineday7"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="38dp"
+                android:layout_height="5dp"
+                android:visibility="gone"
+                android:background="@color/sky"/>
+
+        </RelativeLayout>
+
+        </RelativeLayout>
+        <View
+            android:id="@+id/day7"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            android:background="@drawable/box_empty"
+            android:layout_alignTop="@+id/boxes"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/boxes" />
+        <View
+            android:id="@+id/day6"
+            android:layout_width="96.5dp"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            android:background="@drawable/box_empty"
+            android:layout_alignTop="@+id/boxes"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/boxes" />
+        <View
+            android:id="@+id/day5"
+            android:layout_width="142.5dp"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            android:background="@drawable/box_empty"
+            android:layout_alignTop="@+id/boxes"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/boxes" />
+        <View
+            android:id="@+id/day4"
+            android:layout_width="188.5dp"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            android:background="@drawable/box_empty"
+            android:layout_alignTop="@+id/boxes"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/boxes" />
+        <View
+            android:id="@+id/day3"
+            android:layout_width="234.5dp"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            android:background="@drawable/box_empty"
+            android:layout_alignTop="@+id/boxes"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/boxes" />
+        <View
+            android:id="@+id/day2"
+            android:layout_width="280.5dp"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            android:background="@drawable/box_empty"
+            android:layout_alignTop="@+id/boxes"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/boxes" />
+        <View
+            android:id="@+id/day1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            android:background="@drawable/box_empty"
+            android:layout_alignTop="@+id/boxes"
+            android:layout_alignParentStart="true"
+            android:layout_alignBottom="@+id/boxes" />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/textm"
@@ -21,6 +296,7 @@
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/weekly_pie_chart"
         android:layout_width="3000dp"
+        android:visibility="gone"
         android:layout_height="350dp"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true"/>
