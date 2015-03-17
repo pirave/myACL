@@ -296,7 +296,6 @@
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/weekly_pie_chart"
         android:layout_width="3000dp"
-        android:visibility="gone"
         android:layout_height="350dp"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true"/>
