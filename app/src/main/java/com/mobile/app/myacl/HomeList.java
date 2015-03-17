@@ -16,6 +16,7 @@ import com.mobile.app.myacl.PlanManager.Plan;
 import com.mobile.app.myacl.PlanManager.PlanManager;
 import com.mobile.app.myacl.SummaryBuilder.SummaryBuilder;
 import com.mobile.app.myacl.UserManager.ProgressTracker;
+import com.mobile.app.myacl.UserManager.UserProfile;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -38,9 +39,9 @@ public class HomeList extends Fragment {
     private SummaryBuilder summaryBuilder;
     List<Date> dates;
     Boolean isweekz=false;
-    TextView  tday1,tday2,tday3,tday4,tday5,tday6,tday7;
+    TextView  tday1,tday2,tday3,tday4,tday5,tday6,tday7,weeklab,weeklab2;
     View lday1,lday2,lday3,lday4,lday5,lday6,lday7,day1,day2,day3,day4,day5,day6,day7;
-
+    UserProfile uprofile;
 
 
 
@@ -50,6 +51,8 @@ public class HomeList extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.home_list,container, false);
         mContext = view.getContext();
+        weeklab=(TextView) view.findViewById(R.id.weeklabel);
+        weeklab2=(TextView) view.findViewById(R.id.weeklabel2);
 
         tday1 = (TextView) view.findViewById(R.id.textday1);
         tday2 = (TextView) view.findViewById(R.id.textday2);
@@ -72,9 +75,9 @@ public class HomeList extends Fragment {
         day5 = (View) view.findViewById(R.id.day5);
         day6 = (View) view.findViewById(R.id.day6);
         day7 = (View) view.findViewById(R.id.day7);
-
+        uprofile = UserProfile.getInstance(getActivity());
         mWeeklyProgressChart = (PieChart) view.findViewById(R.id.weekly_pie_chart);
-
+        weeklab2.setText("Hello "+ uprofile.getUsername());
 
         // Initialize Summary Builder;
         summaryBuilder = new SummaryBuilder(mContext);
@@ -118,8 +121,23 @@ public class HomeList extends Fragment {
         Date today = new Date();
         Plan plan = new PlanManager(mContext).getPlan();
 
-        dates = plan.getWeekDaysByDate(today);
 
+
+        Date today2 = new Date();
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            today2 = sdf.parse(sdf.format(today2));
+        }
+        catch (ParseException e){}
+        dates = plan.getWeekDaysByDate(today2);
+        int done = dates.indexOf(today2) + 1;
+        int total = dates.size();
+        int left = total-done + 1;
+
+
+        weeklab.setText( left + " days left from week  " + plan.getWeekByDate(today).getNum());
+
+        dates = plan.getWeekDaysByDate(today);
 
         SimpleDateFormat sdf = new SimpleDateFormat("EEE");
         if (plan.getWeekByDate(today).getNum()  == 0)
@@ -269,18 +287,18 @@ public class HomeList extends Fragment {
                         Color.WHITE,
                         false));
         if ((total - done) == 0)
-            mWeeklyProgressChart.setCenterText("Complete!");
+            mWeeklyProgressChart.setCenterText("Completed Today!");
         else
-            mWeeklyProgressChart.setCenterText(String.format("%d Left", total - done));
+            mWeeklyProgressChart.setCenterText(String.format("%d Exercises Left", total - done));
 
-        mWeeklyProgressChart.setDescription("Exercises Remaining");
+        mWeeklyProgressChart.setDescription("");
         mWeeklyProgressChart.setDescriptionTypeface(summaryBuilder.getTf());
         mWeeklyProgressChart.getLegend().setEnabled(false);
         mWeeklyProgressChart.setCenterTextTypeface(summaryBuilder.getTf());
-        mWeeklyProgressChart.setCenterTextSize(22f);
+        mWeeklyProgressChart.setCenterTextSize(18f);
         // radius of the center hole in percent of maximum radius
-        mWeeklyProgressChart.setHoleRadius(45f);
-        mWeeklyProgressChart.setTransparentCircleRadius(50f);
+        mWeeklyProgressChart.setHoleRadius(60f);
+        mWeeklyProgressChart.setTransparentCircleRadius(20f);
         mWeeklyProgressChart.invalidate();
     }
 

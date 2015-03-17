@@ -3,15 +3,53 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     tools:context=".MainActivity">
-
     <RelativeLayout
+        android:background="@drawable/round_corner3"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/wl2">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/weeklabel2"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="24dp"
+            android:text="Hello Alaa..."
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_below="@+id/wl2"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:id="@+id/wl3"/>
+    <RelativeLayout
+        android:layout_below="@+id/wl3"
+        android:background="@color/custom_paig"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/wl">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
+        android:id="@+id/weeklabel"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:text="2 days left from week 1 "/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="@color/custom_paig"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp"
-        android:id="@+id/relativeLayout">
+        android:id="@+id/relativeLayout"
+        android:layout_below="@+id/wl"
+        android:layout_alignParentStart="true">
+
 
         <RelativeLayout
             android:id="@+id/boxes"
@@ -41,7 +79,7 @@
                 android:visibility="gone"
                 android:layout_width="38dp"
                 android:layout_height="5dp"
-                android:background="@color/vordiplom_blue"/>
+                android:background="@color/vordiplom_pink"/>
 
         </RelativeLayout>
         <RelativeLayout
@@ -69,7 +107,7 @@
                 android:layout_width="38dp"
                 android:layout_height="5dp"
                 android:visibility="gone"
-                android:background="@color/vordiplom_blue"/>
+                android:background="@color/vordiplom_pink"/>
 
         </RelativeLayout>
         <RelativeLayout
@@ -97,7 +135,7 @@
                 android:layout_width="38dp"
                 android:layout_height="5dp"
                 android:visibility="gone"
-                android:background="@color/vordiplom_blue"/>
+                android:background="@color/vordiplom_pink"/>
 
         </RelativeLayout>
 
@@ -126,7 +164,7 @@
                 android:layout_width="38dp"
                 android:layout_height="5dp"
                 android:visibility="gone"
-                android:background="@color/vordiplom_blue"/>
+                android:background="@color/vordiplom_pink"/>
 
         </RelativeLayout>
 
@@ -155,7 +193,7 @@
                 android:layout_width="38dp"
                 android:layout_height="5dp"
                 android:visibility="visible"
-                android:background="@color/vordiplom_blue"/>
+                android:background="@color/vordiplom_pink"/>
 
         </RelativeLayout>
 
@@ -184,7 +222,7 @@
                 android:layout_width="38dp"
                 android:layout_height="5dp"
                 android:visibility="gone"
-                android:background="@color/vordiplom_blue"/>
+                android:background="@color/vordiplom_pink"/>
 
         </RelativeLayout>
         <RelativeLayout
@@ -211,7 +249,7 @@
                 android:layout_width="38dp"
                 android:layout_height="5dp"
                 android:visibility="gone"
-                android:background="@color/vordiplom_blue"/>
+                android:background="@color/vordiplom_pink"/>
 
         </RelativeLayout>
 
@@ -285,15 +323,20 @@
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/weekly_pie_chart"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_height="270dp"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true"/>
 
     <Button
+        android:layout_below="@+id/weekly_pie_chart"
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button"
-        android:text="Go to today plan"
+        android:background="@drawable/round_corner2"
+        android:textColor="@color/white"
+        android:text="Start Today's Exercises"
         android:onClick="onClickShowTodayPlan"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
