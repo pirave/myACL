@@ -56,7 +56,7 @@ public class Summary extends Fragment {
 
     private void initFrequencyChart(){
         mFrequencyChart.setNoDataTextDescription(getActivity().getString(R.string.noDataDesc));
-        mFrequencyChart.setDescription("");
+        mFrequencyChart.setDescription("Frequency of Exercise Completion");
 
         // ** Style ** //
         mFrequencyChart.setHighlightIndicatorEnabled(false);
@@ -81,7 +81,7 @@ public class Summary extends Fragment {
 
     private void initROMChart(){
         mROMChart.setNoDataTextDescription(getActivity().getString(R.string.noDataDesc));
-        mROMChart.setDescription("");
+        mROMChart.setDescription("Range of Motion Achieved");
 
         // ** Style ** //
         mROMChart.setHighlightIndicatorEnabled(false);
@@ -106,7 +106,7 @@ public class Summary extends Fragment {
 
     private void initProgressChart(){
         mProgressChart.setNoDataTextDescription(getActivity().getString(R.string.noDataDesc));
-        mProgressChart.setDescription("");
+        mProgressChart.setDescription("Progress");
 
         Plan plan = new PlanManager(mContext).getPlan();
         int done = plan.getPreviousWeeks(new Date()).values().size() - 1;

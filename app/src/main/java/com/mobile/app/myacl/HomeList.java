@@ -141,7 +141,7 @@ public class HomeList extends Fragment {
                     left,
                     plan.getWeekByDate(today).getNum()));
 
-        txtTitle.setTypeface(summaryBuilder.getTf());
+        txtTitle.setTypeface(summaryBuilder.getSemiBoldTf());
 
         dates = plan.getWeekDaysByDate(today);
 
