@@ -92,8 +92,8 @@ public class MainActivity extends ActionBarActivity implements  android.support.
 
         Calendar calendar2 = Calendar.getInstance();
         calendar2.setTimeInMillis(System.currentTimeMillis());
-        calendar2.set(Calendar.HOUR_OF_DAY, 12);
-        calendar2.set(Calendar.MINUTE, 05);
+        calendar2.set(Calendar.HOUR_OF_DAY, 9);
+        calendar2.set(Calendar.MINUTE, 51);
         calendar2.set(Calendar.AM_PM,Calendar.PM);
 
 

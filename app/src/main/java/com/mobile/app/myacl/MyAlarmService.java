@@ -6,7 +6,9 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
@@ -41,7 +43,10 @@ public class MyAlarmService extends Service
     public void onStart(Intent intent, int startId)
     {
         super.onStart(intent, startId);
-        Boolean  isNoton= getSharedPreferences("SETTINGMODE", MODE_PRIVATE).getBoolean("Setmode", true);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        prefs.edit().putBoolean("Setmode", true).commit();
+        Boolean  isNoton= prefs.getBoolean("Setmode", true);
+        //Boolean  isNoton= getSharedPreferences("SETTINGMODE", MODE_PRIVATE).getBoolean("Setmode", true);
         Boolean isDone = ProgressTracker.getInstance(getApplicationContext()).getIncomplete().size() == 0;
         if (isNoton && !isDone) {
             NotificationCompat.Builder mBuilder =
