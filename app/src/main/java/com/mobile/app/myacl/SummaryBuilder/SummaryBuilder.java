@@ -65,7 +65,10 @@ public class SummaryBuilder {
         for (int i = 0; i < rawData.size(); i++){
             valsComplete.add(new Entry(rawData.get(i),i));
             valsIncomplete.add(new Entry(100-rawData.get(i),i));
-            xVals.add("Week " + Integer.toString(i));
+            if (i == 0)
+                xVals.add("Day 1");
+            else
+                xVals.add("Week " + Integer.toString(i));
         }
 
         LineDataSet setComplete = new LineDataSet(valsComplete, "Complete");
@@ -100,6 +103,8 @@ public class SummaryBuilder {
         ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
 
         List<Float> rawData = LineGraphData.getInstance(mContext).getRomData();
+        if (rawData.size() == 0)
+            return null;
         for (int i = 0; i < rawData.size(); i++){
             yVals.add(new Entry(rawData.get(i),i));
             xVals.add("Week " + Integer.toString(i + 1));
