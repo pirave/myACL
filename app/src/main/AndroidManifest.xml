@@ -39,8 +39,8 @@
             android:name=".exerciseShow.ExerciseTabs"
             android:screenOrientation="portrait"
             android:label="@string/app_name" ></activity>
-        <service android:name=".MyAlarmService" android:enabled="true" />
-        <receiver  android:name="com.mobile.app.myacl.MyReceiver" android:enabled="true" >
+        <service android:name=".MyAlarmService" />
+        <receiver  android:name="com.mobile.app.myacl.MyReceiver" >
         <intent-filter>
             <action android:name="android.intent.action.TIME_TICK"/>
         </intent-filter>
