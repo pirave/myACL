@@ -7,7 +7,7 @@
 
     <com.mobile.app.myacl.slidetabss.SlidingTabLayout
         android:id="@+id/sliding_tabs"
-        android:background="#ddd"
+        android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

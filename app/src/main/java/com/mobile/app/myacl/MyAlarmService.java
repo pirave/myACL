@@ -7,6 +7,8 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
@@ -44,16 +46,18 @@ public class MyAlarmService extends Service
     {
         super.onStart(intent, startId);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        prefs.edit().putBoolean("Setmode", true).commit();
         Boolean  isNoton= prefs.getBoolean("Setmode", true);
         //Boolean  isNoton= getSharedPreferences("SETTINGMODE", MODE_PRIVATE).getBoolean("Setmode", true);
         Boolean isDone = ProgressTracker.getInstance(getApplicationContext()).getIncomplete().size() == 0;
         if (isNoton && !isDone) {
+            Log.v("notifyon", "notify " +isNoton + " Donne " + isDone);
             NotificationCompat.Builder mBuilder =
                     new NotificationCompat.Builder(getApplicationContext())
                             .setSmallIcon(R.drawable.ic_launcher)
                             .setContentTitle("Today Routine is Waiting for You!")
                             .setContentText("Click here to go to your today routine and do it");
+            Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            mBuilder.setSound(alarmSound);
             Intent resultIntent = new Intent(getApplicationContext(), MainActivity.class);
             TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
             stackBuilder.addParentStack(MainActivity.class);
@@ -61,11 +65,12 @@ public class MyAlarmService extends Service
             PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
             mBuilder.setContentIntent(resultPendingIntent);
             NotificationManager mNotificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+
             mNotificationManager.notify(1, mBuilder.build());
         } else
         {
-            stopSelf();
-            Log.v("placeitService", "stopSelf() called");
+            //stopSelf();
+            Log.v("notifyoff", "notify " +isNoton + " Donne " + isDone+" stopSelf() called");
 
             NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
             notificationManager.cancelAll();

@@ -1,5 +1,6 @@
 package com.mobile.app.myacl;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +67,11 @@ public class SettingList extends Fragment {
                 //is chkIos checked?
                 if (chknot.isChecked()) {
                     prefs.edit().putBoolean("Setmode", false).commit();
+
+                    Log.v("notifyoff", "notifiaction stoped");
+
+                    NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(getActivity().NOTIFICATION_SERVICE);
+                    notificationManager.cancelAll();
                   //  getActivity().getSharedPreferences("SETTINGMODE", getActivity().MODE_PRIVATE).edit()
                         //    .putBoolean("Setmode", false).commit();
 
