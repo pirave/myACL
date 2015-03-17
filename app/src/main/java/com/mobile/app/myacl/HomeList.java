@@ -48,8 +48,6 @@ public class HomeList extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.home_list,container, false);
         mContext = view.getContext();
-        TextView d = (TextView) view.findViewById(R.id.textm);
-        d.setText(MainActivity.rd);
 
         tday1 = (TextView) view.findViewById(R.id.textday1);
         tday2 = (TextView) view.findViewById(R.id.textday2);

@@ -1,5 +1,6 @@
 package com.mobile.app.myacl;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -67,9 +68,18 @@ public class TodayPlan extends DailyPlan {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View view, int position, long arg) {
-                Intent intent = new Intent(view.getContext(), ExerciseTabs.class);
-                intent.putExtra(EXTRA_EXERCISE, tracker.getIncomplete().get(position));
-                startActivity(intent);
+                Category c = tracker.getIncomplete().get(position);
+                // Go to MyKnee App if clicked
+                if (c.getId() == Integer.parseInt(view.getContext().getString(R.string.MyKneeCatID))){
+                    Intent intent = new Intent(Intent.ACTION_MAIN);
+                    intent.setComponent(new ComponentName("ca.utoronto.ece1778", "ca.utoronto.ece1778.MainActivity"));
+                    startActivity(intent);
+                }
+                else {
+                    Intent intent = new Intent(view.getContext(), ExerciseTabs.class);
+                    intent.putExtra(EXTRA_EXERCISE, c);
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -95,9 +105,13 @@ public class TodayPlan extends DailyPlan {
         lvComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View view, int position, long arg) {
-                Intent intent = new Intent(view.getContext(), ExerciseTabs.class);
-                intent.putExtra(EXTRA_EXERCISE, tracker.getComplete().get(position));
-                startActivity(intent);
+                Category c = tracker.getComplete().get(position);
+                // Do nothing if it is MyKnee Category
+                if (c.getId() != Integer.parseInt(view.getContext().getString(R.string.MyKneeCatID))){
+                    Intent intent = new Intent(view.getContext(), ExerciseTabs.class);
+                    intent.putExtra(EXTRA_EXERCISE, c);
+                    startActivity(intent);
+                }
             }
         });
     }

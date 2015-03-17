@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import com.mobile.app.myacl.DatabaseManager.UserDB;
 import com.mobile.app.myacl.PlanManager.PlanManager;
 import com.mobile.app.myacl.ProtocolManager.Category;
+import com.mobile.app.myacl.R;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -74,20 +75,26 @@ public final class ProgressTracker {
 
     public void markComplete(Category category){
         this.incomplete.remove(category);
-        //this.complete.add(category);
         new SetCompleteTask().execute(category);
     }
 
     public void markIncomplete(Category category){
         this.complete.remove(category);
-        //this.incomplete.add(category);
         new SetIncompleteTask().execute(category);
+    }
+
+    public void markCompleteROM(int rom){
+        Category category = categories.get(
+                Integer.parseInt(context.getString(R.string.MyKneeCatID)));
+        if (this.incomplete.remove(category))
+            this.complete.add(category);
+        new SetCompleteROMTask().execute(rom);
     }
 
     private class SetCompleteTask extends AsyncTask<Category, Void, Void> {
         @Override
         protected Void doInBackground(Category... params) {
-            updatetUserProgress(params[0], true);
+            updateUserProgress(params[0], true);
             return null;
         }
     }
@@ -95,15 +102,34 @@ public final class ProgressTracker {
     private class SetIncompleteTask extends AsyncTask<Category, Void, Void> {
         @Override
         protected Void doInBackground(Category... params) {
-            updatetUserProgress(params[0], false);
+            updateUserProgress(params[0], false);
             return null;
         }
     }
 
-    private void updatetUserProgress(Category category, Boolean isComplete){
+    private void updateUserProgress(Category category, Boolean isComplete){
         for (UserProgress p : progresses) {
             if (p.getCatID() == category.getId()) {
                 p.setComplete(isComplete);
+                udb.updateProgressEntry(p);
+                return;
+            }
+        }
+    }
+
+    private class SetCompleteROMTask extends AsyncTask<Integer, Void, Void> {
+        @Override
+        protected Void doInBackground(Integer... params) {
+            updateUserProgressROM(params[0]);
+            return null;
+        }
+    }
+
+    private void updateUserProgressROM(int rom){
+        for (UserProgress p : progresses) {
+            if (p.getCatID() == Integer.parseInt(context.getString(R.string.MyKneeCatID))) {
+                p.setComplete(true);
+                p.setRangeDegree(rom);
                 udb.updateProgressEntry(p);
                 return;
             }

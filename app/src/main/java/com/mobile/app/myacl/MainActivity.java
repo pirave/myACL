@@ -17,6 +17,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.mobile.app.myacl.UserManager.ProgressTracker;
 import com.mobile.app.myacl.UserManager.UserProfile;
 
 import java.util.Calendar;
@@ -28,7 +29,7 @@ public class MainActivity extends ActionBarActivity implements  android.support.
     private PagerViewAdapter mAdapter;
     private PendingIntent pendingIntent;
 
-    static String rd;
+    //static String rd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +37,13 @@ public class MainActivity extends ActionBarActivity implements  android.support.
         setContentView(R.layout.activity_main);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            String value = extras.getString("rangofmotion");
-            rd=value;
-            Toast.makeText(this, "Voic" + rd, Toast.LENGTH_SHORT).show();
+            //String value = extras.getString("rangofmotion");
+            //rd=value;
+            //Toast.makeText(this, "Voic" + rd, Toast.LENGTH_SHORT).show();
 
+            // SAVING DATA //
+            int rom = Integer.parseInt(extras.getString("rangofmotion"));
+            ProgressTracker.getInstance(getApplicationContext()).markCompleteROM(rom);
         }
 
         // Initilization
