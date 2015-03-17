@@ -307,6 +307,8 @@ public class HomeList extends Fragment {
         // radius of the center hole in percent of maximum radius
         mWeeklyProgressChart.setHoleRadius(60f);
         mWeeklyProgressChart.setTransparentCircleRadius(65f);
+        // remove animation
+        mWeeklyProgressChart.setRotationEnabled(false);
         mWeeklyProgressChart.invalidate();
     }
 
