@@ -1,6 +1,7 @@
 package com.mobile.app.myacl;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,9 @@ import com.mobile.app.myacl.PlanManager.PlanManager;
 import com.mobile.app.myacl.SummaryBuilder.SummaryBuilder;
 import com.mobile.app.myacl.UserManager.ProgressTracker;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -74,10 +78,35 @@ public class HomeList extends Fragment {
 
         // Initialize Summary Builder;
         summaryBuilder = new SummaryBuilder(mContext);
+        //delete();
 
         generateCharts();
 
         return view;
+    }
+
+    private void delete(){
+        try {
+            AssetManager assetManager = mContext.getAssets();
+            InputStream in = assetManager.open("databases/ACLUserDB");
+            File SDCardRoot = new File(mContext.getFilesDir() + "/../databases/");
+            for (File f : SDCardRoot.listFiles()){
+                if (f.getName().contains("ACLUserDB"))
+                    f.delete();
+            }
+            File file = new File(SDCardRoot, "ACLUserDB");
+            FileOutputStream fileOutput = new FileOutputStream(file);
+            byte[] buffer = new byte[1024];
+            int bufferLength = 0;
+            while ((bufferLength = in.read(buffer)) > 0) {
+                fileOutput.write(buffer, 0, bufferLength);
+            }
+            fileOutput.close();
+        }
+        catch (Exception e){
+
+        }
+
     }
 
     private void generateCharts(){
