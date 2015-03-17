@@ -20,11 +20,13 @@ import java.util.List;
 public class SummaryBuilder {
 
     private Typeface mTf;
+    private Typeface mSemiBoldTf;
     private Context mContext;
 
     public SummaryBuilder(Context context) {
         mContext = context;
         mTf = Typeface.createFromAsset(mContext.getAssets(),"fonts/OpenSans-Light.ttf");
+        mSemiBoldTf = Typeface.createFromAsset(mContext.getAssets(),"fonts/OpenSans-Semibold.ttf");
     }
 
     /**
@@ -125,5 +127,9 @@ public class SummaryBuilder {
 
     public Typeface getTf() {
         return mTf;
+    }
+
+    public Typeface getSemiBoldTf() {
+        return mSemiBoldTf;
     }
 }

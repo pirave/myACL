@@ -29,17 +29,12 @@ public class MainActivity extends ActionBarActivity implements  android.support.
     private PagerViewAdapter mAdapter;
     private PendingIntent pendingIntent;
 
-    //static String rd;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            //String value = extras.getString("rangofmotion");
-            //rd=value;
-            //Toast.makeText(this, "Voic" + rd, Toast.LENGTH_SHORT).show();
 
             // SAVING DATA //
             int rom = Integer.parseInt(extras.getString("rangofmotion"));
