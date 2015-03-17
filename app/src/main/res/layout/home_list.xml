@@ -27,7 +27,7 @@
         android:id="@+id/wl3"/>
     <RelativeLayout
         android:layout_below="@+id/wl3"
-        android:background="@color/custom_paig"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/wl">
@@ -42,7 +42,7 @@
         android:text="2 days left from week 1 "/>
     </RelativeLayout>
     <RelativeLayout
-        android:background="@color/custom_paig"
+        android:background="@color/white"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -312,7 +312,7 @@
             android:id="@+id/day1"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:background="@drawable/box_empty"
             android:layout_alignTop="@+id/boxes"
             android:layout_alignParentStart="true"
