@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
@@ -39,11 +40,10 @@ public class HomeList extends Fragment {
     private SummaryBuilder summaryBuilder;
     List<Date> dates;
     Boolean isweekz=false;
-    TextView  tday1,tday2,tday3,tday4,tday5,tday6,tday7,weeklab,weeklab2;
+    TextView  tday1,tday2,tday3,tday4,tday5,tday6,tday7,weeklab, txtTitle;
     View lday1,lday2,lday3,lday4,lday5,lday6,lday7,day1,day2,day3,day4,day5,day6,day7;
+    Button button;
     UserProfile uprofile;
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -51,8 +51,9 @@ public class HomeList extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.home_list,container, false);
         mContext = view.getContext();
-        weeklab=(TextView) view.findViewById(R.id.weeklabel);
-        weeklab2=(TextView) view.findViewById(R.id.weeklabel2);
+        //weeklab=(TextView) view.findViewById(R.id.weeklabel);
+        txtTitle =(TextView) view.findViewById(R.id.txtTitle);
+        button = (Button) view.findViewById(R.id.button);
 
         tday1 = (TextView) view.findViewById(R.id.textday1);
         tday2 = (TextView) view.findViewById(R.id.textday2);
@@ -77,7 +78,6 @@ public class HomeList extends Fragment {
         day7 = (View) view.findViewById(R.id.day7);
         uprofile = UserProfile.getInstance(getActivity());
         mWeeklyProgressChart = (PieChart) view.findViewById(R.id.weekly_pie_chart);
-        weeklab2.setText("Hello "+ uprofile.getUsername());
 
         // Initialize Summary Builder;
         summaryBuilder = new SummaryBuilder(mContext);
@@ -121,21 +121,27 @@ public class HomeList extends Fragment {
         Date today = new Date();
         Plan plan = new PlanManager(mContext).getPlan();
 
-
-
-        Date today2 = new Date();
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            today2 = sdf.parse(sdf.format(today2));
-        }
-        catch (ParseException e){}
-        dates = plan.getWeekDaysByDate(today2);
-        int done = dates.indexOf(today2) + 1;
+            today = sdf.parse(sdf.format(today));
+        } catch (ParseException e){}
+
+        dates = plan.getWeekDaysByDate(today);
+        int done = dates.indexOf(today) + 1;
         int total = dates.size();
         int left = total-done + 1;
 
+        if (left == 1)
+            txtTitle.setText(String.format("%s, you have 1 day left of week %d",
+                    uprofile.getUsername(),
+                    plan.getWeekByDate(today).getNum()));
+        else
+            txtTitle.setText(String.format("%s, you have %d days left of week %d",
+                    uprofile.getUsername(),
+                    left,
+                    plan.getWeekByDate(today).getNum()));
 
-        weeklab.setText( left + " days left from week  " + plan.getWeekByDate(today).getNum());
+        txtTitle.setTypeface(summaryBuilder.getTf());
 
         dates = plan.getWeekDaysByDate(today);
 
@@ -166,6 +172,8 @@ public class HomeList extends Fragment {
             tday7.setText(sdf.format(dates.get(6)));
         }
 
+        button.setTypeface(summaryBuilder.getSemiBoldTf());
+
         tday1.setTypeface(summaryBuilder.getSemiBoldTf());
         tday2.setTypeface(summaryBuilder.getSemiBoldTf());
         tday3.setTypeface(summaryBuilder.getSemiBoldTf());
@@ -189,8 +197,6 @@ public class HomeList extends Fragment {
         lday5.setVisibility(View.GONE);
         lday6.setVisibility(View.GONE);
         lday7.setVisibility(View.GONE);
-
-
 
         if (plan.getWeekByDate(today).getNum()  == 0)
         {
@@ -288,6 +294,8 @@ public class HomeList extends Fragment {
                         false));
         if ((total - done) == 0)
             mWeeklyProgressChart.setCenterText("Completed Today!");
+        else if ((total - done) == 1)
+            mWeeklyProgressChart.setCenterText("1 Exercise Left");
         else
             mWeeklyProgressChart.setCenterText(String.format("%d Exercises Left", total - done));
 
@@ -298,7 +306,9 @@ public class HomeList extends Fragment {
         mWeeklyProgressChart.setCenterTextSize(18f);
         // radius of the center hole in percent of maximum radius
         mWeeklyProgressChart.setHoleRadius(60f);
-        mWeeklyProgressChart.setTransparentCircleRadius(20f);
+        mWeeklyProgressChart.setTransparentCircleRadius(65f);
+        // remove animation
+        mWeeklyProgressChart.setRotationEnabled(false);
         mWeeklyProgressChart.invalidate();
     }
 

@@ -4,18 +4,17 @@
     android:background="#ffffff"
     tools:context=".MainActivity">
     <RelativeLayout
-        android:background="@drawable/round_corner3"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/wl2">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/weeklabel2"
+            android:id="@+id/txtTitle"
             android:textStyle="bold"
-            android:textColor="@color/white"
-            android:textSize="24dp"
+            android:textColor="@color/material_blue_grey_950"
             android:text="Hello Alaa..."
+            android:textSize="16dp"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
     </RelativeLayout>
@@ -25,29 +24,29 @@
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:id="@+id/wl3"/>
-    <RelativeLayout
-        android:layout_below="@+id/wl3"
-        android:background="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/wl">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingLeft="10dp"
-        android:id="@+id/weeklabel"
-        android:textStyle="bold"
-        android:textSize="18dp"
-        android:text="2 days left from week 1 "/>
-    </RelativeLayout>
+    <!--<RelativeLayout-->
+        <!--android:layout_below="@+id/wl3"-->
+        <!--android:background="@color/white"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/wl">-->
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:paddingTop="10dp"-->
+        <!--android:paddingLeft="10dp"-->
+        <!--android:id="@+id/weeklabel"-->
+        <!--android:textStyle="bold"-->
+        <!--android:textSize="18dp"-->
+        <!--android:text="2 days left from week 1 "/>-->
+    <!--</RelativeLayout>-->
     <RelativeLayout
         android:background="@color/white"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:id="@+id/relativeLayout"
-        android:layout_below="@+id/wl"
+        android:layout_below="@+id/wl2"
         android:layout_alignParentStart="true">
 
 
@@ -79,7 +78,7 @@
                 android:visibility="gone"
                 android:layout_width="38dp"
                 android:layout_height="5dp"
-                android:background="@color/vordiplom_pink"/>
+                android:background="@color/vordiplom_blue"/>
 
         </RelativeLayout>
         <RelativeLayout
@@ -107,7 +106,7 @@
                 android:layout_width="38dp"
                 android:layout_height="5dp"
                 android:visibility="gone"
-                android:background="@color/vordiplom_pink"/>
+                android:background="@color/vordiplom_blue"/>
 
         </RelativeLayout>
         <RelativeLayout
@@ -135,7 +134,7 @@
                 android:layout_width="38dp"
                 android:layout_height="5dp"
                 android:visibility="gone"
-                android:background="@color/vordiplom_pink"/>
+                android:background="@color/vordiplom_blue"/>
 
         </RelativeLayout>
 
@@ -164,7 +163,7 @@
                 android:layout_width="38dp"
                 android:layout_height="5dp"
                 android:visibility="gone"
-                android:background="@color/vordiplom_pink"/>
+                android:background="@color/vordiplom_blue"/>
 
         </RelativeLayout>
 
@@ -193,7 +192,7 @@
                 android:layout_width="38dp"
                 android:layout_height="5dp"
                 android:visibility="visible"
-                android:background="@color/vordiplom_pink"/>
+                android:background="@color/vordiplom_blue"/>
 
         </RelativeLayout>
 
@@ -222,7 +221,7 @@
                 android:layout_width="38dp"
                 android:layout_height="5dp"
                 android:visibility="gone"
-                android:background="@color/vordiplom_pink"/>
+                android:background="@color/vordiplom_blue"/>
 
         </RelativeLayout>
         <RelativeLayout
@@ -249,7 +248,7 @@
                 android:layout_width="38dp"
                 android:layout_height="5dp"
                 android:visibility="gone"
-                android:background="@color/vordiplom_pink"/>
+                android:background="@color/vordiplom_blue"/>
 
         </RelativeLayout>
 
@@ -322,19 +321,18 @@
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/weekly_pie_chart"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_below="@+id/relativeLayout"
-        android:layout_height="270dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button"
+        android:layout_centerHorizontal="true"/>
 
     <Button
-        android:layout_below="@+id/weekly_pie_chart"
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button"
-        android:background="@drawable/round_corner2"
+        android:background="@drawable/flat_selector"
         android:textColor="@color/white"
         android:text="Start Today's Exercises"
         android:onClick="onClickShowTodayPlan"
