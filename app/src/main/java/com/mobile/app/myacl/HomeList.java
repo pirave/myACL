@@ -7,16 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.mobile.app.myacl.PlanManager.Plan;
 import com.mobile.app.myacl.PlanManager.PlanManager;
 import com.mobile.app.myacl.SummaryBuilder.SummaryBuilder;
+import com.mobile.app.myacl.UserManager.ProgressTracker;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -78,12 +76,16 @@ public class HomeList extends Fragment {
         summaryBuilder = new SummaryBuilder(mContext);
 
         generateCharts();
-        genrateDaysofweekchart();
 
         return view;
     }
 
-    private void genrateDaysofweekchart() {
+    private void generateCharts(){
+        makeWeeklyProgressChart();
+        makeDaysOfWeekChart();
+    }
+
+    private void makeDaysOfWeekChart() {
         Date today = new Date();
         Plan plan = new PlanManager(mContext).getPlan();
 
@@ -105,310 +107,130 @@ public class HomeList extends Fragment {
             tday5.setText(sdf.format(dates.get(3)));
             tday6.setText(sdf.format(dates.get(4)));
             tday7.setText(sdf.format(dates.get(5)));
-        } else
+        }
+        else
         {
-        tday1.setText(sdf.format(dates.get(0)));
-        tday2.setText(sdf.format(dates.get(1)));
-        tday3.setText(sdf.format(dates.get(2)));
-        tday4.setText(sdf.format(dates.get(3)));
-        tday5.setText(sdf.format(dates.get(4)));
-        tday6.setText(sdf.format(dates.get(5)));
-        tday7.setText(sdf.format(dates.get(6)));
-    }
+            tday1.setText(sdf.format(dates.get(0)));
+            tday2.setText(sdf.format(dates.get(1)));
+            tday3.setText(sdf.format(dates.get(2)));
+            tday4.setText(sdf.format(dates.get(3)));
+            tday5.setText(sdf.format(dates.get(4)));
+            tday6.setText(sdf.format(dates.get(5)));
+            tday7.setText(sdf.format(dates.get(6)));
+        }
+
+        tday1.setTypeface(summaryBuilder.getSemiBoldTf());
+        tday2.setTypeface(summaryBuilder.getSemiBoldTf());
+        tday3.setTypeface(summaryBuilder.getSemiBoldTf());
+        tday4.setTypeface(summaryBuilder.getSemiBoldTf());
+        tday5.setTypeface(summaryBuilder.getSemiBoldTf());
+        tday6.setTypeface(summaryBuilder.getSemiBoldTf());
+        tday7.setTypeface(summaryBuilder.getSemiBoldTf());
+
+        day1.setVisibility(View.GONE);
+        day2.setVisibility(View.GONE);
+        day3.setVisibility(View.GONE);
+        day4.setVisibility(View.GONE);
+        day5.setVisibility(View.GONE);
+        day6.setVisibility(View.GONE);
+        day7.setVisibility(View.GONE);
+
+        lday1.setVisibility(View.GONE);
+        lday2.setVisibility(View.GONE);
+        lday3.setVisibility(View.GONE);
+        lday4.setVisibility(View.GONE);
+        lday5.setVisibility(View.GONE);
+        lday6.setVisibility(View.GONE);
+        lday7.setVisibility(View.GONE);
 
 
 
-if (plan.getWeekByDate(today).getNum()  == 0)
-{
-
-    day1.setVisibility(View.VISIBLE);
-    day2.setVisibility(View.GONE);
-    day3.setVisibility(View.GONE);
-    day4.setVisibility(View.GONE);
-    day5.setVisibility(View.GONE);
-    day6.setVisibility(View.GONE);
-    day7.setVisibility(View.GONE);
-
-    lday1.setVisibility(View.VISIBLE);
-    lday2.setVisibility(View.GONE);
-    lday3.setVisibility(View.GONE);
-    lday4.setVisibility(View.GONE);
-    lday5.setVisibility(View.GONE);
-    lday6.setVisibility(View.GONE);
-    lday7.setVisibility(View.GONE);
-}
+        if (plan.getWeekByDate(today).getNum()  == 0)
+        {
+            day1.setVisibility(View.VISIBLE);
+            lday1.setVisibility(View.VISIBLE);
+        }
         else if (plan.getWeekByDate(today).getNum() == 1) {
 
+            for (int i = 0; i < dates.size(); i++) {
 
-    for (int i = 0; i < dates.size(); i++) {
+                if (dates.get(i).getDate() == today.getDate())
+                {
+                    switch (i) {
+                        case 0:
 
-        if (dates.get(i).getDate() == today.getDate())
-            {
-                switch (i) {
-                    case 0:
-
-                        day1.setVisibility(View.GONE);
-                        day2.setVisibility(View.VISIBLE);
-                        day3.setVisibility(View.GONE);
-                        day4.setVisibility(View.GONE);
-                        day5.setVisibility(View.GONE);
-                        day6.setVisibility(View.GONE);
-                        day7.setVisibility(View.GONE);
-
-                        lday1.setVisibility(View.GONE);
-                        lday2.setVisibility(View.VISIBLE);
-                        lday3.setVisibility(View.GONE);
-                        lday4.setVisibility(View.GONE);
-                        lday5.setVisibility(View.GONE);
-                        lday6.setVisibility(View.GONE);
-                        lday7.setVisibility(View.GONE);
-                        break;
-                    case 1:
-
-                        day1.setVisibility(View.GONE);
-                        day2.setVisibility(View.GONE);
-                        day3.setVisibility(View.VISIBLE);
-                        day4.setVisibility(View.GONE);
-                        day5.setVisibility(View.GONE);
-                        day6.setVisibility(View.GONE);
-                        day7.setVisibility(View.GONE);
-
-                        lday1.setVisibility(View.GONE);
-                        lday2.setVisibility(View.GONE);
-                        lday3.setVisibility(View.VISIBLE);
-                        lday4.setVisibility(View.GONE);
-                        lday5.setVisibility(View.GONE);
-                        lday6.setVisibility(View.GONE);
-                        lday7.setVisibility(View.GONE);
-                        break;
-                    case 2:
-
-                        day1.setVisibility(View.GONE);
-                        day2.setVisibility(View.GONE);
-                        day3.setVisibility(View.GONE);
-                        day4.setVisibility(View.VISIBLE);
-                        day5.setVisibility(View.GONE);
-                        day6.setVisibility(View.GONE);
-                        day7.setVisibility(View.GONE);
-
-                        lday1.setVisibility(View.GONE);
-                        lday2.setVisibility(View.GONE);
-                        lday3.setVisibility(View.GONE);
-                        lday4.setVisibility(View.VISIBLE);
-                        lday5.setVisibility(View.GONE);
-                        lday6.setVisibility(View.GONE);
-                        lday7.setVisibility(View.GONE);
-                        break;
-                    case 3:
-                        day1.setVisibility(View.GONE);
-                        day2.setVisibility(View.GONE);
-                        day3.setVisibility(View.GONE);
-                        day4.setVisibility(View.GONE);
-                        day5.setVisibility(View.VISIBLE);
-                        day6.setVisibility(View.GONE);
-                        day7.setVisibility(View.GONE);
-
-                        lday1.setVisibility(View.GONE);
-                        lday2.setVisibility(View.GONE);
-                        lday3.setVisibility(View.GONE);
-                        lday4.setVisibility(View.GONE);
-                        lday5.setVisibility(View.VISIBLE);
-                        lday6.setVisibility(View.GONE);
-                        lday7.setVisibility(View.GONE);
-                        break;
-                    case 4:
-                        day1.setVisibility(View.GONE);
-                        day2.setVisibility(View.GONE);
-                        day3.setVisibility(View.GONE);
-                        day4.setVisibility(View.GONE);
-                        day5.setVisibility(View.GONE);
-                        day6.setVisibility(View.VISIBLE);
-                        day7.setVisibility(View.GONE);
-
-                        lday1.setVisibility(View.GONE);
-                        lday2.setVisibility(View.GONE);
-                        lday3.setVisibility(View.GONE);
-                        lday4.setVisibility(View.GONE);
-                        lday5.setVisibility(View.GONE);
-                        lday6.setVisibility(View.VISIBLE);
-                        lday7.setVisibility(View.GONE);
-                        break;
-                    case 5:
-
-                        day1.setVisibility(View.GONE);
-                        day2.setVisibility(View.GONE);
-                        day3.setVisibility(View.GONE);
-                        day4.setVisibility(View.GONE);
-                        day5.setVisibility(View.GONE);
-                        day6.setVisibility(View.GONE);
-                        day7.setVisibility(View.VISIBLE);
-
-                        lday1.setVisibility(View.GONE);
-                        lday2.setVisibility(View.GONE);
-                        lday3.setVisibility(View.GONE);
-                        lday4.setVisibility(View.GONE);
-                        lday5.setVisibility(View.GONE);
-                        lday6.setVisibility(View.GONE);
-                        lday7.setVisibility(View.VISIBLE);
-                        break;
+                            day2.setVisibility(View.VISIBLE);
+                            lday2.setVisibility(View.VISIBLE);
+                            break;
+                        case 1:
+                            day3.setVisibility(View.VISIBLE);
+                            lday3.setVisibility(View.VISIBLE);
+                            break;
+                        case 2:
+                            day4.setVisibility(View.VISIBLE);
+                            lday4.setVisibility(View.VISIBLE);
+                            break;
+                        case 3:
+                            day5.setVisibility(View.VISIBLE);
+                            lday5.setVisibility(View.VISIBLE);
+                            break;
+                        case 4:
+                            day6.setVisibility(View.VISIBLE);
+                            lday6.setVisibility(View.VISIBLE);
+                            break;
+                        case 5:
+                            day7.setVisibility(View.VISIBLE);
+                            lday7.setVisibility(View.VISIBLE);
+                            break;
+                    }
 
                 }
-
             }
-        }
-    }else {
+        }else {
 
-    for (int i = 0; i < dates.size(); i++) {
-            if (dates.get(i).getDate() == today.getDate()) {
-                switch (i) {
-                    case 0:
-                        day1.setVisibility(View.VISIBLE);
-                        day2.setVisibility(View.GONE);
-                        day3.setVisibility(View.GONE);
-                        day4.setVisibility(View.GONE);
-                        day5.setVisibility(View.GONE);
-                        day6.setVisibility(View.GONE);
-                        day7.setVisibility(View.GONE);
+            for (int i = 0; i < dates.size(); i++) {
+                if (dates.get(i).getDate() == today.getDate()) {
+                    switch (i) {
+                        case 0:
+                            day1.setVisibility(View.VISIBLE);
+                            lday1.setVisibility(View.VISIBLE);
+                            break;
+                        case 1:
+                            day2.setVisibility(View.VISIBLE);
+                            lday2.setVisibility(View.VISIBLE);
+                            break;
+                        case 2:
+                            day3.setVisibility(View.VISIBLE);
+                            lday3.setVisibility(View.VISIBLE);
+                            break;
+                        case 3:
+                            day4.setVisibility(View.VISIBLE);
+                            lday4.setVisibility(View.VISIBLE);
+                            break;
+                        case 4:
+                            day5.setVisibility(View.VISIBLE);
+                            lday5.setVisibility(View.VISIBLE);
+                            break;
+                        case 5:
+                            day6.setVisibility(View.VISIBLE);
+                            lday6.setVisibility(View.VISIBLE);
+                            break;
+                        case 6:
+                            day7.setVisibility(View.VISIBLE);
+                            lday7.setVisibility(View.VISIBLE);
+                            break;
+                    }
 
-                        lday1.setVisibility(View.VISIBLE);
-                        lday2.setVisibility(View.GONE);
-                        lday3.setVisibility(View.GONE);
-                        lday4.setVisibility(View.GONE);
-                        lday5.setVisibility(View.GONE);
-                        lday6.setVisibility(View.GONE);
-                        lday7.setVisibility(View.GONE);
-                        break;
-                    case 1:
-                        day1.setVisibility(View.GONE);
-                        day2.setVisibility(View.VISIBLE);
-                        day3.setVisibility(View.GONE);
-                        day4.setVisibility(View.GONE);
-                        day5.setVisibility(View.GONE);
-                        day6.setVisibility(View.GONE);
-                        day7.setVisibility(View.GONE);
-
-                        lday1.setVisibility(View.GONE);
-                        lday2.setVisibility(View.VISIBLE);
-                        lday3.setVisibility(View.GONE);
-                        lday4.setVisibility(View.GONE);
-                        lday5.setVisibility(View.GONE);
-                        lday6.setVisibility(View.GONE);
-                        lday7.setVisibility(View.GONE);
-                        break;
-                    case 2:
-                        day1.setVisibility(View.GONE);
-                        day2.setVisibility(View.GONE);
-                        day3.setVisibility(View.VISIBLE);
-                        day4.setVisibility(View.GONE);
-                        day5.setVisibility(View.GONE);
-                        day6.setVisibility(View.GONE);
-                        day7.setVisibility(View.GONE);
-
-                        lday1.setVisibility(View.GONE);
-                        lday2.setVisibility(View.GONE);
-                        lday3.setVisibility(View.VISIBLE);
-                        lday4.setVisibility(View.GONE);
-                        lday5.setVisibility(View.GONE);
-                        lday6.setVisibility(View.GONE);
-                        lday7.setVisibility(View.GONE);
-                        break;
-                    case 3:
-                        day1.setVisibility(View.GONE);
-                        day2.setVisibility(View.GONE);
-                        day3.setVisibility(View.GONE);
-                        day4.setVisibility(View.VISIBLE);
-                        day5.setVisibility(View.GONE);
-                        day6.setVisibility(View.GONE);
-                        day7.setVisibility(View.GONE);
-
-
-                        lday1.setVisibility(View.GONE);
-                        lday2.setVisibility(View.GONE);
-                        lday3.setVisibility(View.GONE);
-                        lday4.setVisibility(View.VISIBLE);
-                        lday5.setVisibility(View.GONE);
-                        lday6.setVisibility(View.GONE);
-                        lday7.setVisibility(View.GONE);
-                        break;
-                    case 4:
-
-                        day1.setVisibility(View.GONE);
-                        day2.setVisibility(View.GONE);
-                        day3.setVisibility(View.GONE);
-                        day4.setVisibility(View.GONE);
-                        day5.setVisibility(View.VISIBLE);
-                        day6.setVisibility(View.GONE);
-                        day7.setVisibility(View.GONE);
-
-                        lday1.setVisibility(View.GONE);
-                        lday2.setVisibility(View.GONE);
-                        lday3.setVisibility(View.GONE);
-                        lday4.setVisibility(View.GONE);
-                        lday5.setVisibility(View.VISIBLE);
-                        lday6.setVisibility(View.GONE);
-                        lday7.setVisibility(View.GONE);
-                        break;
-                    case 5:
-
-                        day1.setVisibility(View.GONE);
-                        day2.setVisibility(View.GONE);
-                        day3.setVisibility(View.GONE);
-                        day4.setVisibility(View.GONE);
-                        day5.setVisibility(View.GONE);
-                        day6.setVisibility(View.VISIBLE);
-                        day7.setVisibility(View.GONE);
-
-                        lday1.setVisibility(View.GONE);
-                        lday2.setVisibility(View.GONE);
-                        lday3.setVisibility(View.GONE);
-                        lday4.setVisibility(View.GONE);
-                        lday5.setVisibility(View.GONE);
-                        lday6.setVisibility(View.VISIBLE);
-                        lday7.setVisibility(View.GONE);
-                        break;
-                    case 6:
-
-                        day1.setVisibility(View.GONE);
-                        day2.setVisibility(View.GONE);
-                        day3.setVisibility(View.GONE);
-                        day4.setVisibility(View.GONE);
-                        day5.setVisibility(View.GONE);
-                        day6.setVisibility(View.GONE);
-                        day7.setVisibility(View.VISIBLE);
-
-                        lday1.setVisibility(View.GONE);
-                        lday2.setVisibility(View.GONE);
-                        lday3.setVisibility(View.GONE);
-                        lday4.setVisibility(View.GONE);
-                        lday5.setVisibility(View.GONE);
-                        lday6.setVisibility(View.GONE);
-                        lday7.setVisibility(View.VISIBLE);
-                        break;
                 }
-
             }
         }
-    }
-
-    }
-
-    private void generateCharts(){
-        makeWeeklyProgressChart();
     }
 
     private void makeWeeklyProgressChart(){
         mWeeklyProgressChart.setNoDataTextDescription(getActivity().getString(R.string.noDataDesc));
-
-        Plan plan = new PlanManager(mContext).getPlan();
-        Date today = new Date();
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            today = sdf.parse(sdf.format(today));
-        }
-        catch (ParseException e){}
-        List<Date> dates = plan.getWeekDaysByDate(today);
-        int done = dates.indexOf(today) + 1;
-        int total = dates.size();
+        ProgressTracker tracker = ProgressTracker.getInstance(mContext);
+        int done = tracker.getComplete().size();
+        int total = done + tracker.getIncomplete().size();
         float progress = (float) done / total * 100f;
 
         mWeeklyProgressChart.setData(
@@ -418,12 +240,11 @@ if (plan.getWeekByDate(today).getNum()  == 0)
                         Color.WHITE,
                         false));
         if ((total - done) == 0)
-            mWeeklyProgressChart.setCenterText("Last\nDay");
-        else if ((total - done) == 1)
-            mWeeklyProgressChart.setCenterText("1 Day\nLeft");
+            mWeeklyProgressChart.setCenterText("Complete!");
         else
-            mWeeklyProgressChart.setCenterText(String.format("%d Days\nLeft", total - done));
-        mWeeklyProgressChart.setDescription(String.format("You are at week %d", plan.getWeekByDate(today).getNum()));
+            mWeeklyProgressChart.setCenterText(String.format("%d Left", total - done));
+
+        mWeeklyProgressChart.setDescription("Exercises Remaining");
         mWeeklyProgressChart.setDescriptionTypeface(summaryBuilder.getTf());
         mWeeklyProgressChart.getLegend().setEnabled(false);
         mWeeklyProgressChart.setCenterTextTypeface(summaryBuilder.getTf());

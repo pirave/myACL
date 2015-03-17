@@ -10,7 +10,7 @@
         android:layout_height="60dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/relativeLayout">
 
         <RelativeLayout
@@ -41,7 +41,7 @@
                 android:visibility="gone"
                 android:layout_width="38dp"
                 android:layout_height="5dp"
-                android:background="@color/sky"/>
+                android:background="@color/vordiplom_blue"/>
 
         </RelativeLayout>
         <RelativeLayout
@@ -69,7 +69,7 @@
                 android:layout_width="38dp"
                 android:layout_height="5dp"
                 android:visibility="gone"
-                android:background="@color/sky"/>
+                android:background="@color/vordiplom_blue"/>
 
         </RelativeLayout>
         <RelativeLayout
@@ -97,7 +97,7 @@
                 android:layout_width="38dp"
                 android:layout_height="5dp"
                 android:visibility="gone"
-                android:background="@color/sky"/>
+                android:background="@color/vordiplom_blue"/>
 
         </RelativeLayout>
 
@@ -126,7 +126,7 @@
                 android:layout_width="38dp"
                 android:layout_height="5dp"
                 android:visibility="gone"
-                android:background="@color/sky"/>
+                android:background="@color/vordiplom_blue"/>
 
         </RelativeLayout>
 
@@ -155,7 +155,7 @@
                 android:layout_width="38dp"
                 android:layout_height="5dp"
                 android:visibility="visible"
-                android:background="@color/sky"/>
+                android:background="@color/vordiplom_blue"/>
 
         </RelativeLayout>
 
@@ -184,7 +184,7 @@
                 android:layout_width="38dp"
                 android:layout_height="5dp"
                 android:visibility="gone"
-                android:background="@color/sky"/>
+                android:background="@color/vordiplom_blue"/>
 
         </RelativeLayout>
         <RelativeLayout
@@ -211,7 +211,7 @@
                 android:layout_width="38dp"
                 android:layout_height="5dp"
                 android:visibility="gone"
-                android:background="@color/sky"/>
+                android:background="@color/vordiplom_blue"/>
 
         </RelativeLayout>
 
@@ -282,40 +282,20 @@
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/textm"
-        android:text="hi there"
-        android:textColor="@color/black"
-        android:textSize="40dp"
-        android:layout_marginLeft="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button"
-        android:layout_centerHorizontal="true" />
-
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/weekly_pie_chart"
-        android:layout_width="3000dp"
-        android:layout_height="350dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true"/>
 
     <Button
-        android:layout_width="150dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button"
         android:text="Go to today plan"
         android:onClick="onClickShowTodayPlan"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/button2"
-        android:text="Go to MyKnee"
-        android:onClick="onClickGoToMyKnee"
-        android:layout_alignBottom="@+id/button"
-        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
