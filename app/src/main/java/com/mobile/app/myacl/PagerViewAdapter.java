@@ -26,7 +26,7 @@ public class PagerViewAdapter extends FragmentPagerAdapter {
             case 1:
                 return new TimelineHome();
             case 2:
-                return new Summary();
+                return new ProgressHome();
             case 3:
                 return new Setting();
             default:
