@@ -22,8 +22,15 @@ public class SummaryBuilder {
     private Typeface mTf;
     private Typeface mSemiBoldTf;
     private Context mContext;
+    private static SummaryBuilder ourInstance;
 
-    public SummaryBuilder(Context context) {
+    public static SummaryBuilder getInstance(Context c){
+        if (ourInstance == null)
+            ourInstance = new SummaryBuilder(c);
+        return ourInstance;
+    }
+
+    private SummaryBuilder(Context context) {
         mContext = context;
         mTf = Typeface.createFromAsset(mContext.getAssets(),"fonts/OpenSans-Light.ttf");
         mSemiBoldTf = Typeface.createFromAsset(mContext.getAssets(),"fonts/OpenSans-Semibold.ttf");

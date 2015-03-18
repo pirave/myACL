@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -25,6 +26,7 @@ public class SummaryProg extends Fragment {
     private PieChart mProgressChart;
     private SummaryBuilder summaryBuilder;
     private Context mContext;
+    private TextView mTitle;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,6 +35,7 @@ public class SummaryProg extends Fragment {
         View view =  inflater.inflate(R.layout.summary_prog, container, false);
         mContext = view.getContext();
 
+        mTitle = (TextView) view.findViewById(R.id.txtTitle);
         mProgressChart = (PieChart) view.findViewById(R.id.pie_chart);
 
         // DEBUGING REMOVE LATER
@@ -40,7 +43,7 @@ public class SummaryProg extends Fragment {
         mProgressChart.setLogEnabled(true);
 
         // Initialize Summary Builder;
-        summaryBuilder = new SummaryBuilder(mContext);
+        summaryBuilder = SummaryBuilder.getInstance(mContext);
 
         // Initialize Charts
 
@@ -53,7 +56,9 @@ public class SummaryProg extends Fragment {
 
     private void initProgressChart(){
         mProgressChart.setNoDataTextDescription(getActivity().getString(R.string.noDataDesc));
-        mProgressChart.setDescription("Progress");
+        mProgressChart.setDescription("");
+        mTitle.setText("Overall Progress");
+        mTitle.setTypeface(summaryBuilder.getSemiBoldTf());
 
         Plan plan = new PlanManager(mContext).getPlan();
         int done = plan.getPreviousWeeks(new Date()).values().size() - 1;

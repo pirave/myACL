@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -25,6 +26,7 @@ public class SummaryFreq extends Fragment {
     private LineChart mFrequencyChart;
     private SummaryBuilder summaryBuilder;
     private Context mContext;
+    private TextView mTitle;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,6 +34,8 @@ public class SummaryFreq extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.summary_freq, container, false);
         mContext = view.getContext();
+
+        mTitle = (TextView) view.findViewById(R.id.txtTitle);
         mFrequencyChart = (LineChart) view.findViewById(R.id.frequency_chart);
 
 
@@ -40,7 +44,7 @@ public class SummaryFreq extends Fragment {
 
 
         // Initialize Summary Builder;
-        summaryBuilder = new SummaryBuilder(mContext);
+        summaryBuilder = SummaryBuilder.getInstance(mContext);
 
         // Initialize Charts
         initFrequencyChart();
@@ -51,7 +55,9 @@ public class SummaryFreq extends Fragment {
 
     private void initFrequencyChart(){
         mFrequencyChart.setNoDataTextDescription(getActivity().getString(R.string.noDataDesc));
-        mFrequencyChart.setDescription("Frequency of Exercise Completion");
+        mFrequencyChart.setDescription("");
+        mTitle.setText("Frequency of Exercise Completion");
+        mTitle.setTypeface(summaryBuilder.getSemiBoldTf());
 
         // ** Style ** //
         mFrequencyChart.setHighlightIndicatorEnabled(false);

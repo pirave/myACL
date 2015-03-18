@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
@@ -27,6 +28,7 @@ public class SummaryROM extends Fragment {
 
     private SummaryBuilder summaryBuilder;
     private Context mContext;
+    private TextView mTitle;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,13 +36,15 @@ public class SummaryROM extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.summary_rom, container, false);
         mContext = view.getContext();
+
+        mTitle = (TextView) view.findViewById(R.id.txtTitle);
         mROMChart = (LineChart) view.findViewById(R.id.rom_chart);
 
         // DEBUGING REMOVE LATER
         mROMChart.setLogEnabled(true);
 
         // Initialize Summary Builder;
-        summaryBuilder = new SummaryBuilder(mContext);
+        summaryBuilder = SummaryBuilder.getInstance(mContext);
 
         // Initialize Charts
         initROMChart();
@@ -51,7 +55,9 @@ public class SummaryROM extends Fragment {
 
     private void initROMChart(){
         mROMChart.setNoDataTextDescription(getActivity().getString(R.string.noDataDesc));
-        mROMChart.setDescription("Range of Motion Achieved");
+        mROMChart.setDescription("");
+        mTitle.setText("Range of Motion Achieved");
+        mTitle.setTypeface(summaryBuilder.getSemiBoldTf());
 
         // ** Style ** //
         mROMChart.setHighlightIndicatorEnabled(false);

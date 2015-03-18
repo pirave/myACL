@@ -80,7 +80,7 @@ public class HomeList extends Fragment {
         mWeeklyProgressChart = (PieChart) view.findViewById(R.id.weekly_pie_chart);
 
         // Initialize Summary Builder;
-        summaryBuilder = new SummaryBuilder(mContext);
+        summaryBuilder = SummaryBuilder.getInstance(mContext);
         //delete();
 
         generateCharts();

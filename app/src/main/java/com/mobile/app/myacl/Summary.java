@@ -44,7 +44,7 @@ public class Summary extends Fragment {
         mProgressChart.setLogEnabled(true);
 
         // Initialize Summary Builder;
-        summaryBuilder = new SummaryBuilder(mContext);
+        summaryBuilder = SummaryBuilder.getInstance(mContext);
 
         // Initialize Charts
         initFrequencyChart();
