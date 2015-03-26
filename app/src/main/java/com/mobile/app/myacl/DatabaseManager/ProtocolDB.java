@@ -119,7 +119,10 @@ public class ProtocolDB {
           Cursor cursor = mDB.query(
                 ProtocolDBHandler.TABLE_MEDIA,
                 new String[]{
-                        ProtocolDBHandler.KEY_STEP_NUM,ProtocolDBHandler.KEY_STEP_DESC,ProtocolDBHandler.KEY_PIC_PATH
+                        ProtocolDBHandler.KEY_STEP_NUM,ProtocolDBHandler.KEY_STEP_DESC,
+                        ProtocolDBHandler.KEY_STEP_DUR,ProtocolDBHandler.KEY_STEP_REP,
+                        ProtocolDBHandler.KEY_STEP_SETS,ProtocolDBHandler.KEY_STEP_FRQ,
+                        ProtocolDBHandler.KEY_PIC_PATH
                 },
                 ProtocolDBHandler.KEY_EXE_ID + "=? ",
                 new String[]{
@@ -129,7 +132,7 @@ public class ProtocolDB {
 
         if (cursor.moveToFirst()) {
             do {
-                steps.add(new Step(cursor.getInt(0),cursor.getString(1),cursor.getString(2)));
+                steps.add(new Step(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6)));
             } while (cursor.moveToNext());
         }
         return steps;
