@@ -1,11 +1,13 @@
 package com.mobile.app.myacl;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TabHost;
 
 import java.util.Date;
 
@@ -36,7 +38,24 @@ public class ProgressHome extends Fragment {
         arg3.putSerializable(DailyPlan.EXTRA_DATE, new Date());
         tabHost.addTab(tabHost.newTabSpec("Tab3").setIndicator("Frequency"),
                 SummaryFreq.class, arg3);
+        tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab()).setBackgroundColor(Color.parseColor("#e7e7e7"));
+        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
 
+            @Override
+            public void onTabChanged(String tabId) {
+                // TODO Auto-generated method stub
+                for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
+                    tabHost.getTabWidget().getChildAt(i).setBackgroundColor(Color.parseColor("#ffffff")); // unselected
+
+                }
+
+                tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab()).setBackgroundColor(Color.parseColor("#e7e7e7")); // selected
+
+
+            }
+        });
         return tabHost;
     }
+
+
 }
