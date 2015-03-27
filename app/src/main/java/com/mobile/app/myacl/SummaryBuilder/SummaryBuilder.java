@@ -124,7 +124,7 @@ public class SummaryBuilder {
 
         // Style
         setComplete.setLineWidth(2f);
-        setComplete.setDrawValues(false);
+        setComplete.setDrawValues(true);
 
         dataSets.add(setComplete);
 
