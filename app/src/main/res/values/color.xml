@@ -27,6 +27,7 @@
     <color name="custom_green">#8BC75D</color>
     <color name="custom_yellow">#E5D92A</color>
     <color name="custom_paig">#efeecf</color>
+    <color name="custom_paig_dark">#B1B08C</color>
 
 
 </resources>

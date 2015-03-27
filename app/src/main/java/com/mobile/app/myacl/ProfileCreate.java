@@ -31,7 +31,7 @@ import java.util.Date;
  */
 public class ProfileCreate extends ActionBarActivity {
 
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private int yr, mon, dy;
     private Calendar selectedDate;
     TextView surgerydate;

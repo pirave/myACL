@@ -22,7 +22,7 @@ import java.util.List;
 public class UserDB {
 
 
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private UserDBHandler mDBHandler;
     private final Context mContext;
     private SQLiteDatabase mDB;
@@ -161,7 +161,7 @@ public class UserDB {
                 UserDBHandler.TABLE_PROGRESS,
                 columns,
                 UserDBHandler.KEY_DAYDATE + "=?",
-                new String[]{new SimpleDateFormat("dd-MM-yyyy").format(date)},
+                new String[]{new SimpleDateFormat("yyyy-MM-dd").format(date)},
                 null, null, null);
         ArrayList<UserProgress> list = new ArrayList<UserProgress>();
 
@@ -210,8 +210,8 @@ public class UserDB {
                 columns,
                 UserDBHandler.KEY_DAYDATE + " BETWEEN ? AND ?",
                 new String[]{
-                        new SimpleDateFormat("dd-MM-yyyy").format(startDate),
-                        new SimpleDateFormat("dd-MM-yyyy").format(endDate)},
+                        new SimpleDateFormat("yyyy-MM-dd").format(startDate),
+                        new SimpleDateFormat("yyyy-MM-dd").format(endDate)},
                 null, null, null);
         ArrayList<UserProgress> list = new ArrayList<UserProgress>();
 

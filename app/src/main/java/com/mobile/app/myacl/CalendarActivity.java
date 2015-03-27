@@ -206,7 +206,7 @@ public class CalendarActivity extends Fragment implements OnClickListener {
 		private TextView num_events_per_day;
 		private final HashMap<String, Integer> eventsPerMonthMap;
 		private final SimpleDateFormat dateFormatter = new SimpleDateFormat(
-				"dd-MMM-yyyy");
+				"yyyy-MM-dd");
 
 		// Days in Current Month
 		public GridCellAdapter(Context context, int textViewResourceId,

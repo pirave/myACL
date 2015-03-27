@@ -15,7 +15,7 @@
             android:id="@+id/lay1"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:background="@color/lightgreen"
+            android:background="@color/custom_paig_dark"
             android:paddingTop="5dp"
             android:paddingLeft="5dp">
             <TextView
@@ -23,6 +23,7 @@
                 android:text="Name"
                 android:gravity="center_horizontal"
                 android:textSize="16dp"
+                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:padding="5dp"
                 android:layout_width="wrap_content"
@@ -40,11 +41,13 @@
             android:hint="Enter your name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
+
         <RelativeLayout
             android:id="@+id/lay2"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:background="@color/lightgreen"
+            android:background="@color/custom_paig_dark"
             android:layout_below="@+id/pname"
             android:paddingTop="5dp"
             android:paddingLeft="5dp">
@@ -53,6 +56,7 @@
                 android:text="Age"
                 android:gravity="center_horizontal"
                 android:textSize="16dp"
+                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:padding="5dp"
                 android:layout_width="wrap_content"
@@ -72,95 +76,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/lay2" />
 
-        <RelativeLayout
-            android:id="@+id/lay3"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:background="@color/lightgreen"
-            android:layout_below="@+id/page"
-            android:paddingTop="5dp"
-            android:paddingLeft="5dp">
-    <TextView
-        android:id="@+id/psurgerydate_label"
-        android:text="Surgery Date"
-        android:gravity="center_horizontal"
-        android:textSize="16dp"
-        android:textColor="@color/white"
-        android:padding="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
-        </RelativeLayout>
-    <TextView
-        android:id="@+id/psurgerydate"
-        android:layout_marginLeft="10dp"
-        android:paddingTop="5dp"
-        android:textSize="16dp"
-        android:onClick="onClick"
-        android:clickable="true"
-        android:text="Today"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lay3" />
 
-
-        <RelativeLayout
-            android:id="@+id/lay4"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:background="@color/lightgreen"
-            android:layout_below="@+id/psurgerydate"
-            android:paddingTop="5dp"
-            android:paddingLeft="5dp">
-    <TextView
-        android:id="@+id/psurgerytype_label"
-        android:text="Surgery Type"
-        android:gravity="center_horizontal"
-        android:textSize="16dp"
-        android:textColor="@color/white"
-        android:padding="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
-    </RelativeLayout>
-    <RadioGroup android:id="@+id/radiola"
-        android:layout_below="@id/lay4"
-        android:layout_marginBottom="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10.0dip"
-        android:paddingLeft="4.0dip"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/radioa"
-            android:layout_width="175dp"
-            android:checked="true"
-            android:textSize="16dp"
-            android:layout_height="wrap_content"
-            android:text="@string/surgery_type_a_label"
-            android:textColor="#000000"/>
-
-        <RadioButton
-            android:id="@+id/radiob"
-            android:layout_width="match_parent"
-            android:layout_alignParentLeft="true"
-            android:textSize="16dp"
-            android:layout_height="wrap_content"
-            android:text="@string/surgery_type_b_label"
-            android:textColor="#000000"/>
-
-    </RadioGroup>
         <RelativeLayout
             android:id="@+id/lay5"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:background="@color/lightgreen"
-            android:layout_below="@+id/radiola"
+            android:background="@color/custom_paig_dark"
+            android:layout_below="@+id/page"
             android:paddingTop="5dp"
             android:paddingLeft="5dp">
             <TextView
@@ -168,6 +90,7 @@
                 android:text="Gender"
                 android:gravity="center_horizontal"
                 android:textSize="16dp"
+                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:padding="5dp"
                 android:layout_width="wrap_content"
@@ -204,37 +127,134 @@
 
         </RadioGroup>
 
+
+        <RelativeLayout
+            android:id="@+id/lay3"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@color/custom_paig_dark"
+            android:layout_below="@+id/radiog"
+            android:paddingTop="5dp"
+            android:paddingLeft="5dp">
+    <TextView
+        android:id="@+id/psurgerydate_label"
+        android:text="Surgery Date"
+        android:gravity="center_horizontal"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+        </RelativeLayout>
+        <TextView
+        android:id="@+id/psurgerydate"
+        android:layout_marginLeft="10dp"
+        android:paddingTop="5dp"
+        android:textSize="16dp"
+        android:onClick="onClick"
+        android:clickable="true"
+        android:text="Today"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lay3" />
+
+
+        <RelativeLayout
+            android:id="@+id/lay4"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@color/custom_paig_dark"
+            android:layout_below="@+id/psurgerydate"
+            android:paddingTop="5dp"
+            android:paddingLeft="5dp">
+    <TextView
+        android:id="@+id/psurgerytype_label"
+        android:text="Surgery Type"
+        android:gravity="center_horizontal"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+    </RelativeLayout>
+        <RadioGroup android:id="@+id/radiola"
+        android:layout_below="@id/lay4"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10.0dip"
+        android:paddingLeft="4.0dip"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioa"
+            android:layout_width="175dp"
+            android:checked="true"
+            android:textSize="16dp"
+            android:layout_height="wrap_content"
+            android:text="@string/surgery_type_a_label"
+            android:textColor="#000000"/>
+
+        <RadioButton
+            android:id="@+id/radiob"
+            android:layout_width="match_parent"
+            android:layout_alignParentLeft="true"
+            android:textSize="16dp"
+            android:layout_height="wrap_content"
+            android:text="@string/surgery_type_b_label"
+            android:textColor="#000000"/>
+
+    </RadioGroup>
+
         <RelativeLayout
             android:id="@+id/lay6"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:background="@color/lightgreen"
+            android:background="@color/white"
             android:paddingTop="5dp"
             android:paddingLeft="5dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true">
-        <Button
-            android:id="@+id/buttondone"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:text="Done"
-            android:textSize="15dp"
-            android:background="@android:color/transparent"
-            android:layout_alignParentTop="true"
-            android:textColor="@color/white"
-            android:layout_centerVertical="true"
-            android:layout_alignParentStart="true" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/buttondone"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:text="Done"
+                    android:textSize="15dp"
+                    android:background="@drawable/flat_selector"
+                    android:layout_alignParentTop="true"
+                    android:textColor="@color/white"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginRight="5dp"/>
 
-        <Button
-            android:id="@+id/buttoncancel"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:background="@android:color/transparent"
-            android:textColor="@color/white"
-            android:textSize="15dp"
-            android:text="Cancel"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true" />
+                <Button
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/buttoncancel"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/flat_selector"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    android:text="Cancel"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true" />
+
+            </LinearLayout>
         </RelativeLayout>
 
 
