@@ -11,6 +11,16 @@
     <string name="surgery_type_b_table">protocolB.db</string>
     <string name="api">https://myacl.herokuapp.com/api/</string>
     <string name="MyKneeCatID">9</string>
+    <string-array name="motivational_phrases">
+        <item>Keep going!</item>
+        <item>You’re on your\nway!</item>
+        <item>You can do it!</item>
+        <item>Just do it!</item>
+        <item>Keep smiling!</item>
+        <item>You will make it!</item>
+        <item>Keep trying!</item>
+        <item>The ends not far!</item>
+    </string-array>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

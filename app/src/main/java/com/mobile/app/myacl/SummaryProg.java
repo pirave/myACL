@@ -20,6 +20,8 @@ import com.mobile.app.myacl.SummaryBuilder.SummaryBuilder;
 
 import java.text.DecimalFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.Random;
 
 public class SummaryProg extends Fragment {
 
@@ -27,6 +29,8 @@ public class SummaryProg extends Fragment {
     private SummaryBuilder summaryBuilder;
     private Context mContext;
     private TextView mTitle;
+    private static String[] motivationalPhrases;
+    private final static Random random = new Random();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,6 +41,7 @@ public class SummaryProg extends Fragment {
 
         mTitle = (TextView) view.findViewById(R.id.txtTitle);
         mProgressChart = (PieChart) view.findViewById(R.id.pie_chart);
+        motivationalPhrases = getResources().getStringArray(R.array.motivational_phrases);
 
         // DEBUGING REMOVE LATER
 
@@ -70,7 +75,9 @@ public class SummaryProg extends Fragment {
                 ColorTemplate.VORDIPLOM_COLORS[0],
                 ColorTemplate.VORDIPLOM_COLORS[4],
                 true));
-        //mProgressChart.setCenterTextTypeface(summaryBuilder.getTf());
+        mProgressChart.setCenterTextSize(20);
+        mProgressChart.setCenterText(motivationalPhrases[random.nextInt(motivationalPhrases.length)]);
+        mProgressChart.setCenterTextTypeface(summaryBuilder.getTf());
         mProgressChart.invalidate();
     }
 
