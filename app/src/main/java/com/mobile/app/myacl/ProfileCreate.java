@@ -110,6 +110,8 @@ public class ProfileCreate extends ActionBarActivity {
                     uDB.close();
                     APIClient apiClient = new APIClient(ProfileCreate.this);
                     apiClient.sendProfileData(x);
+                    getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
+                       .putLong("progressLastSyncDate", x.getSurgeryDate().getTime()).commit();
                     Toast.makeText(getApplicationContext(), "Profile Created!", Toast.LENGTH_SHORT).show();
                     DataAdapter mDataAdapter = new DataAdapter(getApplicationContext());
                     mDataAdapter.createDatabase();
