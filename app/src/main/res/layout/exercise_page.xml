@@ -8,15 +8,17 @@
     <RelativeLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:paddingTop="50dp"
+        android:paddingTop="5dp"
         android:paddingRight="15dp"
         android:paddingLeft="15dp">
 
         <ListView
             android:id="@+id/listView"
+            android:layout_marginBottom="5dp"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:divider="@android:color/transparent">
+            android:divider="@android:color/transparent"
+            android:dividerHeight="5dp">
         </ListView>
 
 

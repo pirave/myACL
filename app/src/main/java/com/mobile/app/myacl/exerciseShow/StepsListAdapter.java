@@ -56,7 +56,7 @@ public class StepsListAdapter extends BaseAdapter{
 
     public class Holder
     {
-        TextView stepdesc;
+        TextView stepdesc,lstepdur,stepdur,lsteprep,steprep,lstepsets,stepsets,lstepfrq,stepfrq;
         ImageView img;
     }
 
@@ -68,11 +68,47 @@ public class StepsListAdapter extends BaseAdapter{
         View rowView;
         rowView = inflater.inflate(R.layout.exercise_list, null);
         holder.stepdesc=(TextView) rowView.findViewById(R.id.textView1);
+        holder.lstepdur=(TextView) rowView.findViewById(R.id.ltextView2);
+        holder.stepdur=(TextView) rowView.findViewById(R.id.textdur);
+        holder.lsteprep=(TextView) rowView.findViewById(R.id.ltextView3);
+        holder.steprep=(TextView) rowView.findViewById(R.id.textrep);
+        holder.lstepsets=(TextView) rowView.findViewById(R.id.ltextView4);
+        holder.stepsets=(TextView) rowView.findViewById(R.id.textsets);
+        holder.lstepfrq=(TextView) rowView.findViewById(R.id.ltextView5);
+        holder.stepfrq=(TextView) rowView.findViewById(R.id.textfrq);
         holder.img=(ImageView) rowView.findViewById(R.id.imageView1);
         //holder.stepdesc.setText(steps.get(position).getstepnum());
+
+
+        holder.stepdesc.setText("- " + step.getstepdesc());
+        holder.stepdur.setText(step.getstepdur());
+        holder.steprep.setText(step.getsteprep());
+        holder.stepsets.setText(step.getstepset());
+        holder.stepfrq.setText(step.getstepfrq());
+
         if (step.hasPic())
             new RetrieveImageTask(holder.img)
                     .execute(step.getpicpath());
+
+        if (step.getstepdur()!= null || step.getstepdur() !="") {
+            holder.stepdur.setVisibility(View.VISIBLE);
+            holder.lstepdur.setVisibility(View.VISIBLE);
+        }
+
+        if (step.getstepset()!= null) {
+            holder.stepsets.setVisibility(View.VISIBLE);
+            holder.lstepsets.setVisibility(View.VISIBLE);
+        }
+
+        if (step.getsteprep()!= null) {
+            holder.steprep.setVisibility(View.VISIBLE);
+            holder.lsteprep.setVisibility(View.VISIBLE);
+        }
+
+        if (step.getstepfrq()!= null) {
+            holder.stepfrq.setVisibility(View.VISIBLE);
+            holder.lstepfrq.setVisibility(View.VISIBLE);
+        }
 
         return rowView;
     }
