@@ -63,6 +63,8 @@ public class ProtocolDB {
                 goals.add(new Goal(cursor.getString(0)));
             } while (cursor.moveToNext());
         }
+        if(cursor != null)
+            cursor.close();
         return goals;
     }
 
@@ -89,6 +91,8 @@ public class ProtocolDB {
                             getExercisesByWeekAndCategory(i, cursor.getInt(0))));
             } while (cursor.moveToNext());
         }
+        if(cursor != null)
+            cursor.close();
         return categories;
     }
 
@@ -112,6 +116,8 @@ public class ProtocolDB {
                 exercises.add(new Exercise(getStepsByExercise(cursor.getInt(0))));
             } while (cursor.moveToNext());
         }
+        if(cursor != null)
+            cursor.close();
         return exercises;
     }
    public List<Step> getStepsByExercise(int exercise_id){
@@ -135,6 +141,8 @@ public class ProtocolDB {
                 steps.add(new Step(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4),cursor.getString(5),cursor.getString(6)));
             } while (cursor.moveToNext());
         }
+       if(cursor != null)
+           cursor.close();
         return steps;
     }
 
