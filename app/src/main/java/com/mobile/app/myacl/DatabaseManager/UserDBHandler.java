@@ -19,6 +19,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
 
 
     public static final String KEY_CATID = "catid";
+    public static final String KEY_CATDESCR = "catdescr";
     public static final String KEY_COMPLETE = "complete";
     public static final String KEY_WEEKNUM = "weeknum";
     public static final String KEY_DAYNUM = "daynum";
@@ -53,6 +54,7 @@ public class UserDBHandler extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE " + TABLE_PROGRESS + " ("
                 + KEY_CATID + " INTEGER NOT NULL, "
+                + KEY_CATDESCR + " TEXT NOT NULL, "
                 + KEY_COMPLETE + " INTEGER DEFAULT 0, "
                 + KEY_WEEKNUM + " INTEGER NOT NULL, "
                 + KEY_DAYNUM + " INTEGER NOT NULL, "

@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.mobile.app.myacl.DatabaseManager.UserDB;
 import com.mobile.app.myacl.R;
 
 import org.apache.http.HttpResponse;
@@ -20,6 +21,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by pirave on 15-03-01.
@@ -27,14 +32,30 @@ import java.io.InputStreamReader;
 public class APIClient {
     private Context context;
     private static String URL;
+    private static String phoneID;
 
     public APIClient(Context context) {
         this.context = context;
         this.URL = context.getString(R.string.api);
+        this.phoneID = UserProfile.getInstance(context).getID();
     }
 
     public void sendProfileData(UserProfile profile){
-        new HttpAsyncTask().execute(profile);
+        new HttpProfileAsyncTask().execute(profile);
+    }
+
+    public void updateProgress(){
+        UserDB userDB = new UserDB(context);
+        userDB.open();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        cal.add(Calendar.DATE, -1); //minus number would decrement the days
+        Date endDate = cal.getTime();
+        Date startDate = new Date(context.getSharedPreferences("PREFERENCE", context.MODE_PRIVATE)
+                .getLong("progressLastSyncDate", endDate.getTime()));
+        List<UserProgress> progressList = userDB.getProgressData(startDate, endDate);
+        userDB.close();
+        new HttpProgressAsyncTask().execute(progressList);
     }
 
     public boolean isConnected(){
@@ -46,25 +67,51 @@ public class APIClient {
             return false;
     }
 
-    private class HttpAsyncTask extends AsyncTask<UserProfile, Void, Void> {
+    private class HttpProfileAsyncTask extends AsyncTask<UserProfile, Void, String> {
         @Override
-        protected Void doInBackground(UserProfile... profiles) {
-            POST(profiles[0]);
-            return null;
+        protected String doInBackground(UserProfile... profiles) {
+            return POSTUserProfile(profiles[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            try {
+                JSONObject json = new JSONObject(s);
+                if (json.getString("_id") != null){
+                    context.getSharedPreferences("PREFERENCE", context.MODE_PRIVATE).edit()
+                            .putBoolean("profileCreated", true).commit();
+                } else{
+                    context.getSharedPreferences("PREFERENCE", context.MODE_PRIVATE).edit()
+                            .putBoolean("profileCreated", false).commit();
+                }
+            } catch (Exception e)
+            {
+                Log.e("Parsing Json Error", e.toString());
+                context.getSharedPreferences("PREFERENCE", context.MODE_PRIVATE).edit()
+                        .putBoolean("profileCreated", false).commit();
+            }
         }
     }
 
-    public static String POST(UserProfile person){
-        InputStream inputStream = null;
-        String result = "";
+    private class HttpProgressAsyncTask extends AsyncTask<List<UserProgress>, Void, Date> {
+        @Override
+        protected Date doInBackground(List<UserProgress>... progressList) {
+            return POSTUserProgressData(progressList[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Date date) {
+            super.onPostExecute(date);
+            if (date != null)
+                context.getSharedPreferences("PREFERENCE", context.MODE_PRIVATE).edit()
+                    .putLong("progressLastSyncDate", date.getTime()).commit();
+        }
+    }
+
+    public static String POSTUserProfile(UserProfile person){
         try {
-
-            // 1. create HttpClient
-            HttpClient httpclient = new DefaultHttpClient();
-
-            // 2. make POST request to the given URL
-            HttpPost httpPost = new HttpPost(URL + "users");
-
             String json = "";
 
             // 3. build jsonObject
@@ -79,6 +126,68 @@ public class APIClient {
 
             // 4. convert JSONObject to JSON to String
             json = jsonObject.toString();
+
+            return POST(URL + "users", json);
+
+
+        } catch (Exception e) {
+            Log.d("InputStream", e.getLocalizedMessage());
+        }
+        return null;
+    }
+
+    public static Date POSTUserProgressData(List<UserProgress> userProgressList){
+
+        Date lastSyncDate = null;
+        try {
+            JSONObject json;
+            for (UserProgress progress: userProgressList){
+                json = new JSONObject(POSTUserProgress(progress));
+                if (json.getString("type") == progress.getCatDescr())
+                    lastSyncDate = progress.getDate();
+            }
+        } catch (Exception e)
+        {
+            Log.e("Parsing Json Error", e.toString());
+        }
+        return lastSyncDate;
+    }
+
+    public static String POSTUserProgress(UserProgress progress){
+        try {
+            String json = "";
+
+            // 3. build jsonObject
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.accumulate("phoneID", phoneID);
+            jsonObject.accumulate("type", progress.getCatDescr());
+            jsonObject.accumulate("day", progress.getDate());
+            jsonObject.accumulate("complete", progress.isComplete());
+            jsonObject.accumulate("rangeDegree", progress.getRangeDegree());
+
+            // 4. convert JSONObject to JSON to String
+            json = jsonObject.toString();
+
+            return POST(URL + "progress", json);
+
+        } catch (Exception e) {
+            Log.d("InputStream", e.getLocalizedMessage());
+        }
+        return null;
+    }
+
+    public static String POST(String url, String json){
+        InputStream inputStream = null;
+        String result = "";
+        try {
+
+            // 1. create HttpClient
+            HttpClient httpclient = new DefaultHttpClient();
+
+            // 2. make POST request to the given URL
+            HttpPost httpPost = new HttpPost(url);
+
+            // 3. & 4. incoming parameter json
 
             // ** Alternative way to convert Person object to JSON string usin Jackson Lib
             // ObjectMapper mapper = new ObjectMapper();
@@ -104,7 +213,7 @@ public class APIClient {
             if(inputStream != null)
                 result = convertInputStreamToString(inputStream);
             else
-                result = "Did not work!";
+                result = "";
 
         } catch (Exception e) {
             Log.d("InputStream", e.getLocalizedMessage());

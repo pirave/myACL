@@ -99,6 +99,7 @@ class PlanGenerator {
                 udb.createProgressEntry(
                         new UserProgress(
                                 c,
+                                week.getCategories().get(c).getDescription(),
                                 false,
                                 week.getNum(),
                                 i,

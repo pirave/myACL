@@ -9,6 +9,7 @@ import java.util.Date;
 
 public class UserProgress implements Serializable {
     private int catID;
+    private String catDescr;
     private boolean complete;
     private int weekNum;
     private int dayNum;
@@ -19,8 +20,9 @@ public class UserProgress implements Serializable {
 
     }
 
-    public UserProgress(int catID, boolean complete, int weekNum, int dayNum, Date date) {
+    public UserProgress(int catID, String catDescr, boolean complete, int weekNum, int dayNum, Date date) {
         this.catID = catID;
+        this.catDescr = catDescr;
         this.complete = complete;
         this.weekNum = weekNum;
         this.dayNum = dayNum;
@@ -33,6 +35,14 @@ public class UserProgress implements Serializable {
 
     public void setCatID(int catID) {
         this.catID = catID;
+    }
+
+    public String getCatDescr() {
+        return catDescr;
+    }
+
+    public void setCatDescr(String catDescr) {
+        this.catDescr = catDescr;
     }
 
     public boolean isComplete() {

@@ -133,6 +133,7 @@ public class UserDB {
 
         ContentValues cv = new ContentValues();
         cv.put(UserDBHandler.KEY_CATID, userProgress.getCatID());
+        cv.put(UserDBHandler.KEY_CATDESCR, userProgress.getCatDescr());
         cv.put(UserDBHandler.KEY_COMPLETE, userProgress.isComplete() ? 1 : 0);
         cv.put(UserDBHandler.KEY_WEEKNUM, userProgress.getWeekNum());
         cv.put(UserDBHandler.KEY_DAYNUM, userProgress.getDayNum());
@@ -149,6 +150,7 @@ public class UserDB {
         // TODO Date Conversion
         String[] columns = new String[] {
                 UserDBHandler.KEY_CATID,
+                UserDBHandler.KEY_CATDESCR,
                 UserDBHandler.KEY_COMPLETE,
                 UserDBHandler.KEY_WEEKNUM,
                 UserDBHandler.KEY_DAYNUM,
@@ -164,6 +166,7 @@ public class UserDB {
         ArrayList<UserProgress> list = new ArrayList<UserProgress>();
 
         int iCatid = c.getColumnIndex(UserDBHandler.KEY_CATID);
+        int iCatdesr = c.getColumnIndex(UserDBHandler.KEY_CATDESCR);
         int iComplete = c.getColumnIndex(UserDBHandler.KEY_COMPLETE);
         int iWeeknum = c.getColumnIndex(UserDBHandler.KEY_WEEKNUM);
         int iDaynum = c.getColumnIndex(UserDBHandler.KEY_DAYNUM);
@@ -176,6 +179,57 @@ public class UserDB {
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
             userprogress = new UserProgress();
             userprogress.setCatID(c.getInt(iCatid));
+            userprogress.setCatDescr(c.getString(iCatdesr));
+            userprogress.setComplete(c.getInt(iComplete) > 0);
+            userprogress.setWeekNum(c.getInt(iWeeknum));
+            userprogress.setDayNum(c.getInt(iDaynum));
+            try {
+                userprogress.setDate(dateFormat.parse(c.getString(iDaydate)));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            userprogress.setRangeDegree(c.getInt(iRangedgree));
+            list.add(userprogress);
+        }
+        return list;
+    }
+
+    public List<UserProgress> getProgressData(Date startDate, Date endDate) {
+        // TODO Date Conversion
+        String[] columns = new String[] {
+                UserDBHandler.KEY_CATID,
+                UserDBHandler.KEY_CATDESCR,
+                UserDBHandler.KEY_COMPLETE,
+                UserDBHandler.KEY_WEEKNUM,
+                UserDBHandler.KEY_DAYNUM,
+                UserDBHandler.KEY_DAYDATE,
+                UserDBHandler.KEY_RANGEDGREE
+        };
+        Cursor c = mDB.query(
+                UserDBHandler.TABLE_PROGRESS,
+                columns,
+                UserDBHandler.KEY_DAYDATE + " BETWEEN ? AND ?",
+                new String[]{
+                        new SimpleDateFormat("dd-MM-yyyy").format(startDate),
+                        new SimpleDateFormat("dd-MM-yyyy").format(endDate)},
+                null, null, null);
+        ArrayList<UserProgress> list = new ArrayList<UserProgress>();
+
+        int iCatid = c.getColumnIndex(UserDBHandler.KEY_CATID);
+        int iCatdesr = c.getColumnIndex(UserDBHandler.KEY_CATDESCR);
+        int iComplete = c.getColumnIndex(UserDBHandler.KEY_COMPLETE);
+        int iWeeknum = c.getColumnIndex(UserDBHandler.KEY_WEEKNUM);
+        int iDaynum = c.getColumnIndex(UserDBHandler.KEY_DAYNUM);
+        int iDaydate = c.getColumnIndex(UserDBHandler.KEY_DAYDATE);
+        int iRangedgree = c.getColumnIndex(UserDBHandler.KEY_RANGEDGREE);
+
+
+
+        UserProgress userprogress;
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            userprogress = new UserProgress();
+            userprogress.setCatID(c.getInt(iCatid));
+            userprogress.setCatDescr(c.getString(iCatdesr));
             userprogress.setComplete(c.getInt(iComplete) > 0);
             userprogress.setWeekNum(c.getInt(iWeeknum));
             userprogress.setDayNum(c.getInt(iDaynum));

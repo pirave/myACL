@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
+import com.mobile.app.myacl.UserManager.APIClient;
+import com.mobile.app.myacl.UserManager.UserProfile;
 
 
 public class Splash extends ActionBarActivity {
@@ -13,6 +15,7 @@ public class Splash extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
         Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("isFirstRun", true);
+        Boolean profileCreated = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("profileCreated", false);
 
         if (isFirstRun) {
             //show start activity
@@ -20,13 +23,17 @@ public class Splash extends ActionBarActivity {
         }
         else
         {
+            APIClient apiClient = new APIClient(this);
+            if (apiClient.isConnected()) {
+                if (!profileCreated)
+                    apiClient.sendProfileData(UserProfile.getInstance(this));
+                apiClient.updateProgress();
+            }
+
             startActivity(new Intent(Splash.this, MainActivity.class));
         }
-
                 getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
                 .putBoolean("isFirstRun", false).commit();
-
-
     }
 
 
