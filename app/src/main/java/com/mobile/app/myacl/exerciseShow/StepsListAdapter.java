@@ -90,7 +90,7 @@ public class StepsListAdapter extends BaseAdapter{
             new RetrieveImageTask(holder.img)
                     .execute(step.getpicpath());
 
-        if (step.getstepdur()!= null || step.getstepdur() !="") {
+        if (step.getstepdur()!= null) {
             holder.stepdur.setVisibility(View.VISIBLE);
             holder.lstepdur.setVisibility(View.VISIBLE);
         }
