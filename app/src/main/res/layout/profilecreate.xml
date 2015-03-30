@@ -174,7 +174,7 @@
             android:paddingLeft="5dp">
     <TextView
         android:id="@+id/psurgerytype_label"
-        android:text="Surgery Type"
+        android:text="Graft Site"
         android:gravity="center_horizontal"
         android:textSize="16dp"
         android:textStyle="bold"
