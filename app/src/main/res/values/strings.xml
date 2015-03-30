@@ -10,7 +10,7 @@
     <string name="surgery_type_a_table">protocolA.db</string>
     <string name="surgery_type_b_table">protocolB.db</string>
     <string name="api">https://myacl.herokuapp.com/api/</string>
-    <string name="MyKneeCatID">9</string>
+    <string name="MyKneeCatID">18</string>
     <string-array name="motivational_phrases">
         <item>Keep going!</item>
         <item>You’re on your\nway!</item>

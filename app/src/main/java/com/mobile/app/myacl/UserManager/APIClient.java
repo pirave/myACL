@@ -53,6 +53,7 @@ public class APIClient {
         Date endDate = cal.getTime();
         Date startDate = new Date(context.getSharedPreferences("PREFERENCE", context.MODE_PRIVATE)
                 .getLong("progressLastSyncDate", endDate.getTime()));
+        //startDate = UserProfile.getInstance(context).getSurgeryDate();
         List<UserProgress> progressList = userDB.getProgressData(startDate, endDate);
         userDB.close();
         new HttpProgressAsyncTask().execute(progressList);
