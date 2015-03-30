@@ -116,6 +116,25 @@ public class MainActivity extends ActionBarActivity implements  android.support.
         transaction.commit();
     }
 
+    public void onClickAbout(View view){
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.settingfragment, new AboutPage());
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
+    }
+
+    public void onClickteam(View view){
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.settingfragment, new TeamPage());
+        transaction.addToBackStack(null);
+
+        // Commit the transaction
+        transaction.commit();
+    }
     public void onClickShowTodayPlan(View view){
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

@@ -60,12 +60,14 @@
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:clickable="true"
+        android:onClick="onClickAbout"
         android:layout_below="@+id/layset2"
         android:id="@+id/layset3"
         android:background="@drawable/round_corner">
         <TextView
             android:id="@+id/contact_label"
-            android:text="Contact us"
+            android:text="About MyACL"
             android:textColor="@color/black"
             android:layout_marginLeft="20dp"
             android:textSize="20dp"
@@ -76,5 +78,26 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:clickable="true"
+        android:onClick="onClickteam"
+        android:layout_below="@+id/layset3"
+        android:id="@+id/layset4"
+        android:background="@drawable/round_corner">
+        <TextView
+            android:id="@+id/team_label"
+            android:text="MyACL Team"
+            android:textColor="@color/black"
+            android:layout_marginLeft="20dp"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

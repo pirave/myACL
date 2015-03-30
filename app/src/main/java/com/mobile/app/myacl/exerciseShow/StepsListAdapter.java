@@ -81,8 +81,8 @@ public class StepsListAdapter extends BaseAdapter{
 
 
         holder.stepdesc.setText("- " + step.getstepdesc());
-        holder.stepdur.setText(step.getstepdur());
-        holder.steprep.setText(step.getsteprep());
+        holder.stepdur.setText(step.getstepdur() + " minutes");
+        holder.steprep.setText(step.getsteprep()+ " times");
         holder.stepsets.setText(step.getstepset());
         holder.stepfrq.setText(step.getstepfrq());
 
