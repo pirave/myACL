@@ -67,14 +67,14 @@ public class SummaryBuilder {
      */
     public LineData generateFrequencyData() {
         ArrayList<Entry> valsComplete = new ArrayList<Entry>();
-        ArrayList<Entry> valsIncomplete = new ArrayList<Entry>();
+      //  ArrayList<Entry> valsIncomplete = new ArrayList<Entry>();
         ArrayList<String> xVals = new ArrayList<String>();
         ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
 
         List<Float> rawData = LineGraphData.getInstance(mContext).getFrequencyData();
         for (int i = 0; i < rawData.size(); i++){
             valsComplete.add(new Entry(rawData.get(i),i));
-            valsIncomplete.add(new Entry(100-rawData.get(i),i));
+      //      valsIncomplete.add(new Entry(100-rawData.get(i),i));
             if (i == 0)
                 xVals.add("Day 1");
             else
@@ -82,21 +82,21 @@ public class SummaryBuilder {
         }
 
         LineDataSet setComplete = new LineDataSet(valsComplete, "Complete");
-        LineDataSet setIncomplete = new LineDataSet(valsIncomplete, "Incomplete");
+       // LineDataSet setIncomplete = new LineDataSet(valsIncomplete, "Incomplete");
 
         // Style
         setComplete.setLineWidth(2f);
-        setIncomplete.setLineWidth(2f);
+      //  setIncomplete.setLineWidth(2f);
         setComplete.setDrawValues(false);
-        setIncomplete.setDrawValues(false);
+      //  setIncomplete.setDrawValues(false);
         setComplete.setColor(ColorTemplate.VORDIPLOM_COLORS[0]);
-        setIncomplete.setColor(ColorTemplate.VORDIPLOM_COLORS[4]);
+      //  setIncomplete.setColor(ColorTemplate.VORDIPLOM_COLORS[4]);
         setComplete.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[0]);
-        setIncomplete.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[4]);
+      //  setIncomplete.setCircleColor(ColorTemplate.VORDIPLOM_COLORS[4]);
 
 
         dataSets.add(setComplete);
-        dataSets.add(setIncomplete);
+      //  dataSets.add(setIncomplete);
 
         LineData data = new LineData(xVals, dataSets);
         data.setValueTypeface(mTf);
